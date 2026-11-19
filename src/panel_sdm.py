@@ -23,6 +23,9 @@ Salidas (out/panel/)
 
 Uso
     python src/panel_sdm.py
+
+Proyecto fusionado: si no existe data/raw/siniestralidad_bd, lee la misma base
+desde ../vIAsegura_ML/input/raw/siniestros (descargada por la fase 1 del ML).
 """
 
 from __future__ import annotations
@@ -56,11 +59,33 @@ CAUSAS = {
 }
 
 
+# PROYECTO FUSIONADO: la misma base (servicio AccidentalidadAnalisis de la SDM) ya la descarga
+# vIAsegura_ML en su fase 1 (input/raw/siniestros/). Si aquí no está la copia propia, se usa esa,
+# así la base de ~1,2 GB se descarga una sola vez. Otra carpeta: variable VIASEGURA_SINIESTROS_SDM.
+DIR_BD_ML = os.environ.get("VIASEGURA_SINIESTROS_SDM") or os.path.join(
+    os.path.dirname(RAIZ), "vIAsegura_ML", "input", "raw", "siniestros")
+NOMBRES_ML = {"2_ACCIDENTE.csv": "accidentes.csv", "1_LESIONADO.csv": "lesionados.csv",
+              "0_MUERTO.csv": "muertos.csv", "4_VM_ACC_CAUSA.csv": "causas.csv"}
+
+
 def leer(nombre, columnas):
     ruta = os.path.join(DIR_BD, nombre)
-    if not os.path.exists(ruta):
-        sys.exit(f"Falta {ruta}. Corra: python src/ingesta_sdm.py --solo siniestralidad_bd")
-    return pd.read_csv(ruta, low_memory=False, usecols=lambda c: c in columnas)
+    if os.path.exists(ruta):
+        return pd.read_csv(ruta, low_memory=False, usecols=lambda c: c in columnas)
+    ruta_ml = os.path.join(DIR_BD_ML, NOMBRES_ML.get(nombre, nombre))
+    if not os.path.exists(ruta_ml):
+        sys.exit(f"Falta {ruta} (ni está la base compartida {ruta_ml}). Corra vIAsegura_ML\\run_fase1.bat "
+                 "o: python src/ingesta_sdm.py --solo siniestralidad_bd")
+    print(f"  {nombre}: usando la base compartida de vIAsegura_ML ({os.path.basename(ruta_ml)})")
+    # en la descarga de vIAsegura_ML las coordenadas vienen como X/Y (lon/lat) y no como lon/lat
+    d = pd.read_csv(ruta_ml, low_memory=False, encoding="utf-8-sig",
+                    usecols=lambda c: c in columnas or (c in ("X", "Y") and {"lat", "lon"} & set(columnas)))
+    d = d.rename(columns={"X": "lon", "Y": "lat"})
+    for c in [c for c in d.columns if c.startswith("FECHA")]:      # «2017/06/12 00:00:00+00» → fecha sin zona horaria
+        d[c] = d[c].astype(str).str.replace(r"\+00$", "", regex=True).replace("nan", np.nan)
+    if "CODIGO_CAUSA" in d:
+        d["CODIGO_CAUSA"] = d["CODIGO_CAUSA"].astype(str).str.replace(r"\.0$", "", regex=True)
+    return d
 
 
 def formularios_duplicados(formularios: pd.Series) -> set:

@@ -124,6 +124,51 @@
   .mini:disabled { opacity: .5; cursor: default; }
   .motivo { font-size: 11.5px; color: var(--muted); margin-top: 3px; }
   .grupo-docs { font-size: 12px; color: var(--muted); margin: 14px 0 4px; text-transform: uppercase; letter-spacing: .5px; }
+  /* modelos ML (vIAsegura_ML) */
+  .subtabs { display: flex; gap: 4px; margin-top: 12px; }
+  .subtabs button { flex: 1; border: 1px solid var(--line); background: #fff; border-radius: 6px; padding: 6px 4px;
+    cursor: pointer; font-size: 12.5px; color: var(--ink); }
+  .subtabs button.activa { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); font-weight: 600; }
+  .ml-sub { display: none; } .ml-sub.activa { display: block; }
+  .fila4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+  .fila3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .fila4 label, .fila3 label { margin: 6px 0 2px; font-size: 11.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .fila4 input { padding: 5px 6px; }
+  .casillas { display: grid; grid-template-columns: 1fr 1fr; gap: 0 10px; }
+  .casillas label { display: flex; gap: 6px; align-items: center; margin: 3px 0; color: var(--ink); font-size: 12.5px; }
+  .metricas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .metrica { border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; font-size: 11.5px; color: var(--muted); line-height: 1.35; }
+  .metrica b { display: block; font-size: 12.5px; color: var(--ink); }
+  .nivel { margin: 14px 0 6px; padding: 10px 14px; border-radius: 8px; font-size: 15px; font-weight: 600; }
+  .nivel small { display: block; font-weight: 400; font-size: 12.5px; margin-top: 2px; }
+  .nivel.MUY.ALTO, .nivel.ALTO { background: var(--neg-soft); color: var(--neg); }
+  .nivel.MEDIO { background: var(--neu-soft); color: var(--neu); }
+  .nivel.BAJO { background: var(--pos-soft); color: var(--pos); }
+  .barras-prob { margin: 6px 0 4px; font-size: 12px; }
+  .barras-prob .fb { display: grid; grid-template-columns: 96px 1fr; gap: 8px; align-items: center; margin: 4px 0; }
+  .barras-prob .pista { position: relative; height: 16px; background: #eef0f3; border-radius: 3px; }
+  .barras-prob .pista i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 3px; }
+  .barras-prob .pista span { position: absolute; top: 0; font-size: 11.5px; font-weight: 600; line-height: 16px; padding-left: 4px; white-space: nowrap; }
+  .barras-prob .umbral { position: absolute; top: -3px; bottom: -3px; width: 2px; background: #4a1661; }
+  .h3ml { font-size: 12px; text-transform: uppercase; letter-spacing: .5px; color: var(--muted); margin: 16px 0 6px; }
+  .factor { display: grid; grid-template-columns: 1fr 110px 52px; gap: 6px; align-items: center; font-size: 12.5px; margin: 3px 0; }
+  .factor .eje { position: relative; height: 10px; background: #f0f2f5; border-radius: 2px; }
+  .factor .eje i { position: absolute; top: 0; bottom: 0; }
+  .factor .eje::after { content: ""; position: absolute; left: 50%; top: -2px; bottom: -2px; width: 1px; background: #8a8984; }
+  .factor .v { text-align: right; font-variant-numeric: tabular-nums; }
+  .tarjeta { border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; margin: 6px 0; font-size: 12.5px; line-height: 1.45; }
+  .tarjeta .t { font-weight: 600; font-size: 13px; }
+  .tarjeta details summary { cursor: pointer; color: var(--accent); font-size: 12px; margin-top: 4px; }
+  .tarjeta details p { margin: 4px 0 0; color: var(--muted); }
+  .chips-temas { display: flex; gap: 4px; flex-wrap: wrap; }
+  .chips-temas span { background: var(--accent-soft); color: var(--accent); border-radius: 10px; padding: 2px 8px; font-size: 11.5px; }
+  .tabla-ml { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 6px; }
+  .tabla-ml th, .tabla-ml td { border-bottom: 1px solid var(--line); padding: 5px 4px; text-align: right; vertical-align: top; }
+  .tabla-ml th { color: var(--muted); font-weight: 600; }
+  .tabla-ml th:nth-child(2), .tabla-ml td:nth-child(2) { text-align: left; }
+  .tabla-ml tr.sel td { background: var(--accent-soft); font-weight: 600; }
+  .tabla-ml tr.clic { cursor: pointer; } .tabla-ml tr.clic:hover td { background: #f3f6fb; }
+  .botones-esc { display: flex; gap: 6px; flex-wrap: wrap; margin: 8px 0 0; }
   #mapa { height: 100vh; }
   .leyenda { background: #fff; padding: 8px 10px; border-radius: 6px; box-shadow: 0 1px 4px rgba(0,0,0,.25); font-size: 12px; line-height: 1.6; }
   .leyenda i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
@@ -150,6 +195,7 @@
       <button class="tab activa" data-vista="mapa">Mapa</button>
       <button class="tab" data-vista="chat">Chat</button>
       <button class="tab" data-vista="normas">Normas</button>
+      <button class="tab" data-vista="ml">Modelos ML</button>
     </nav>
     <div class="contenido">
       <div id="vista-mapa" class="vista activa">
@@ -238,6 +284,102 @@
           <div id="lista-docs"></div>
           <button class="mini" id="btn-reindexar-todo" style="margin-top:10px">Reindexar todo desde cero</button>
         </section>
+      </div>
+
+      <div id="vista-ml" class="vista">
+        <section class="paso">
+          <h2>Modelos de vIAsegura_ML</h2>
+          <p class="nota" id="ml-info" style="margin-top:0">Cargando los modelos…</p>
+          <div class="metricas" id="ml-metricas"></div>
+          <div class="subtabs">
+            <button data-ml="siniestro" class="activa">① Gravedad</button>
+            <button data-ml="tramos">② Tramos 2026</button>
+            <button data-ml="perfiles">③ Perfiles</button>
+          </div>
+        </section>
+
+        <div id="ml-siniestro" class="ml-sub activa">
+          <section class="paso">
+            <h2><b>1</b>Describa el siniestro</h2>
+            <p class="nota" style="margin-top:0">El modelo estima la probabilidad de que un siniestro <b>con víctimas</b> termine en muerte,
+              lo asigna a un perfil y busca la norma aplicable. Lo que no conozca, déjelo en blanco.</p>
+            <label for="ml-ejemplo">Cargar un ejemplo</label>
+            <select id="ml-ejemplo"><option value="">— ejemplos de la demo del proyecto de ML —</option></select>
+            <div class="fila">
+              <div><label for="ml-fecha">Fecha</label><input id="ml-fecha" type="date"></div>
+              <div><label for="ml-hora">Hora (0 a 23)</label><input id="ml-hora" type="number" min="0" max="23" placeholder="sin info"></div>
+            </div>
+            <div class="fila">
+              <div><label for="ml-clase">Clase de siniestro</label><select id="ml-clase"></select></div>
+              <div><label for="ml-localidad">Localidad</label><select id="ml-localidad"><option value="">(la del punto marcado)</option></select></div>
+            </div>
+            <button class="btn" id="ml-ubicar" style="margin-top:8px;width:100%;text-align:center">📍 Marcar el lugar en el mapa</button>
+            <p class="nota" id="ml-ubicacion">Sin ubicación (opcional).</p>
+            <label>Personas involucradas</label>
+            <div class="fila4" id="ml-personas"></div>
+            <label>Vehículos</label>
+            <div class="fila4" id="ml-vehiculos"></div>
+            <label>Causas registradas por el agente</label>
+            <div class="casillas" id="ml-causas"></div>
+            <label>Vía e infraestructura</label>
+            <div class="fila4">
+              <div><label for="ml-iluminacion">Iluminación</label><select id="ml-iluminacion"><option value="">sin info</option><option>CON</option><option>SIN</option></select></div>
+              <div><label for="ml-condicion">Calzada</label><select id="ml-condicion"><option value="">sin info</option><option>SECA</option><option>HUMEDA</option></select></div>
+              <div><label for="ml-estado">Estado</label><select id="ml-estado"><option value="">sin info</option><option>BUENO</option><option>CON HUECOS</option></select></div>
+              <div><label for="ml-velocidad">Límite (km/h)</label><select id="ml-velocidad"><option value="">sin info</option><option>30</option><option>60</option></select></div>
+            </div>
+            <div class="casillas" id="ml-sino" style="margin-top:6px"></div>
+            <div class="aviso" id="ml-aviso"></div>
+            <button class="btn-principal" id="ml-analizar" style="margin-top:12px">Analizar siniestro</button>
+          </section>
+          <div id="ml-resultado" style="padding:0 18px 18px"></div>
+        </div>
+
+        <div id="ml-tramos" class="ml-sub">
+          <section class="paso">
+            <h2><b>1</b>Seleccione la vía</h2>
+            <p class="nota" style="margin-top:0">Dibuje la vía sobre el mapa o elija un corredor: el modelo toma los tramos de la malla vial
+              (CIV) que recorre la línea y predice sus siniestros con víctimas para 2026.</p>
+            <div class="grid-btn">
+              <button class="btn" id="mlt-dibujar">✏️ Dibujar vía (línea)</button>
+              <button class="btn" id="mlt-limpiar">✕ Quitar selección</button>
+            </div>
+            <div class="fila">
+              <div><label for="mlt-corredor">Corredor principal</label><select id="mlt-corredor"><option value="">— elegir —</option></select></div>
+              <div><label for="mlt-ancho">Tolerancia (m a cada lado)</label><input id="mlt-ancho" type="number" min="5" max="100" value="20"></div>
+            </div>
+            <p class="nota" id="mlt-ayuda">Clic para cada punto de la vía; clic en el último punto para terminar. Se toman los tramos que
+              tienen al menos el 60 % de su largo dentro de la tolerancia (así no entran las calles que solo la cruzan).</p>
+            <div id="mlt-resumen"></div>
+          </section>
+          <section class="paso" id="mlt-paso2" style="display:none">
+            <h2><b>2</b>Agregue infraestructura</h2>
+            <p class="nota" style="margin-top:0">Se aplica a todos los tramos seleccionados (los que ya la tienen no cambian).</p>
+            <div class="casillas" id="mlt-cambios"></div>
+            <div class="aviso" id="mlt-aviso"></div>
+            <button class="btn-principal" id="mlt-simular" style="margin-top:12px">Simular con el modelo</button>
+            <div id="mlt-resultado"></div>
+          </section>
+          <section class="paso">
+            <h2>Tramos de mayor riesgo previsto · 2026</h2>
+            <p class="nota" style="margin-top:0" id="ml-tramos-info">Cargando tramos…</p>
+            <p class="nota">Toque un tramo en el mapa o en la lista para ver su historia y simular dispositivos. Las simulaciones son
+              <b>asociaciones del modelo</b>, no efectos causales: para el efecto medido en Bogotá, lleve la medida a la pestaña <i>Mapa</i>.</p>
+            <div id="ml-tramo-sel"></div>
+            <div class="h3ml">Los 25 tramos de mayor riesgo</div>
+            <div id="ml-lista-tramos"></div>
+          </section>
+        </div>
+
+        <div id="ml-perfiles" class="ml-sub">
+          <section class="paso">
+            <h2>Perfiles de siniestro (K-Means)</h2>
+            <p class="nota" style="margin-top:0">Agrupamiento no supervisado de los siniestros con víctimas según 21 rasgos. Ordenados por tasa de
+              muerte; entre paréntesis, cuántas veces es más frecuente el rasgo en el perfil que en el total (lift).
+              Resaltado, el perfil del último siniestro analizado.</p>
+            <div id="ml-tabla-perfiles"></div>
+          </section>
+        </div>
       </div>
 
       <div id="vista-chat" class="vista">
@@ -347,7 +489,7 @@ async function cargarCoropletico() {
       const p = f.properties;
       capa.bindTooltip(`<b>${escapar(p.nombre)}</b><br>${p.victimas_anual.toLocaleString("es-CO")} siniestros con víctimas al año` +
         `<br>${String(p.muertos_anual).replace(".", ",")} muertes al año<br><i>clic para ${"elegir o quitar"}</i>`, { sticky: true });
-      capa.on("click", () => alternarLocalidad(p.nombre));
+      capa.on("click", () => { if (!mlEligiendo) alternarLocalidad(p.nombre); });   // al marcar un siniestro, el clic es el lugar
     },
   }).addTo(mapa);
   coro.bringToBack();
@@ -466,6 +608,7 @@ document.querySelectorAll("[data-dibujo]").forEach((b) => {
   };
 });
 mapa.on(L.Draw.Event.CREATED, (e) => {
+  if (mltDibujando) { lineaDibujadaML(e.layer); return; }     // vía dibujada en «Modelos ML → Tramos 2026»
   const t = e.layerType;
   const tipo = t === "polyline" ? "via" : t === "circle" ? "punto" : "area";
   let nombre;
@@ -484,6 +627,8 @@ mapa.on(L.Draw.Event.DRAWSTOP, () => {
   document.querySelectorAll("[data-dibujo]").forEach((x) => x.classList.remove("dibujando"));
   dibujoActivo = null;
 });
+
+var mltDibujando = false;      // se declara aquí porque el manejador de dibujo de arriba lo consulta
 
 // ───────────── zonas por nombre ─────────────
 async function traerZona(tipo, nombre) {
@@ -739,8 +884,10 @@ $("entrada").onkeydown = (e) => { if (e.key === "Enter" && !e.shiftKey) { e.prev
 // ───────────── pestañas ─────────────
 function irA(vista) {
   document.querySelectorAll(".tab").forEach((x) => x.classList.toggle("activa", x.dataset.vista === vista));
-  ["mapa", "chat", "normas"].forEach((v) => $("vista-" + v).classList.toggle("activa", v === vista));
+  ["mapa", "chat", "normas", "ml"].forEach((v) => $("vista-" + v).classList.toggle("activa", v === vista));
   if (vista === "normas") cargarNormas();
+  if (vista === "ml") cargarML();
+  capasML(vista === "ml");
 }
 document.querySelectorAll(".tab").forEach((t) => { t.onclick = () => irA(t.dataset.vista); });
 
@@ -854,6 +1001,448 @@ $("btn-reindexar-todo").onclick = () => {
   b.dataset.seguro = ""; b.textContent = "Reindexar todo desde cero";
   indexar(null, true);
 };
+
+// ───────────── modelos ML (vIAsegura_ML) ─────────────
+// 1. gravedad (Random Forest calibrado) + perfil (K-Means) + norma aplicable · 2. tramos 2026 (LightGBM Poisson) · 3. perfiles
+const ML_PERSONAS = [["peatones", "Peatones"], ["ciclistas", "Ciclistas"], ["motociclistas", "Motociclistas"], ["pasajeros", "Pasajeros"],
+  ["conductores", "Conductores"], ["menores_18", "Menores de 18"], ["mayores_60", "Mayores de 60"], ["edad_conductor_min", "Edad conductor"]];
+const ML_VEHICULOS = [["autos", "Autos"], ["motos", "Motos"], ["bicicletas", "Bicicletas"], ["buses", "Buses"], ["carga", "Carga"],
+  ["otros", "Otros"], ["servicio_publico", "Serv. público"]];
+const ML_SINO = [["via_arterial", "Vía arterial"], ["interseccion", "Intersección"], ["semaforo_a_30m", "Semáforo a 30 m"],
+  ["camara_activa_500m", "Cámara activa a 500 m"], ["resalto", "Resalto"], ["fuga", "Algún vehículo huyó"]];
+const ML_SELECTS = { iluminacion: "ml-iluminacion", condicion: "ml-condicion", estado: "ml-estado", velocidad_reglamentaria: "ml-velocidad" };
+// dispositivo del tramo → medida que evalúa la pestaña Mapa con la evidencia de Bogotá
+const ML_A_MEDIDA = { camara: "fotodeteccion", resalto: "reductor_velocidad", semaforo: "semaforizacion", vel30: "limite_velocidad" };
+const capaTramos = L.featureGroup();
+let ML = null, mlCargando = false, mlEligiendo = false, mlMarcador = null, mlTramos = null, mlSub = "siniestro", mlPerfil = null, mlTramoSel = null;
+
+const pct = (x, d = 1) => (x * 100).toLocaleString("es-CO", { maximumFractionDigits: d, minimumFractionDigits: d }) + " %";
+const num = (x, d = 1) => Number(x).toLocaleString("es-CO", { maximumFractionDigits: d, minimumFractionDigits: d });
+const normLoc = (s) => String(s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toUpperCase().trim();
+
+function nombreNorma(id) {
+  const m = String(id).match(/^(LEY|DEC|RES|ACU|CIR)_(\d+)_(\d{4})$/);
+  const tipo = { LEY: "Ley", DEC: "Decreto", RES: "Resolución", ACU: "Acuerdo", CIR: "Circular" };
+  return m ? `${tipo[m[1]]} ${m[2]} de ${m[3]}` : String(id).replace(/_/g, " ");
+}
+function nombreSegmento(s) {
+  const m = String(s).match(/^art_(\d+)$/);
+  return m ? `artículo ${m[1]}` : String(s).replace(/^art_/, "art. ").replace(/_/g, ".");
+}
+
+function construirFormularioML() {
+  const campo = (lista, cont) => { $(cont).innerHTML = lista.map(([k, t]) =>
+    `<div><label for="ml-n-${k}" title="${t}">${t}</label><input id="ml-n-${k}" type="number" min="0" max="${k === "edad_conductor_min" ? 99 : 20}" placeholder="0"></div>`).join(""); };
+  campo(ML_PERSONAS, "ml-personas");
+  campo(ML_VEHICULOS, "ml-vehiculos");
+  $("ml-causas").innerHTML = ML.causas.map((c) => `<label><input type="checkbox" data-causa="${c.id}"> ${escapar(c.nombre)}</label>`).join("");
+  $("ml-sino").innerHTML = ML_SINO.map(([k, t]) => `<label><input type="checkbox" id="ml-b-${k}"> ${t}</label>`).join("");
+  ML.clases.forEach((c) => $("ml-clase").add(new Option(c.charAt(0) + c.slice(1).toLowerCase(), c)));
+  [...$("sel-localidad").options].slice(1).forEach((o) => $("ml-localidad").add(new Option(o.text, o.value)));
+  Object.keys(ML.ejemplos).forEach((n) => $("ml-ejemplo").add(new Option(n, n)));
+  $("ml-ejemplo").onchange = (e) => { if (e.target.value) llenarFormularioML(ML.ejemplos[e.target.value]); };
+  $("ml-fecha").value = new Date().toISOString().slice(0, 10);
+}
+
+function llenarFormularioML(s) {
+  $("ml-fecha").value = s.fecha || "";
+  $("ml-hora").value = s.hora ?? "";
+  $("ml-clase").value = s.clase_siniestro || "CHOQUE";
+  const loc = [...$("ml-localidad").options].find((o) => o.value && normLoc(o.value) === normLoc(s.localidad));
+  $("ml-localidad").value = loc ? loc.value : "";
+  [...ML_PERSONAS, ...ML_VEHICULOS].forEach(([k]) => { $("ml-n-" + k).value = s[k] ?? ""; });
+  document.querySelectorAll("[data-causa]").forEach((c) => { c.checked = (s.causas || []).includes(c.dataset.causa); });
+  ML_SINO.forEach(([k]) => { $("ml-b-" + k).checked = !!s[k]; });
+  Object.entries(ML_SELECTS).forEach(([k, id]) => { $(id).value = s[k] ?? ""; });
+  if (s.lat && s.lon) fijarUbicacionML(L.latLng(s.lat, s.lon), true); else quitarUbicacionML();
+}
+
+function leerFormularioML() {
+  const s = { fecha: $("ml-fecha").value || undefined, clase_siniestro: $("ml-clase").value };
+  if ($("ml-hora").value !== "") s.hora = Number($("ml-hora").value);
+  if ($("ml-localidad").value) s.localidad = $("ml-localidad").value;
+  if (mlMarcador) { const ll = mlMarcador.getLatLng(); s.lat = +ll.lat.toFixed(6); s.lon = +ll.lng.toFixed(6); }
+  [...ML_PERSONAS, ...ML_VEHICULOS].forEach(([k]) => { const v = $("ml-n-" + k).value; if (v !== "" && Number(v) >= 0) s[k] = Number(v); });
+  s.causas = [...document.querySelectorAll("[data-causa]:checked")].map((c) => c.dataset.causa);
+  ML_SINO.forEach(([k]) => { if ($("ml-b-" + k).checked) s[k] = true; });
+  Object.entries(ML_SELECTS).forEach(([k, id]) => { const v = $(id).value; if (v) s[k] = k === "velocidad_reglamentaria" ? Number(v) : v; });
+  return s;
+}
+
+function fijarUbicacionML(ll, sinMover) {
+  if (mlMarcador) mlMarcador.setLatLng(ll);
+  else mlMarcador = L.circleMarker(ll, { radius: 8, color: "#4a1661", weight: 3, fillColor: "#d6006f", fillOpacity: .9 });
+  mlMarcador.bindTooltip("Siniestro a analizar");
+  if (!mapa.hasLayer(mlMarcador) && $("vista-ml").classList.contains("activa")) mlMarcador.addTo(mapa);
+  mlEligiendo = false;
+  $("ml-ubicar").classList.remove("dibujando");
+  $("ml-ubicar").textContent = "📍 Cambiar el lugar en el mapa";
+  $("ml-ubicacion").innerHTML = `Lugar: ${ll.lat.toFixed(5)}, ${ll.lng.toFixed(5)} · <a href="#" id="ml-quitar-ubic">quitar</a>`;
+  $("ml-quitar-ubic").onclick = (e) => { e.preventDefault(); quitarUbicacionML(); };
+  if (!sinMover) $("ml-localidad").value = "";      // la localidad sale del punto
+  else mapa.setView(ll, Math.max(mapa.getZoom(), 13));
+}
+function quitarUbicacionML() {
+  if (mlMarcador) mapa.removeLayer(mlMarcador);
+  mlMarcador = null;
+  $("ml-ubicar").textContent = "📍 Marcar el lugar en el mapa";
+  $("ml-ubicacion").textContent = "Sin ubicación (opcional).";
+}
+mapa.on("click", (e) => { if (mlEligiendo) fijarUbicacionML(e.latlng); });
+
+function capasML(visible) {
+  const tramos = visible && mlSub === "tramos";
+  // con una vía seleccionada se ocultan los 2.000 tramos del ranking para que se vea la selección
+  const haySel = typeof mltDatos !== "undefined" && mltDatos && mltDatos.n_tramos;
+  if (tramos && !haySel) capaTramos.addTo(mapa); else mapa.removeLayer(capaTramos);
+  if (tramos) { capaSelML.addTo(mapa); capaSelML.bringToFront(); } else mapa.removeLayer(capaSelML);
+  if (mlMarcador) { if (visible && mlSub === "siniestro") mlMarcador.addTo(mapa); else mapa.removeLayer(mlMarcador); }
+  if (!visible) { mlEligiendo = false; $("ml-ubicar").classList.remove("dibujando"); }
+}
+
+function irASubML(sub) {
+  mlSub = sub;
+  document.querySelectorAll("[data-ml]").forEach((b) => b.classList.toggle("activa", b.dataset.ml === sub));
+  ["siniestro", "tramos", "perfiles"].forEach((s) => $("ml-" + s).classList.toggle("activa", s === sub));
+  capasML(true);
+  if (sub === "tramos") { iniciarSeleccionML(); cargarTramosML(); }
+  if (sub === "perfiles") pintarPerfilesML();
+}
+document.querySelectorAll("[data-ml]").forEach((b) => { b.onclick = () => irASubML(b.dataset.ml); });
+
+async function cargarML() {
+  if (ML || mlCargando) return;
+  mlCargando = true;
+  try {
+    const r = await fetch("/api/ml/estado");
+    const d = await r.json();
+    if (!r.ok || d.error) {
+      $("ml-info").textContent = "⚠️ " + (d.error || "Los modelos no están disponibles.");
+      if (r.status === 503 && /cargando/.test(d.error || "")) setTimeout(() => { mlCargando = false; cargarML(); }, 3000);
+      return;
+    }
+    ML = d;
+    const g = d.gravedad, t = d.tramos, div = d.division || {};
+    $("ml-info").innerHTML = `Modelo entrenado en <b>vIAsegura_ML</b> (${escapar((d.creado || "").slice(0, 10))}): entrenamiento ${escapar(div.entrenamiento || "")}, ` +
+      `validación ${escapar(div.validacion || "")}, prueba ${escapar(div.prueba || "")}. Métricas en datos que el modelo no vio.` +
+      (d.aviso ? `<br>⚠️ ${escapar(d.aviso)}` : "");
+    $("ml-metricas").innerHTML =
+      `<div class="metrica"><b>① Gravedad</b>${escapar(g.algoritmo)}<br>ROC-AUC ${num(g.roc_auc, 3)} · el 10 % de mayor riesgo reúne el ${pct(g.captura_top10, 0)} de las muertes</div>` +
+      `<div class="metrica"><b>② Tramos 2026</b>${escapar(t.algoritmo)}<br>el 5 % de tramos priorizados reúne el ${pct(t.captura_top5, 0)} de los siniestros</div>` +
+      `<div class="metrica"><b>③ Perfiles</b>${escapar(d.perfiles.algoritmo)}<br>${d.perfiles.lista.length} perfiles · normas: ${d.normas.n_normas} normas, ${pct(d.normas.precision.global, 0)} de acierto validado</div>`;
+    construirFormularioML();
+    llenarFormularioML(Object.values(d.ejemplos)[0]);
+    $("ml-ejemplo").value = Object.keys(d.ejemplos)[0];
+  } catch (e) {
+    $("ml-info").textContent = "⚠️ Error de conexión con el servidor.";
+  } finally { mlCargando = false; }
+}
+
+$("ml-ubicar").onclick = () => {
+  mlEligiendo = !mlEligiendo;
+  $("ml-ubicar").classList.toggle("dibujando", mlEligiendo);
+  $("ml-ubicar").textContent = mlEligiendo ? "Haga clic en el mapa donde ocurrió… (clic aquí para cancelar)" : "📍 Marcar el lugar en el mapa";
+};
+
+$("ml-analizar").onclick = async () => {
+  if (!ML) return;
+  const aviso = $("ml-aviso"); aviso.style.display = "none";
+  const s = leerFormularioML();
+  const btn = $("ml-analizar"); btn.disabled = true; $("cargando").style.display = "block";
+  try {
+    const r = await fetch("/api/ml/siniestro", post(s));
+    const d = await r.json();
+    if (!r.ok || d.error) { aviso.textContent = d.error || "No se pudo analizar."; aviso.style.display = "block"; return; }
+    pintarFichaML(d);
+  } catch (e) {
+    aviso.textContent = "Error de conexión con el servidor."; aviso.style.display = "block";
+  } finally { btn.disabled = false; $("cargando").style.display = "none"; }
+};
+
+function pintarFichaML(d) {
+  mlPerfil = d.perfil.perfil;
+  const p = d.probabilidad, max = Math.max(0.12, p * 1.35);
+  const color = { "MUY ALTO": "#b3261e", ALTO: "#d6006f", MEDIO: "#9b7fb0", BAJO: "#2e8b8b" }[d.nivel];
+  const barra = (etq, v, c) => `<div class="fb"><span>${etq}</span><div class="pista"><i style="width:${100 * v / max}%;background:${c}"></i>` +
+    `<span style="left:${Math.min(100 * v / max, 80)}%">${pct(v)}</span><b class="umbral" style="left:${100 * d.umbral / max}%" title="Umbral de alerta"></b></div></div>`;
+  const maxF = Math.max(1, ...d.factores.map((f) => Math.abs(f.pp)));
+  const factores = d.factores.length ? d.factores.map((f) => {
+    const w = 50 * Math.abs(f.pp) / maxF, sube = f.pp > 0;
+    return `<div class="factor"><span>${escapar(f.factor)}</span><div class="eje"><i style="${sube ? "left:50%" : `left:${50 - w}%`};width:${w}%;` +
+      `background:${sube ? "#d6006f" : "#2e8b8b"}"></i></div><span class="v">${f.pp > 0 ? "+" : ""}${num(f.pp)} pp</span></div>`;
+  }).join("") : '<p class="nota">Ningún factor informado mueve la probabilidad más de 0,1 puntos.</p>';
+  const pf = d.perfil;
+  const normas = d.normas.length ? d.normas.map((n, i) => `<div class="tarjeta"><div class="t">${i + 1}. ${escapar(nombreNorma(n.id_norma))} · ${escapar(nombreSegmento(n.segmento))}</div>` +
+      `<div class="nota" style="margin:2px 0 4px">${escapar(n.resumen || "")} · tema: ${escapar(String(n.tema_principal).replace(/_/g, " "))} · similitud ${num(n.similitud, 3)}</div>` +
+      `<details><summary>Ver el texto del artículo</summary><p>${escapar(n.texto)}…</p></details>` +
+      `<div class="acciones" style="margin-top:6px"><button data-norma="${i}">💬 Preguntar al chat qué dice</button></div></div>`).join("")
+    : '<p class="nota">El siniestro no tiene temas suficientes (causa o actor) para sugerir una norma.</p>';
+  $("ml-resultado").innerHTML =
+    `<div class="nivel ${d.nivel}">Probabilidad de muerte: ${pct(p)} · riesgo ${d.nivel}` +
+    `<small>${num(d.veces_tasa)} veces la tasa general de los siniestros con víctimas (${pct(d.tasa_base)})</small></div>` +
+    `<div class="barras-prob">${barra("Este siniestro", p, color)}${barra("Tasa general", d.tasa_base, "#8a8984")}` +
+    `<p class="nota">La raya morada es el umbral de alerta del modelo (${pct(d.umbral)}). Sirve para ordenar y priorizar casos, no como certeza individual.</p></div>` +
+    `<div class="h3ml">¿Qué factores pesan?</div><p class="nota" style="margin-top:0">Puntos porcentuales que aporta cada dato frente a un valor neutro: ` +
+    `<span style="color:#d6006f">magenta sube el riesgo</span>, <span style="color:#2e8b8b">verde lo baja</span>.</p>${factores}` +
+    `<div class="h3ml">Perfil (K-Means)</div><div class="tarjeta"><div class="t">Perfil ${pf.perfil}: ${escapar(pf.rasgos)}</div>` +
+    `Tasa de muerte típica del perfil ${pct(pf.tasa_muerte)} · ${pct(pf.pct_siniestros)} de los siniestros y ${pct(pf.pct_muertes)} de las muertes. ` +
+    `<a href="#" id="ml-ver-perfiles">Ver los ${ML.perfiles.lista.length} perfiles</a></div>` +
+    `<div class="h3ml">Temas del siniestro</div><div class="chips-temas">${d.temas.map((t) => `<span>${escapar(t.replace(/_/g, " "))}</span>`).join("") || '<span>ninguno</span>'}</div>` +
+    `<div class="h3ml">Normas aplicables</div>` +
+    (d.confianza_norma ? `<p class="nota" style="margin-top:0">Confianza <b>${d.confianza_norma}</b>: en la validación manual acertó el ${pct(d.precision_norma, 0)} de las veces` +
+      (d.confianza_norma === "BAJA" ? " (sin causa específica registrada: léala como la norma del tema del actor)." : ".") + "</p>" : "") + normas +
+    (d.notas.length ? `<p class="nota">${d.notas.map(escapar).join(" ")}</p>` : "");
+  $("ml-ver-perfiles").onclick = (e) => { e.preventDefault(); irASubML("perfiles"); };
+  document.querySelectorAll("[data-norma]").forEach((b) => {
+    const n = d.normas[Number(b.dataset.norma)];
+    b.onclick = () => { irA("chat"); enviar(`¿Qué dice el ${nombreSegmento(n.segmento)} de ${nombreNorma(n.id_norma)}?`); };
+  });
+  $("ml-resultado").scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function pintarPerfilesML() {
+  if (!ML) return;
+  const filas = [...ML.perfiles.lista].sort((a, b) => b.tasa_muerte - a.tasa_muerte).map((p) =>
+    `<tr class="${p.perfil === mlPerfil ? "sel" : ""}"><td>${p.perfil}</td><td>${escapar(p.rasgos)}</td><td>${pct(p.pct_siniestros)}</td>` +
+    `<td>${pct(p.tasa_muerte)}</td><td>${pct(p.pct_muertes)}</td></tr>`).join("");
+  $("ml-tabla-perfiles").innerHTML = `<table class="tabla-ml"><tr><th>#</th><th>Rasgos que lo definen</th><th>% sin.</th><th>Tasa muerte</th><th>% muertes</th></tr>${filas}</table>`;
+}
+
+async function cargarTramosML() {
+  if (mlTramos || !ML) return;
+  try {
+    const d = await (await fetch("/api/ml/tramos")).json();
+    if (d.error) { $("ml-tramos-info").textContent = "⚠️ " + d.error; return; }
+    mlTramos = d.tramos;
+    const r = d.resumen;
+    $("ml-tramos-info").innerHTML = `El modelo espera <b>${Math.round(r.total_2026).toLocaleString("es-CO")}</b> siniestros con víctimas en 2026 en los ` +
+      `${r.n_tramos.toLocaleString("es-CO")} tramos de la malla vial. Los 100 de mayor riesgo concentran el ${pct(r.top100_pct)}. ` +
+      `En el mapa, los ${r.n_paquete.toLocaleString("es-CO")} tramos de mayor riesgo (color y tamaño = siniestros esperados).`;
+    const vals = mlTramos.map((t) => t.pred).sort((a, b) => a - b);
+    const cortes = [.5, .75, .9, .97].map((q) => vals[Math.floor(q * (vals.length - 1))]);
+    const rampa = ["#fcc5c0", "#fa9fb5", "#f768a1", "#c51b8a", "#7a0177"];
+    const colorT = (v) => { let i = 0; while (i < cortes.length && v > cortes[i]) i++; return rampa[i]; };
+    mlTramos.slice().reverse().forEach((t) => {           // los de mayor riesgo quedan encima
+      const c = L.circleMarker([t.lat, t.lon], { radius: 3 + 1.4 * Math.sqrt(t.pred) * 2, weight: 0.5, color: "#4a1661",
+        fillColor: colorT(t.pred), fillOpacity: .85 });
+      c.bindTooltip(`#${t.rango} · CIV ${t.civ}<br>${num(t.pred)} siniestros con víctimas esperados en 2026`);
+      c.on("click", (e) => { L.DomEvent.stopPropagation(e); seleccionarTramo(t); });
+      capaTramos.addLayer(c);
+    });
+    $("ml-lista-tramos").innerHTML = `<table class="tabla-ml"><tr><th>#</th><th>Tramo</th><th>2025</th><th>Esperado 2026</th></tr>` +
+      mlTramos.slice(0, 25).map((t) => `<tr class="clic" data-civ="${t.civ}"><td>${t.rango}</td><td>CIV ${t.civ} · ${escapar(t.tipo_via)}` +
+        `${t.camara ? " · 📷" : ""}${t.resalto ? " · resalto" : ""}${t.semaforo ? " · 🚦" : ""}</td><td>${t.y_2025 ?? "—"}</td><td>${num(t.pred)}</td></tr>`).join("") + "</table>";
+    document.querySelectorAll("#ml-lista-tramos [data-civ]").forEach((f) => {
+      f.onclick = () => seleccionarTramo(mlTramos.find((t) => t.civ === Number(f.dataset.civ)), true);
+    });
+    capasML($("vista-ml").classList.contains("activa"));
+  } catch (e) { $("ml-tramos-info").textContent = "⚠️ No se pudieron cargar los tramos."; }
+}
+
+function seleccionarTramo(t, centrar) {
+  mlTramoSel = t;
+  if (centrar) mapa.setView([t.lat, t.lon], 16);
+  const si = (x) => x ? "sí" : "no";
+  $("ml-tramo-sel").innerHTML = `<div class="tarjeta"><div class="t">#${t.rango} · CIV ${t.civ} (${escapar(t.tipo_via)})</div>` +
+    `${num(t.pred, 2)} siniestros con víctimas esperados en 2026 · en 2025: ${t.y_2025 ?? "—"} · promedio 2023-2025: ${num(t.y_prom3, 1)}<br>` +
+    `Largo ${Math.round(t.largo_m).toLocaleString("es-CO")} m · límite reglamentario ${t.vel_reglamentaria ?? "—"} km/h (vigente ${t.vel_limite ?? "—"}) · ` +
+    `cámara: ${si(t.camara)} · resalto: ${si(t.resalto)} · semáforo: ${si(t.semaforo)}` +
+    `<div class="h3ml" style="margin-top:10px">Simular con el modelo</div><div class="botones-esc">` +
+    Object.entries(ML.escenarios).filter(([k]) => !t[k] && !(k === "vel30" && t.vel_limite <= 30))
+      .map(([k, txt]) => `<button class="mini" data-esc="${k}">${escapar(txt[0].toUpperCase() + txt.slice(1))}</button>`).join("") +
+    `</div><div id="ml-esc-res"></div></div>`;
+  document.querySelectorAll("[data-esc]").forEach((b) => { b.onclick = () => simularTramo(t, b.dataset.esc); });
+}
+
+async function simularTramo(t, cambio) {
+  const caja = $("ml-esc-res");
+  caja.innerHTML = '<p class="nota">Calculando…</p>';
+  const d = await (await fetch("/api/ml/escenario", post({ civ: t.civ, cambios: [cambio] }))).json();
+  if (d.error) { caja.innerHTML = `<p class="nota">⚠️ ${escapar(d.error)}</p>`; return; }
+  const baja = d.cambio_pct < 0;
+  caja.innerHTML = `<p style="margin:8px 0 4px"><b>${escapar(d.cambios.join(", "))}:</b> de ${num(d.actual, 2)} a ${num(d.simulado, 2)} siniestros esperados ` +
+    `(<b style="color:${baja ? "var(--pos)" : d.cambio_pct > 0 ? "var(--neg)" : "inherit"}">${d.cambio_pct > 0 ? "+" : ""}${num(d.cambio_pct)} %</b>).</p>` +
+    `<p class="nota" style="margin:0">Es lo que el modelo asocia con ese dispositivo en tramos parecidos, no un efecto causal.</p>` +
+    (ML_A_MEDIDA[cambio] ? `<div class="acciones"><button id="ml-evaluar-tramo">🧪 Evaluar con la evidencia de Bogotá (pestaña Mapa)</button></div>` : "");
+  const b = $("ml-evaluar-tramo");
+  if (b) b.onclick = () => {
+    const tipo = ML_A_MEDIDA[cambio];
+    const radio = Math.round(Math.min(400, Math.max(100, (t.largo_m || 200) / 2)));
+    cargarPropuesta({
+      zona: { type: "FeatureCollection", features: [{ type: "Feature", geometry: { type: "Point", coordinates: [t.lon, t.lat] },
+        properties: { tipo: "punto", nombre: `tramo CIV ${t.civ} (radio ${radio} m)`, radio_m: radio } }] },
+      resolucion: { tipo_medida: tipo, direccion: "implementar", acompanamiento: [],
+        valor_actual: tipo === "limite_velocidad" ? (t.vel_limite || 50) : null, valor_propuesto: tipo === "limite_velocidad" ? 30 : null },
+    });
+  };
+}
+
+// ───────────── tramos 2026: vía dibujada o corredor → predicción y simulación de infraestructura ─────────────
+const MLT_CAMBIOS = [["camara", "📷 Cámara salvavidas"], ["resalto", "Resalto parabólico"], ["semaforo", "🚦 Semáforo"],
+  ["vel30", "Límite de 30 km/h"]];
+const capaSelML = L.featureGroup();
+let mltSel = null, mltDatos = null, mltIniciado = false, mltCapas = {};
+const colorPred = (v) => v >= 3 ? "#7a0177" : v >= 1 ? "#c51b8a" : v >= 0.3 ? "#f768a1" : v >= 0.1 ? "#fa9fb5" : "#fcc5c0";
+const colorCambio = (r) => r <= -0.10 ? "#1f7a4d" : r <= -0.02 ? "#5fb58a" : r < 0.02 ? "#8a8984" : r < 0.10 ? "#e8836f" : "#b3261e";
+const nombreTramo = (t) => (t.via && t.via.trim() ? t.via.trim() : `vía ${t.tipo_via}`) + ` · CIV ${t.civ}`;
+
+function iniciarSeleccionML() {
+  if (mltIniciado) return;
+  mltIniciado = true;
+  [...$("sel-corredor").options].slice(1).forEach((o) => $("mlt-corredor").add(new Option(o.text, o.value)));
+  $("mlt-cambios").innerHTML = MLT_CAMBIOS.map(([k, t]) => `<label><input type="checkbox" data-cambio="${k}"> ${t}</label>`).join("");
+}
+
+$("mlt-dibujar").onclick = () => {
+  if (dibujoActivo) dibujoActivo.disable();
+  mltDibujando = true;
+  dibujoActivo = new L.Draw.Polyline(mapa, { shapeOptions: { color: "#4a1661", weight: 5, opacity: .8 } });
+  dibujoActivo.enable();
+  $("mlt-dibujar").classList.add("dibujando");
+};
+mapa.on(L.Draw.Event.DRAWSTOP, () => { mltDibujando = false; $("mlt-dibujar").classList.remove("dibujando"); });
+
+function lineaDibujadaML(capa) {
+  const ll = capa.getLatLngs();
+  let m = 0; for (let i = 1; i < ll.length; i++) m += ll[i - 1].distanceTo(ll[i]);
+  mltSel = { lineas: [ll.map((p) => [+p.lng.toFixed(6), +p.lat.toFixed(6)])], nombre: `vía dibujada (${(m / 1000).toFixed(2)} km)` };
+  $("mlt-corredor").value = "";
+  consultarTramosML([]);
+}
+$("mlt-corredor").onchange = (e) => {
+  if (!e.target.value) return;
+  mltSel = { corredor: e.target.value, nombre: e.target.value };
+  consultarTramosML([]);
+};
+$("mlt-ancho").onchange = () => { if (mltSel) consultarTramosML([]); };
+$("mlt-limpiar").onclick = () => {
+  mltSel = mltDatos = null; capaSelML.clearLayers();
+  $("mlt-resumen").innerHTML = ""; $("mlt-resultado").innerHTML = ""; $("mlt-paso2").style.display = "none";
+  $("mlt-corredor").value = "";
+  capasML(true);
+};
+$("mlt-simular").onclick = () => {
+  const cambios = [...document.querySelectorAll("[data-cambio]:checked")].map((c) => c.dataset.cambio);
+  const aviso = $("mlt-aviso");
+  if (!cambios.length) { aviso.textContent = "Marque al menos un tipo de infraestructura."; aviso.style.display = "block"; return; }
+  aviso.style.display = "none";
+  consultarTramosML(cambios);
+};
+
+async function consultarTramosML(cambios) {
+  if (!mltSel) return;
+  $("cargando").style.display = "block";
+  try {
+    const cuerpo = Object.assign({}, mltSel, { ancho_m: Number($("mlt-ancho").value) || 20, cambios });
+    delete cuerpo.nombre;
+    const r = await fetch("/api/ml/tramos_linea", post(cuerpo));
+    const d = await r.json();
+    const destino = cambios.length ? "mlt-resultado" : "mlt-resumen";
+    if (!r.ok || d.error) { $(destino).innerHTML = `<div class="aviso" style="display:block">${escapar(d.error || "No se pudo calcular.")}</div>`; return; }
+    if (cambios.length) pintarSimulacionML(d); else pintarSeleccionML(d);
+  } catch (e) {
+    $("mlt-resumen").innerHTML = '<div class="aviso" style="display:block">Error de conexión con el servidor.</div>';
+  } finally { $("cargando").style.display = "none"; }
+}
+
+function dibujarTramosML(d, colorDe, tooltip) {
+  capaSelML.clearLayers(); mltCapas = {};
+  if (mltSel.lineas) L.polyline(mltSel.lineas[0].map(([x, y]) => [y, x]), { color: "#4a1661", weight: 2, dashArray: "6 6", interactive: false }).addTo(capaSelML);
+  d.tramos.forEach((t) => {
+    mltCapas[t.civ] = L.geoJSON(t.geom, { style: { color: colorDe(t), weight: 6, opacity: .9 } }).bindTooltip(tooltip(t), { sticky: true }).addTo(capaSelML);
+  });
+  capasML(true);
+}
+
+function pintarSeleccionML(d) {
+  mltDatos = d;
+  $("mlt-resultado").innerHTML = "";
+  if (!d.n_tramos) {
+    capaSelML.clearLayers();
+    $("mlt-resumen").innerHTML = '<div class="aviso" style="display:block">La línea no recorre ningún tramo de la malla vial. ' +
+      "Dibújela encima de la vía o aumente la tolerancia.</div>";
+    $("mlt-paso2").style.display = "none";
+    return;
+  }
+  dibujarTramosML(d, (t) => colorPred(t.pred), (t) => `<b>${escapar(nombreTramo(t))}</b><br>${num(t.pred, 2)} siniestros con víctimas esperados en 2026` +
+    `<br>reales: 2023 ${t.y_2023 ?? 0} · 2024 ${t.y_2024 ?? 0} · 2025 ${t.y_2025 ?? 0}`);
+  const b = capaSelML.getBounds(); if (b.isValid()) mapa.fitBounds(b, { padding: [30, 30] });
+  const h = d.historia, serie = [["2023", h["2023"], false], ["2024", h["2024"], false], ["2025", h["2025"], false], ["2026", d.esperado_2026, true]];
+  const max = Math.max(1, ...serie.map((s) => s[1]));
+  const prom = (h["2023"] + h["2024"] + h["2025"]) / 3, cambio = prom > 0 ? d.esperado_2026 / prom - 1 : null;
+  const ya = d.ya_tienen || {};
+  $("mlt-resumen").innerHTML = `<div class="tarjeta" style="margin-top:12px"><div class="t">${escapar(mltSel.nombre)}</div>` +
+    `${d.n_tramos.toLocaleString("es-CO")} tramos · ${num(d.largo_km, 1)} km de calzada${d.recortado ? " (se muestran los 600 de mayor riesgo)" : ""}` +
+    `<div class="h3ml" style="margin-top:10px">Siniestros con víctimas en estos tramos</div><div class="barras-prob">` +
+    serie.map(([a, v, fut]) => `<div class="fb"><span>${a}${fut ? " (esperado)" : ""}</span><div class="pista"><i style="width:${100 * v / max}%;` +
+      `background:${fut ? "#d6006f" : "#9b7fb0"}"></i><span style="left:${Math.min(100 * v / max, 78)}%">${num(v, fut ? 1 : 0)}</span></div></div>`).join("") +
+    `</div><p style="margin:6px 0 0">El modelo espera <b>${num(d.esperado_2026, 1)}</b> siniestros con víctimas en 2026` +
+    (cambio !== null ? `, un <b>${Math.abs(cambio * 100).toLocaleString("es-CO", { maximumFractionDigits: 0 })} % ${cambio < 0 ? "menos" : "más"}</b> que el promedio 2023-2025 (${num(prom, 1)})` : "") + ".</p>" +
+    `<p class="nota">Ya tienen: cámara ${ya.camara || 0} · resalto ${ya.resalto || 0} · semáforo ${ya.semaforo || 0} · límite de 30 km/h ${d.con_30 || 0} de ${d.n_tramos} tramos. ` +
+    "El modelo predice un año adelante (2026); no proyecta años posteriores.</p></div>" +
+    `<div class="h3ml">Tramos de mayor riesgo en la selección</div>` + tablaTramosML(d.tramos.slice(0, 10), false);
+  $("mlt-paso2").style.display = "block";
+  enlazarTablaML();
+}
+
+function tablaTramosML(lista, conSim) {
+  return `<table class="tabla-ml"><tr><th>#</th><th>Tramo</th><th>2025</th><th>2026</th>${conSim ? "<th>Con infra.</th><th>Cambio</th>" : ""}</tr>` +
+    lista.map((t, i) => {
+      const r = t.pred > 0 ? t.sim / t.pred - 1 : 0;
+      return `<tr class="clic" data-civ-sel="${t.civ}"><td>${i + 1}</td><td>${escapar(nombreTramo(t))}${t.camara ? " · 📷" : ""}${t.resalto ? " · resalto" : ""}` +
+        `${t.semaforo ? " · 🚦" : ""}</td><td>${t.y_2025 ?? 0}</td><td>${num(t.pred, 2)}</td>` +
+        (conSim ? `<td>${num(t.sim, 2)}</td><td style="color:${colorCambio(r)}">${r > 0 ? "+" : ""}${num(100 * r, 1)} %</td>` : "") + "</tr>";
+    }).join("") + "</table>";
+}
+function enlazarTablaML() {
+  document.querySelectorAll("[data-civ-sel]").forEach((f) => {
+    f.onclick = () => {
+      const capa = mltCapas[Number(f.dataset.civSel)];
+      if (capa) { mapa.fitBounds(capa.getBounds(), { maxZoom: 17, padding: [60, 60] }); capa.openTooltip(capa.getBounds().getCenter()); }
+    };
+  });
+}
+
+function pintarSimulacionML(d) {
+  mltDatos = d;
+  dibujarTramosML(d, (t) => colorCambio(t.pred > 0 ? t.sim / t.pred - 1 : 0),
+    (t) => `<b>${escapar(nombreTramo(t))}</b><br>2026: ${num(t.pred, 2)} → ${num(t.sim, 2)} con la infraestructura`);
+  const baja = d.cambio_abs < -0.005, sube = d.cambio_abs > 0.005;
+  const clase = baja ? "BAJO" : sube ? "ALTO" : "MEDIO";
+  const dec = d.esperado_2026 < 10 ? 2 : 1;          // en vías cortas las cifras son pequeñas
+  const verbo = baja ? "reduce" : sube ? "aumenta" : "no cambia";
+  const cambiados = d.tramos.filter((t) => Math.abs(t.sim - t.pred) > 0.0005).sort((a, b) => Math.abs(b.sim - b.pred) - Math.abs(a.sim - a.pred));
+  $("mlt-resultado").innerHTML =
+    `<div class="nivel ${clase}">Según el modelo, ${escapar(d.cambios.join(", "))} ${verbo} los siniestros` +
+    (baja || sube ? `: ${d.cambio_abs > 0 ? "+" : ""}${num(d.cambio_pct, 1)} %` : "") +
+    `<small>2026 en los ${d.n_tramos} tramos: ${num(d.esperado_2026, dec)} sin cambios → ${num(d.con_cambios_2026, dec)} con la infraestructura ` +
+    `(${d.cambio_abs > 0 ? "+" : ""}${num(d.cambio_abs, dec)} siniestros con víctimas)</small></div>` +
+    `<p class="nota">En el mapa: <span style="color:#1f7a4d">verde reduce</span>, <span style="color:#8a8984">gris sin cambio</span>, ` +
+    `<span style="color:#b3261e">rojo aumenta</span>. ${cambiados.length} de ${d.n_tramos} tramos cambian.</p>` +
+    `<p class="nota"><b>Cómo leerlo:</b> es lo que el modelo <b>asocia</b> con esa infraestructura en tramos con historia parecida, no un efecto ` +
+    `causal. Por ejemplo, los semáforos se instalan donde ya hay muchos siniestros, y el modelo puede leerlos como señal de más riesgo. ` +
+    `La evaluación de impacto del proyecto de ML (fase 6) encontró una reducción asociada a los resaltos (-25 %) y no encontró cambios detectables ` +
+    `con cámaras ni semáforos nuevos.</p>` +
+    (cambiados.length ? `<div class="h3ml">Tramos que más cambian</div>` + tablaTramosML(cambiados.slice(0, 12), true) : "") +
+    `<div class="acciones"><button id="mlt-evidencia">🧪 Contrastar con la evidencia de Bogotá (pestaña Mapa)</button></div>`;
+  enlazarTablaML();
+  $("mlt-evidencia").onclick = () => evaluarSeleccionEnMapa(d);
+}
+
+async function evaluarSeleccionEnMapa(d) {
+  const clave = MLT_CAMBIOS.map(([k]) => k).find((k) => d.cambios.includes(ML.escenarios[k])) || "resalto";
+  const tipo = ML_A_MEDIDA[clave];
+  let f;
+  if (mltSel.corredor) {
+    f = await (await fetch(`/api/zona?tipo=corredor&nombre=${encodeURIComponent(mltSel.corredor)}`)).json();
+  } else {
+    f = { type: "Feature", geometry: { type: "LineString", coordinates: mltSel.lineas[0] },
+          properties: { tipo: "via", nombre: mltSel.nombre, ancho_m: Number($("mlt-ancho").value) || 20 } };
+  }
+  cargarPropuesta({ zona: { type: "FeatureCollection", features: [f] },
+    resolucion: { tipo_medida: tipo, direccion: "implementar", acompanamiento: [],
+      valor_actual: tipo === "limite_velocidad" ? 50 : null, valor_propuesto: tipo === "limite_velocidad" ? 30 : null } });
+}
 
 // ───────────── utilidades ─────────────
 function post(obj) { return { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(obj) }; }

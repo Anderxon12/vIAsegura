@@ -1,0 +1,695 @@
+Resolución 718 de 2018. Primera reglamentación de criterios técnicos para fotodetección (Ley 1843).
+Derogada según el catálogo de vIAsegura_ML.
+
+18/11/26, 20:14 Resolución 718 de 2018 Ministerio de Transporte
+
+SECRETARÍA
+
+AN
+
+O Propiedad de la Secretaría Jurídica Distrital de la Alcaldía Mayor de Bogotá D.C.
+
+Secretaría
+Jurídica Distrital
+
+Resolución 718 de 2018 Ministerio de Transporte
+
+Fecha de Expedición:
+
+22/03/2018
+
+[Fecha de Entrada en Vigencia:
+
+22/03/2018
+
+Medio de Publicación:
+
+¡Diario Oficial No. 50543 del 22 de marzo de 2018.
+
+La Secretaría Jurídica Distrital aclara que la información aquí contenida tiene exclusivamente carácter]
+informativo, su vigencia está sujeta al análisis y competencias que determine la Ley o los reglamentos. Losi
+¡contenidos están en permanente actualización.
+
+https://www.alcaldiabogota.gov.co/sisjur/normas/Norma1 .jsp?i=76187 1/15
+18/11/26, 20:14
+
+Resolución 718 de 2018 Ministerio de Transporte
+
+RESOLUCIÓN 718 DE 2018
+(Marzo 22)
+Derogada por el art. 23, Resolución 20203040011245 de 2020.
+
+Por la cual se reglamentan los criterios técnicos para la instalación y
+operación de medios técnicos o tecnológicos para la detección de
+presuntas infracciones al tránsito y se dictan otras disposiciones
+
+EL MINISTRO DE TRANSPORTE
+
+En ejercicio de sus facultades constitucionales y legales, en especial
+las conferidas por el artículo 6 numerales 6.2 y 6.3, del Decreto 087 de
+2011 y el artículo 2 de la Ley 1843 de 2017
+
+Y
+EL DIRECTOR DE LA AGENCIA NACIONAL DE SEGURIDAD VIAL
+
+En ejercicio de sus facultades constitucionales y legales, en especial
+las conferidas por el numeral 4.8 del artículo 9 de la Ley 1702 de 2013
+y el artículo 2 de la Ley 1843 de 2017, y
+
+CONSIDERANDO:
+
+Que el artículo 24 de la Constitución Política, dispone que todo colombiano
+tiene derecho a circular libremente por el territorio nacional, pero está sujeto
+a las limitaciones que establezca la Ley.
+
+Que el artículo 5 de la Ley 105 de 1993 modificado por la Ley 276 de 1996,
+dispone como atribución del Ministerio de Transporte, en coordinación con
+las diferentes entidades sectoriales, la definición de las políticas generales
+sobre el transporte y el tránsito.
+
+Que la aplicación de las normas establecidas en el Código Nacional de
+Tránsito Terrestre compete a las autoridades de tránsito, las cuales son
+responsables de velar por la seguridad de las personas y las cosas en la
+vía pública y privadas abiertas al público.
+
+Que el uso de herramientas tecnológicas para facilitar el recaudo de la
+prueba en el proceso sancionatorio de tránsito está autorizado por el
+parágrafo 2 del artículo 129 de la Ley 769 de 2002, la cual establece que
+las ayudas tecnológicas como cámaras de vídeo y equipos electrónicos de
+lectura que permitan con precisión la identificación del vehículo o del
+conductor, serán válidos como prueba de ocurrencia de una infracción de
+tránsito y por lo tanto darán lugar a la imposición de un comparendo.
+
+https://www.alcaldiabogota.gov.co/sisjur/normas/Norma1 .jsp?i=76187
+
+2/15
+18/11/26, 20:14
+
+Resolución 718 de 2018 Ministerio de Transporte
+
+Que el Gobierno Nacional expidió el Decreto 2060 de 2015, mediante el
+cual reglamentó los Sistemas Inteligentes de Transporte (SIT), que son
+considerados "como un conjunto de soluciones tecnológicas, informáticas y
+de telecomunicaciones que recolectan, almacenan, procesan y distribuyen
+información, que se deben diseñar para mejorar la operación, la gestión y la
+seguridad del transporte y el tránsito", lo que permite que sus principios
+sean acogidos y aplicados en la presente Resolución.
+
+Que el Plan Nacional de Seguridad Vial establece dentro de la primera línea
+de acción "Aspectos institucionales", el fortalecimiento de las autoridades
+de tránsito y transporte en materia de control, para lo cual se plantean
+varias estrategias, entre ellas la adquisición de dispositivos tecnológicos
+para realizar control en el territorio nacional.
+
+Que de conformidad con lo dispuesto por Ley 1753 de 2015, "Por la cual se
+expide el Plan Nacional de Desarrollo 2014-2018 Todos por un nuevo país",
+el sector transporte debe utilizar las tecnologías de la información y
+comunicación, como una herramienta que contribuye a la prestación de un
+servicio competitivo, dinámico y seguro.
+
+Que el artículo 2 de la Ley 1843 del 14 de Julio de 2017, dispuso que el
+Ministerio de Transporte en conjunto con la Agencia Nacional de Seguridad
+Vial, en un plazo no inferior a ciento ochenta (180 días), establecerán la
+reglamentación de los criterios técnicos que deberán cumplirse para la
+instalación u operación de todo medio técnico o tecnológico para la
+detección de presuntas infracciones de tránsito.
+
+Que es necesario establecer los criterios técnicos para la instalación y
+puesta en operación de los equipos, con el fin de dar cumplimiento a la Ley
+1843 de 2017 y garantizar que su uso esté orientado a salvaguardar la
+seguridad de los distintos actores viales.
+
+Que la Corte Constitucional, en la Sentencia T-442 de 2013, resaltó que
+cuando ocurren cambios normativos intempestivos que puedan afectar los
+derechos de los administrados, el Estado debe proporcionar un tiempo
+razonable para que éstos puedan adaptarse a la nueva situación, en virtud
+de la aplicación del principio de confianza legítima: "Este principio, que fue
+desarrollado por la jurisprudencia alemana, recogido por el Tribunal
+Europeo de Justicia en la sentencia del 13 de julio de 1965, y aceptado por
+doctrina jurídica muy autorizada, pretende proteger al administrado y al
+ciudadano frente a cambios bruscos e intempestivos efectuados por las
+autoridades. Se trata entonces de situaciones en las cuales el administrado
+no tiene realmente un derecho adquirido, pues su posición jurídica es
+modificable por las autoridades. Sin embargo, si la persona tiene razones
+objetivas para confiar en la durabilidad de la regulación, y el cambio súbito
+de la misma altera de manera sensible su situación, entonces el principio de
+la confianza legítima la protege. En tales casos, en función de la buena fe
+(CP art. 83), el Estado debe proporcionar al afectado tiempo y medio que le
+
+https://www.alcaldiabogota.gov.co/sisjur/normas/Norma1 .jsp?i=76187
+
+3/15
+18/11/26, 20:14
+
+Resolución 718 de 2018 Ministerio de Transporte
+
+permitan adaptarse a la nueva situación. Eso sucede, por ejemplo, cuando
+una autoridad decide súbitamente prohibir una actividad que antes se
+encontraba permitida, por cuanto en ese evento, es deber del Estado
+permitir que el afectado pueda, enfrentar ese cambio de política".
+
+Que mediante memorando 20171010189633 de 2017, la Dirección de
+Tránsito y Transporte del Ministerio de Transporte solicita la emisión del
+respectivo acto administrativo.
+
+Que en virtud de lo dispuesto en el Decreto Ley 019 de 2012, se solicitó al
+Departamento Administrativo de la Función Pública que rindiera concepto
+sobre el presente acto administrativo, quien manifestó su concepto
+favorable frente al trámite en cuestión, mediante comunicación
+20185010045901 del 8 de febrero de 2018.
+
+Que el contenido de la presente Resolución fue publicado en la página web
+del Ministerio de Transporte, en cumplimiento a lo determinado en el
+numeral 8, del Artículo 8 de la Ley 1437 de 2011, el artículo 2.1.2.1.14 del
+Decreto 1081 de 2015, modificado y adicionado por el Decreto 270 de 2017
+y la Resolución 994 de 2017 del Ministerio de Transporte, con el objeto de
+recibir opiniones, comentarios y propuestas alternativas.
+
+Que, mediante correo electrónico del 06 de febrero de 2018, la Dirección de
+Transporte y Tránsito del Ministerio de Transporte manifestó que se
+recibieron observaciones y que las mismas fueron contestadas.
+
+Que la Oficina Asesora de Jurídica del Ministerio de Transporte conservará
+los documentos asociados al proceso de divulgación y participación
+ciudadana, incluidos los cronogramas, actas, comentarios, grabaciones e
+informes que evidencien la publicidad del proyecto y la participación de los
+ciudadanos y grupos de interés, en concordancia con las políticas de
+gestión documental y de archivo de la entidad.
+
+En mérito de lo expuesto,
+RESUELVE:
+CAPÍTULO |
+DISPOSICIONES GENERALES.
+Artículo 1. Objeto. Establecer la reglamentación de los criterios técnicos
+para la instalación y/u operación de los medios técnicos y/o tecnológicos
+para la detección de presuntas infracciones al tránsito.
+
+Artículo 2. Ámbito de aplicación. La presente Resolución es aplicable a
+todas las autoridades de tránsito en el país, que directamente, o a través de
+
+https://www.alcaldiabogota.gov.co/sisjur/normas/Norma1 .jsp?i=76187
+
+4/15
+18/11/26, 20:14
+
+Resolución 718 de 2018 Ministerio de Transporte
+
+terceros, instalen y operen sistemas automáticos, semiautomáticos y otros
+medios técnicos y/o tecnológicos para la detección de presuntas
+infracciones de tránsito.
+
+Artículo 3. Definiciones: Para la aplicación de la presente Resolución se
+tendrán en cuenta las siguientes definiciones:
+
+a) Agente de tránsito: Todo empleado público investido de autoridad para
+regular la circulación vehicular y peatonal, vigilar, controlar e intervenir en el
+cumplimiento de las normas de tránsito y transporte en cada uno de los
+entes territoriales y los agentes de tránsito de la Dirección de Tránsito y
+Transporte de la Policía Nacional en las vías nacionales por fuera del
+perímetro urbano de distritos y municipios
+
+b) Detección electrónica: Actividad relacionada con el registro de
+evidencia de la presunta infracción de tránsito a través de dispositivos
+electrónicos, en la cual no se entrega la orden de comparendo al presunto
+infractor, en el lugar de los hechos y de forma inmediata.
+
+c) Concepto de desempeño de la tecnología: Evaluación del componente
+Metrológico, referente al estado actual de la tecnología, precisión, exactitud
+y estabilidad, con la cual opera el instrumento de medición.
+
+d) Control en vía apoyado en dispositivos móviles: Procedimiento
+realizado de manera directa por un agente de tránsito presente y visible en
+el sitio del evento, apoyado por dispositivo (s) electrónico (s) que opera
+manualmente para registrar la evidencia de la presunta infracción de
+tránsito y para la elaboración en el sitio, de la orden de comparendo, de
+conformidad con lo dispuesto en el primer inciso del artículo 135 de la Ley
+769 de 2002, modificado por el artículo 22 de la Ley 1383 de 2010.
+
+e) Control aéreo: Procedimiento de registro de presuntas evidencias sobre
+infracciones de tránsito a partir de controles en vía realizados de manera
+directa por la Dirección de Tránsito y Transporte de la Policía Nacional,
+desde un dispositivo electrónico instalado en helicóptero o vehículo de
+transporte aéreo.
+
+f) Dispositivo de detección fija: Equipo que opera de manera permanente
+o por el tiempo establecido por la autoridad de tránsito, instalado en una
+infraestructura fija, como, por ejemplo, señales de tránsito, postes, puentes
+y demás elementos de la vía.
+
+g) Dispositivo de detección móvil. Equipo que puede trasladarse
+constantemente por parte de la autoridad de tránsito, no requiriendo de
+soportes fijos y permanentes en la vía. Se usa para detectar presuntas
+infracciones de tránsito en tramos de la vía.
+
+https://www.alcaldiabogota.gov.co/sisjur/normas/Norma1 .jsp?i=76187
+
+5/15
+18/11/26, 20:14
+
+Resolución 718 de 2018 Ministerio de Transporte
+
+h) Estudio de tránsito: Estudio que contiene el análisis riguroso de la
+situación actual del tránsito y de los impactos que se pueden generar sobre
+la movilidad circundante y su zona de influencia por la implementación de
+los SAST.
+
+i) Paneles de Mensajería Variable (PMV): Dispositivo capaz de desplegar
+alternada o intermitentemente señales de tránsito y/o mensajes, mediante
+leyendas y/o símbolos dirigidos a los conductores de vehículos u otros
+usuarios de las vías de acuerdo con los requerimientos existentes en la vía
+o en sus inmediaciones.
+
+j) SAST: Sistemas o equipos automáticos, semiautomáticos y otros medios
+tecnológicos para la detección de presuntas infracciones de tránsito.
+
+k) Punto Crítico de Siniestralidad: Lugar en el cual que se registra
+mayores índices de siniestros viales y de mayor severidad.
+
+1) Sistema de Información: Medio electrónico para el registro, consulta y
+autorización de los SAST.
+
+m) Ubicación Geográfica: Coordenadas de un punto determinado para
+asignar una posición geoespacial.
+
+n) Validación del comparendo: Procedimiento de verificación que realiza
+el agente de tránsito, de la información registrada mediante los SAST, para
+el establecimiento de la presunta infracción y expedición de la orden de
+comparendo.
+
+Artículo 4. Criterios técnicos: Para la instalación u operación de los SAST
+se deberá acreditar la necesidad del mismo, con base en al menos uno de
+los siguientes criterios:
+
+1. Siniestralidad: Criterio relacionado con los sucesos que producen un
+daño material o humano, estando implicado un vehículo en una vía pública.
+
+2. Prevención: Criterio relacionado con la protección de los actores viales
+en zonas de riesgo tales como zonas de circulación de peatones, ciclistas,
+niños, estudiantes, personas mayores, personas con movilidad reducida,
+zonas de hospitales, de unidades deportivas o similares.
+
+3. Movilidad: Criterio relacionado con acción o práctica social de
+desplazamiento en el territorio. Involucra el desplazamiento de las personas
+y sus bienes, y conjuga deseos y/o necesidades de viaje.
+
+4. Historial de infracciones: Estadísticas de infracciones elaboradas por la
+autoridad de tránsito, correspondientes a los últimos cinco (5) años del
+punto donde se pretenda instalar los SAST para detección fija o móvil y que
+
+https://www.alcaldiabogota.gov.co/sisjur/normas/Norma1 .jsp?i=76187
+
+6/15
+18/11/26, 20:14
+
+Resolución 718 de 2018 Ministerio de Transporte
+
+serán confrontadas con las estadísticas que reporte el SIMIT o el RUNT,
+según sea el caso.
+
+Artículo 5. Condiciones previas a la instalación y/u operación: La
+autoridad de tránsito competente del lugar donde se pretenda instalar y/u
+operar los SAST de detección fija o móvil, antes de instalar y poner en
+operación los mismos, deberá contar con la autorización de la Dirección de
+Transporte y Tránsito del Ministerio de Transporte.
+
+Parágrafo. El uso de equipos para las labores de control en vía, no son
+considerados como de detección electrónica. Así mismo, cuando se utilicen
+equipos exclusivamente para fines disuasivos, pedagógicos y de análisis de
+tráfico, no se requerirá autorización del Ministerio de Transporte.
+
+Artículo 6. Requisitos para la autorización de instalación de los SAST.
+La autoridad de tránsito competente del lugar donde se pretenda instalar
+y/u operar los SAST, deberá acreditar el cumplimiento de los siguientes
+requisitos, los cuales deberán ingresarse al Sistema de Información que el
+Ministerio de Transporte disponga en su página web y registrar la siguiente
+información:
+
+a. Información general. Formato de información general, el cual se
+encuentra anexo a la presente resolución y hace parte integral de la misma.
+(Anexo 1)
+
+b. Infraestructura. Los SAST de detección fija deberán Identificar la
+infraestructura vial en la cual se instalarán los SAST, según su jurisdicción
+(nacional, departamental, distrital, municipal).
+
+Para lo anterior, deberá presentarse un archivo digital geográfico con la
+ubicación exacta del punto donde se pretendan instalar los SAST, sobre el
+trazado específico del corredor, así como la ubicación de los elementos de
+señalización existentes y los que se instalarán para advertir la operación de
+dichos dispositivos.
+
+El archivo digital debe presentarse en formato SHAPEFILE, KML, KMZ,
+GDB (geodatabase) u otro que cumpla con las mismas funcionalidades. El
+sistema de coordenadas debe ser MAGNA SIRGAS según la Resolución
+068 de 2005 del Instituto Geográfico Agustín Codazzi o la norma que la
+modifique, adicione o sustituya.
+
+En los casos en que los SAST estén instalados o se pretendan instalar
+sobre infraestructura vial nacional concesionada o en vías nacionales no
+concesionadas, deberán adjuntar a la solicitud, el permiso previo para el
+uso, ocupación temporal o intervención para la operación de los equipos,
+emitido por la entidad que tiene a cargo la respectiva infraestructura vial.
+Con excepción de las infraestructuras viajes locales (departamental o
+
+https://www.alcaldiabogota.gov.co/sisjur/normas/Norma1 .jsp?i=76187
+
+7/15
+18/11/26, 20:14
+
+Resolución 718 de 2018 Ministerio de Transporte
+
+municipal) en concordancia con lo establecido en el artículo 119 del Código
+Nacional de Tránsito.
+
+Respecto a la Infraestructura vial nacional concesionada: La Agencia
+Nacional de Infraestructura es la encargada de expedir el permiso de que
+trata el presente artículo, de conformidad con lo dispuesto en la Resolución
+716 del 28 de abril de 2015 expedida por dicha entidad, o las normas que la
+modifiquen o sustituyan.
+
+Respecto a la Infraestructura vial nacional NO concesionada: El Instituto
+Nacional de Vías (INVIAS) es el encargado de expedir el permiso de que
+trata el presente artículo, de conformidad con lo dispuesto en el Artículo 11
+del Decreto 2618 de 2013, o las normas que los modifiquen o sustituyan
+para las vías NO concesionadas.
+
+c. Sustentar la necesidad de instalación y operación con base en
+Criterios técnicos: Todos los SAST de detección fija o móvil que se
+pretendan instalar o poner en operación, diferente a los equipos usados
+para el Control en vía apoyado en dispositivos móviles, deberán presentar
+un estudio técnico de acuerdo con lo señalado en el numeral 2 del artículo
+13 de la Ley 1843 de 2017 y que justifique la necesidad de la instalación o/y
+operación de los mismos. El estudio deberá contener los siguientes
+documentos, de conformidad con los siguientes criterios técnicos que
+sustenten la instalación y/o operación de los SAST así:
+
+i. Siniestralidad. Documento que identifique el o los puntos críticos de
+siniestralidad según las estadísticas de la autoridad de tránsito territorial y
+causas de los siniestros de los últimos tres (3) años anteriores a la solicitud
+de autorización, del punto donde se instalarán los SAST con su respectiva
+ubicación georreferenciada. El análisis del presente criterio se efectuará en
+un radio de acción de 250 metros para vías secundarias (local urbana), de
+500 metros para vías principales (arterial urbana) y de 1500 metros para
+carreteras, con relación al punto de instalación del SAST. Las estadísticas
+deberán reportarse mes a mes discriminando: accidentes de tránsito con
+víctimas fatales, accidentes con víctimas lesionadas y accidentes con
+daños a la propiedad.
+
+Cuando la infraestructura vial tenga menos de tres (3) años de
+funcionamiento, la información que deberá reportarse corresponderá a la
+del periodo de funcionamiento.
+
+Los datos de las estadísticas que se presentan para el radio de acción
+definido serán comparados con la información consignada en el (RNAT)
+Registro Nacional de Accidentes de Tránsito de la base de datos del
+Sistema RUNT.
+
+La aprobación para este criterio se hará cuando las cifras de accidentalidad
+reportadas muestren una incidencia negativa en la seguridad vial.
+
+https://www.alcaldiabogota.gov.co/sisjur/normas/Norma1 .jsp?i=76187
+
+8/15
+18/11/26, 20:14
+
+Resolución 718 de 2018 Ministerio de Transporte
+
+¡i.Prevención: Documento en el cual se definan el o los puntos sobre la
+infraestructura física sobre la cual se pretenda efectuar la instalación de los
+SAST y su necesidad de protección de los actores viales en zonas de
+riesgo.
+
+La aprobación para este criterio se basará en los siguientes aspectos:
+
+a. Identificación de la zona de riesgo: zonas de circulación de peatones,
+ciclistas, niños, estudiantes, personas mayores, personas con movilidad
+reducida, zonas de hospitales, de unidades deportivas o similares.
+
+b. Evidencias donde se demuestre haber agotado previamente (s) medida
+(s) de intervención en infraestructura, señalización u otras medidas de
+control de tránsito, para mejorar la seguridad vial en la respectiva zona.
+(Actos administrativos, material audiovisual, actas de operativos, entre
+otros).
+
+c. Archivo digital geográfico en formato SHAPEFILE, KML, KMZ, GDB
+(geodatabase) u otro que cumpla con las mismas funcionalidades dela
+ubicación del punto de instalación del SAST dentro de la zona de riesgo.
+
+iii. Movilidad: Documento que contenga un estudio de tránsito, en los
+términos establecidos en la metodología de evaluación. La aprobación para
+este criterio dependerá del estudio, el cual deberá contener indicadores
+positivos comparando la situación actual con la proyectada en la propuesta.
+
+iv. Historial de Infracciones: Documento que identifique el o los puntos de
+infracciones de tránsito según las estadísticas de la autoridad de tránsito
+territorial de los últimos dos (2) años anteriores a la solicitud de autorización
+del punto donde se instalarán los SAST con su respectiva ubicación
+georreferenciada. Las estadísticas deberán reportarse mes a mes
+discriminando por tipo de infracción de tránsito. Cuando la infraestructura
+vial tenga menos de dos (2) años de funcionamiento, la información que
+deberá reportarse corresponderá a la del periodo de dicho funcionamiento
+
+Para la revisión de este criterio se tendrá en cuenta la comparación de los
+datos enviados por la autoridad de tránsito con las estadísticas de
+infracciones de tránsito reportadas en el SIMIT o en el RUNT.
+
+La aprobación para este criterio se dará cuando las estadísticas de
+infracciones de tránsito muestren un comportamiento incidente en la
+seguridad vial.
+
+d. Plan de Seguridad Vial. Descripción y copia del aparte del Plan Local de
+Seguridad Vial (PSV), de la respectiva jurisdicción que especifique que la
+implementación de los SAST que se pretenden autorizar hace parte de las
+
+https://www.alcaldiabogota.gov.co/sisjur/normas/Norma1 .jsp?i=76187
+
+9/15
+18/11/26, 20:14
+
+Resolución 718 de 2018 Ministerio de Transporte
+
+acciones, pilares, programas o proyectos contenidos en el Plan Nacional y
+Territorial de Seguridad Vial.
+
+e. Equipo de Trabajo: Documento con la relación del cuerpo de agentes
+capacitados conforme lo establece el numeral 3 del artículo 13 de la Ley
+1843 de 2017.
+
+Parágrafo 1. Los SAST solo podrán posicionarse en sitios que hagan parte
+de la infraestructura vial respetando lo dispuesto en la Ley 1228 de 2008,
+de modo que no procederá su instalación en colinas, viviendas u otros
+equipamientos aledaños, ni podrán operarse en vehículos en movimiento,
+con excepción de la detección aérea.
+
+Parágrafo 2. La autoridad de tránsito que presentó la solicitud de
+autorización y/u operación de los SAST, sólo podrá utilizarlos para realizar
+foto detección de las presuntas infracciones que se relacionen con el o los
+criterios que le hayan sido aprobados.
+
+Artículo 7. Procedimiento para la autorización de instalación de los
+SAST. Para obtener la autorización de instalación y/u operación de los
+SAST se deberá seguir el siguiente procedimiento.
+
+a. Solicitud de autorización: La autoridad de tránsito competente donde se
+pretenda instalar y/u operar los SAST deberá ingresar al Sistema de
+Información que el Ministerio de Transporte disponga para la radicación,
+registro y cargue de la información requerida.
+
+b. Una vez radicada la solicitud, la Dirección de Transporte y Tránsito del
+Ministerio tendrá un plazo de 60 días hábiles, contados a partir de la fecha
+de registro arrojada por el Sistema de Información para pronunciarse sobre
+la solicitud, ya sea aprobándola o negándola.
+
+c. En caso de requerirse ajuste a la solicitud inicial, el Ministerio de
+Transporte deberá requerir al solicitante dentro de los 30 días hábiles
+siguientes, contados a partir de la fecha de registro arrojada por el Sistema
+de Información quien tendrá un plazo no mayor a un mes para atender
+dicho requerimiento. A partir del día siguiente en que el interesado aporte
+los documentos o informes requeridos, se reactivará el término para
+resolver la petición. En caso de no atender los ajustes solicitados en el
+tiempo señalado, se entenderá desistida la solicitud de autorización de
+SAST.
+
+d. La autorización o la negación de la instalación y/u operación de los
+SAST, será debidamente comunicada a través del correo electrónico
+suministrado en el momento de efectuar la solicitud a la autoridad de
+tránsito competente en el tramo donde se pretenda instalar y/u operar los
+SAST, por medio del Sistema de Información.
+
+https://www.alcaldiabogota.gov.co/sisjur/normas/Norma1 .jsp?i=76187
+
+10/15
+18/11/26, 20:14 Resolución 718 de 2018 Ministerio de Transporte
+
+e. Las autorizaciones concedidas estarán disponibles en el Sistema de
+Información del Ministerio de Transporte, con el objeto de facilitar la
+consulta en línea.
+
+Parágrafo 1. Los SAST que se encuentren en funcionamiento deberán
+tener tramitada y aprobada la autorización de que trata el presente acto
+administrativo dentro de los 180 días siguientes a la publicación de la
+presente resolución. Una vez vencido este término sin que se haya
+obtenido la debida autorización, el respectivo SAST no podrá operar
+conforme con lo establecido en el artículo 2? de la Ley 1843 de 2017.
+
+Parágrafo 2. Cualquier modificación de la ubicación y/o instalación
+adicional de SAST, deberá ser registrada previamente en el Sistema de
+Información del Ministerio de Transporte para surtir una nueva revisión y
+autorización conforme al procedimiento de que trata el presente artículo.
+
+Parágrafo 3. La Agencia Nacional de Seguridad Vial realizará el proceso de
+revisión técnica de toda la documentación y emitirá el concepto técnico, con
+fundamento en el cual el Ministerio de Transporte emitirá la autorización de
+instalación u operación de los SAST, de ser procedente.
+
+Para el efecto, la Agencia Nacional de Seguridad Vial deberá publicar la
+metodología que empleará para la evaluación de los criterios establecidos
+en la presente reglamentación.
+
+CAPÍTULO lll
+CONDICIONES DE OPERACIÓN
+
+Artículo 8. Condiciones de calidad en la operación: Todos los SAST
+autorizados por el Ministerio de Transporte y los que se utilicen para el
+control en vía apoyado en dispositivos móviles contarán desde el inicio de
+su operación, con:
+
+8.1 Mecanismos de calibración y mantenimiento previstos para los
+instrumentos de medición que sean utilizados, de conformidad con los
+patrones de referencia nacional definidos por el Instituto Nacional de
+Metrología y lo dispuesto en el Decreto 1074 de 2015 o la norma qu lo
+desarrolle, modifique o sustituya.
+
+Para los instrumentos de medición de la velocidad se deberá contar con el
+Concepto de Desempeño de la Tecnología, en cuanto a la componente
+Metrológica, emitido por el Instituto Nacional de Metrología.
+
+8.2 Procesos de mantenimiento realizados por el fabricante o por su
+representante oficial en Colombia, los cuales deberán estar debidamente
+registrados y ser claramente trazables en las bitácoras de los equipos, que
+deberá llevar el operador.
+
+https://www.alcaldiabogota.gov.co/sisjur/normas/Norma1 .jsp?i=76187 11/15
+18/11/26, 20:14
+
+Resolución 718 de 2018 Ministerio de Transporte
+
+Artículo 9. Mantenimiento y Calibración: Los SATS deberán contar con
+un set de pruebas de software donde se certifique la seguridad y
+confiabilidad de acuerdo al tipo de infracción de tránsito y demás datos
+requeridos que emita el equipo, con sus respectivos soportes de las
+pruebas aplicadas a cada funcionalidad.
+
+La calibración se efectuará de conformidad con lo previsto por el artículo 14
+de la Ley 1843 de 2017.
+
+Artículo 10. Señalización. Los SAST deberán cumplir con la señalización
+que advierta sobre su existencia, en los siguientes términos:
+
+Se deberá instalar en las vías, señales visibles informativas tipo Sl-27, que
+informen que es una zona vigilada por SAST.
+
+DETECCIÓN ELECTRÓNICA
+
+Las señales también podrán emitirse mediante paneles de mensaje
+variable, el cual siempre deberá mostrar en todo momento el aviso de
+detección electrónica.
+
+1 Respecto a la señalización de los SAST fijos en vías nacionales y
+departamentales, se deberá cumplir como mínimo los siguientes
+requerimientos:
+
+1.1 La señalización que , advierta sobre SAST para detección fija de
+infracciones de velocidad, deberá ubicarse con una antelación de 500
+metros de distancia del punto de ubicación del SAST. Para los puntos en los
+cuales se pretenda instalar, deberá tenerse en cuenta, que cuando la vía
+tenga varios accesos al punto de detección se deberá prever la
+señalización para cada uno de ellos.
+
+1.2 Para otro tipo de infracción al tránsito, se deberá instalar la señal Sl-27
+con el texto "Detección Electrónica” o acompañar la señal reglamentaria de
+un tablero adosado en la parte inferior que indique "Detección Electrónica"
+de acuerdo con lo especificado para el efecto en el numeral 2.2.2 del
+Manual de Señalización Vial, adoptado mediante Resolución 1885 de 2015
+o la norma que lo adicione, modifique o sustituya.
+
+2 Respecto a la señalización que advierta sobre la existencia de los SAST
+fijos en las vías urbanas, se deberá cumplir como mínimo con los siguientes
+requerimientos:
+
+2.1 La señalización que advierta sobre SAST para la detección de
+infracciones de velocidad deberá ubicarse a la distancia que técnicamente
+determine la autoridad de tránsito competente de acuerdo a la característica
+de dicha infraestructura vial. Deberá tenerse en cuenta, que cuando la vía
+
+https://www.alcaldiabogota.gov.co/sisjur/normas/Norma1 .jsp?i=76187
+
+12/15
+18/11/26, 20:14 Resolución 718 de 2018 Ministerio de Transporte
+
+tenga varios accesos al punto de detección se deberá prever la
+señalización para cada uno de ellos.
+
+2.2 Para otro tipo de infracción al tránsito, se deberá instalar la señal Sl-27
+con el texto "Detección Electrónica" o acompañar la señal reglamentaria de
+un tablero adosado en la parte inferior que indique "Detección Electrónica"
+de acuerdo con lo especificado para el efecto en el numeral 2.2.2 del
+Manual de Señalización Vial, adoptado mediante Resolución 1885 de 2015
+o la norma que la adicione, modifique o sustituya.
+
+Para todo tipo de infracción en vías urbanas, la ubicación de las señales de
+advertencia deberá establecerse con base en los estudios técnicos
+elaborados por las autoridades de tránsito.
+
+3 Respecto a la señalización que advierta sobre la existencia de controles
+en vía apoyados en dispositivos móviles y equipos de detección móvil, se
+deberán instalar en la vía señales visibles que informen que es una zona
+vigilada por cámaras o radar, localizadas al inicio de estas zonas.
+
+Las zonas y la ubicación de las señales de advertencia en la vía deberán
+establecerse con base en los estudios técnicos elaborados por las
+autoridades de tránsito competentes, respetando las diferentes
+disposiciones establecidas por el Ministerio de Transporte y demás que
+apliquen.
+
+4. Tratándose del control aéreo se deberá dar aviso mediante señales
+visibles en la vía.
+
+Parágrafo. Para todo tipo de señalización deberán cumplirse las
+disposiciones técnicas señaladas en el Manual de Señalización Vial,
+adoptado mediante la Resolución 1885 de 2015 ola norma que lo adicione,
+modifique o sustituya.
+
+Artículo 11. Control a los organismos y autoridades de tránsito. La
+Superintendencia de Puertos y Transporte controlará periódicamente el
+cumplimiento de los requisitos de autorización y operación de los SAST y
+en el evento de encontrar presuntos incumplimientos podrá iniciar la
+investigación correspondiente, de conformidad con lo previsto en el artículo
+3 de la Ley 1843 de 2017.
+
+CAPÍTULO IV
+DISPOSICIONES FINALES
+Artículo 12. Validación del comparendo. La validación del comparendo, a
+la que hace referencia el artículo 8 de la Ley 1843 de 2017, deberá
+
+realizarse, a más tardar, dentro de los diez (10) días hábiles siguientes a la
+ocurrencia de la infracción.
+
+https://www.alcaldiabogota.gov.co/sisjur/normas/Norma1 .jsp?i=76187 13/15
+18/11/26, 20:14 Resolución 718 de 2018 Ministerio de Transporte
+
+Artículo 13. Vigencia. La presente Resolución rige a partir de la fecha de
+su publicación en el Diario Oficial.
+
+PUBLÍQUESE Y CÚMPLASE.
+Dada en Bogotá, D.C., a los 22 días del mes de marzo del año 2018.
+GERMÁN CARDONA GUTIERREZ
+MINISTRO DE TRANSPORTE
+ALEJANDRO MAYA MARTÍNEZ
+
+Director Agencia
+
+https://www.alcaldiabogota.gov.co/sisjur/normas/Norma1 .jsp?i=76187 14/15
+18/11/26, 20:14 Resolución 718 de 2018 Ministerio de Transporte
+
+https://www.alcaldiabogota.gov.co/sisjur/normas/Norma1 .jsp?i=76187 15/15

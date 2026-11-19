@@ -22,6 +22,13 @@ Pestaña CHAT
     «con cámaras», «¿y en la Calle 80?»). Lo evaluado en el chat se puede
     llevar al mapa con «Ver en el mapa».
 
+Pestaña MODELOS ML (proyecto fusionado con vIAsegura_ML, ver src/modelos_ml.py)
+    Demo de los tres modelos entrenados en vIAsegura_ML (Grupo3_Modelo_Final.pkl):
+    gravedad de un siniestro (Random Forest calibrado) con su perfil (K-Means)
+    y la norma aplicable, y tramos de mayor riesgo 2026 (LightGBM Poisson) con
+    simulación de dispositivos. Un tramo se puede llevar a la pestaña Mapa para
+    evaluar la medida con la evidencia de efectos, y una norma sugerida al Chat.
+
 Uso
     pip install flask
     python src/app_web.py          → abre http://127.0.0.1:5000
@@ -1004,6 +1011,105 @@ def normas_quitar():
     return jsonify(ok=True)
 
 
+# ════════════════════════════════════════════════════════════
+#  MODELOS ML (vIAsegura_ML): gravedad, riesgo por tramo, perfiles y norma aplicable
+# ════════════════════════════════════════════════════════════
+MODELOS = None          # modelos_ml.ModelosML, se carga en segundo plano
+
+
+def _modelos_listos():
+    """None si los modelos están listos; si no, la respuesta de error para el front."""
+    if MODELOS is None:
+        return jsonify(error="Los modelos de ML no se han iniciado."), 503
+    if not MODELOS.listo.wait(timeout=60):
+        return jsonify(error="Los modelos de ML siguen cargando; intente en unos segundos."), 503
+    if not MODELOS.disponible:
+        return jsonify(error=f"Modelos de ML no disponibles: {MODELOS.error}"), 503
+    return None
+
+
+def localidad_de_punto(lon: float, lat: float) -> str | None:
+    """Localidad que contiene el punto (capa oficial de límites; si no está, la celda de 500 m más cercana)."""
+    x, y = np.array([lon], float), np.array([lat], float)
+    for nombre, geom in D.localidades.items():
+        if dentro(x, y, _anillos(geom))[0]:
+            return nombre
+    d = np.hypot((D.celdas["lon"] - lon) * M_LON, (D.celdas["lat"] - lat) * M_LAT)
+    if len(d) and d.min() <= TAM_CELDA:
+        return str(D.celdas.loc[d.idxmin(), "localidad"])
+    return None
+
+
+@app.get("/api/ml/estado")
+def ml_estado():
+    error = _modelos_listos()
+    if error:
+        return error
+    return jsonify(MODELOS.estado())
+
+
+@app.post("/api/ml/siniestro")
+def ml_siniestro():
+    """Ficha de un siniestro: probabilidad de muerte, factores, perfil y normas aplicables."""
+    error = _modelos_listos()
+    if error:
+        return error
+    s = dict(request.json or {})
+    notas = []
+    if s.get("lat") is not None and s.get("lon") is not None and not s.get("localidad"):
+        loc = localidad_de_punto(float(s["lon"]), float(s["lat"]))
+        if loc:
+            s["localidad"] = loc
+            notas.append(f"Localidad tomada del punto marcado en el mapa: {loc}.")
+    try:
+        r = MODELOS.analizar(s)
+    except Exception as e:                                  # entrada inválida (fecha, números…)
+        return jsonify(error=f"No pude analizar el siniestro: {e}"), 400
+    r["notas"] = notas
+    return jsonify(r)
+
+
+@app.get("/api/ml/tramos")
+def ml_tramos():
+    error = _modelos_listos()
+    if error:
+        return error
+    return jsonify(resumen=MODELOS.resumen_tramos(), tramos=MODELOS.tramos())
+
+
+@app.post("/api/ml/escenario")
+def ml_escenario():
+    error = _modelos_listos()
+    if error:
+        return error
+    d = request.json or {}
+    try:
+        return jsonify(MODELOS.escenario(int(d.get("civ")), list(d.get("cambios") or [])))
+    except (TypeError, ValueError) as e:
+        return jsonify(error=str(e)), 400
+
+
+@app.post("/api/ml/tramos_linea")
+def ml_tramos_linea():
+    """Tramos de la malla vial que recorre una vía dibujada (o un corredor), su predicción 2026 y,
+    con `cambios`, la predicción con esa infraestructura según el modelo de riesgo por tramo."""
+    error = _modelos_listos()
+    if error:
+        return error
+    d = request.json or {}
+    lineas = d.get("lineas") or []
+    if d.get("corredor"):
+        g = D.corredores.get(d["corredor"])
+        if not g:
+            return jsonify(error="Corredor no encontrado."), 404
+        lineas = lineas_de(g)
+    try:
+        r = MODELOS.tramos_de_linea(lineas, float(d.get("ancho_m") or 20), list(d.get("cambios") or []))
+    except (FileNotFoundError, ValueError) as e:
+        return jsonify(error=str(e)), 400
+    return jsonify(r)
+
+
 GENERICA = "Puedo ayudarte con eso si me dices **qué medida**"
 
 
@@ -1055,11 +1161,13 @@ def _num(v):
 
 def iniciar() -> Flask:
     """Carga datos y normas una vez. La usan app_web.py (local) y wsgi.py (servidor, p. ej. Render)."""
-    global D, NORMAS
+    global D, NORMAS, MODELOS
     if D is None:
         from entorno import resumen_claves
         for linea in resumen_claves():
             print("  " + linea)
+        from modelos_ml import ModelosML
+        MODELOS = ModelosML()          # en segundo plano, mientras se cargan los datos
         D = Datos()
         NORMAS = AsistenteNormas()
     return app

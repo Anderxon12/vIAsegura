@@ -2,7 +2,7 @@
  "fuente": "Siniestralidad_BD (SDM)",
  "formularios_duplicados_AA_eliminados": 353407,
  "mes_incompleto_excluido": "2026-11",
- "siniestros": 426233,
+ "siniestros": 426289,
  "sin_victimas_por_anio": {
   "2010": 9650,
   "2011": 9612,
@@ -20,7 +20,7 @@
   "2023": 13001,
   "2024": 12977,
   "2025": 11599,
-  "2026": 8816
+  "2026": 8872
  },
  "muertos_por_anio": {
   "2010": 409,
@@ -39,10 +39,10 @@
   "2023": 564,
   "2024": 600,
   "2025": 598,
-  "2026": 553
+  "2026": 560
  },
- "pct_con_via": 51.5,
- "sin_coordenada_valida": 26,
+ "pct_con_via": 50.6,
+ "sin_coordenada_valida": 25,
  "celdas": 1745,
  "meses": 202,
  "rango": [

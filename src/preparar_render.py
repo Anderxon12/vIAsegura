@@ -15,6 +15,13 @@ En su PC (cada vez que actualice datos, panel o normas):
 En Render (lo corre el build, ver render.yaml):
     python src/preparar_render.py instalar
     → descomprime el zip y descarga el modelo de embeddings del RAG
+
+En su PC, para arrancar la app sin correr todo el pipeline (proyecto recién copiado):
+    python src/preparar_render.py descomprimir
+    → solo descomprime el zip (no sobrescribe archivos que ya existan)
+
+Proyecto fusionado: el zip incluye también el modelo de vIAsegura_ML
+(Grupo3_Modelo_Final.pkl → modelos_ml/), que usa la pestaña «Modelos ML».
 """
 
 from __future__ import annotations
@@ -39,6 +46,11 @@ ARCHIVOS = [
     "out/rag/info.json",
 ]
 CARPETAS = ["data/raw/limites"]
+# modelo de vIAsegura_ML (pestaña «Modelos ML»): en el servidor no está la carpeta del ML
+MODELO_ML_ORIGEN = os.path.join(os.path.dirname(RAIZ), "vIAsegura_ML", "entrega", "Grupo3_Modelo_Final.pkl")
+MODELO_ML_DESTINO = "modelos_ml/Grupo3_Modelo_Final.pkl"
+# tramos de toda la malla vial para «Tramos 2026» (los genera src/preparar_tramos_ml.py)
+OPCIONALES = ["data/ml/tramos_2026.parquet", "data/ml/tramos_puntos.npz"]
 SINIESTROS = "out/panel/siniestros.csv"
 COLUMNAS_SINIESTROS = ["fecha", "GRAVEDAD", "lat", "lon", "n_heridos", "n_muertos", "via"]
 
@@ -66,6 +78,16 @@ def empaquetar() -> None:
             for nombre in sorted(os.listdir(os.path.join(RAIZ, c))):
                 z.write(os.path.join(RAIZ, c, nombre), f"{c}/{nombre}")
         z.writestr(SINIESTROS, _siniestros_recortados())
+        for a in OPCIONALES:
+            if os.path.exists(os.path.join(RAIZ, a)):
+                z.write(os.path.join(RAIZ, a), a)
+            else:
+                print(f"  ⚠ falta {a} (python src/preparar_tramos_ml.py): no se podrán dibujar vías en «Tramos 2026»")
+        origen_ml = os.environ.get("VIASEGURA_MODELO_ML") or MODELO_ML_ORIGEN
+        if os.path.exists(origen_ml):
+            z.write(origen_ml, MODELO_ML_DESTINO)
+        else:
+            print(f"  ⚠ sin el modelo de ML ({origen_ml}): la pestaña «Modelos ML» no funcionará en el servidor")
     os.replace(tmp, ZIP)
     with zipfile.ZipFile(ZIP) as z:
         for i in z.infolist():
@@ -73,7 +95,7 @@ def empaquetar() -> None:
     print(f"\nListo: {os.path.relpath(ZIP, RAIZ)} ({os.path.getsize(ZIP) / 1e6:.1f} MB). Haga commit y push.")
 
 
-def instalar() -> None:
+def descomprimir(sobrescribir: bool = True) -> None:
     if not os.path.exists(ZIP):
         sys.exit(f"No está {os.path.relpath(ZIP, RAIZ)}. En su PC ejecute: python src/preparar_render.py empaquetar")
     with zipfile.ZipFile(ZIP) as z:
@@ -81,10 +103,17 @@ def instalar() -> None:
             destino = os.path.normpath(os.path.join(RAIZ, i.filename))
             if not destino.startswith(RAIZ + os.sep):           # nada fuera del proyecto
                 continue
+            if not sobrescribir and os.path.exists(destino):
+                print(f"  {i.filename} (ya existe, se conserva)")
+                continue
             os.makedirs(os.path.dirname(destino), exist_ok=True)
             with z.open(i) as origen, open(destino, "wb") as f:
                 f.write(origen.read())
             print(f"  {i.filename}")
+
+
+def instalar() -> None:
+    descomprimir()
     print("Descargando el modelo de embeddings del RAG…")
     sys.path.insert(0, os.path.join(RAIZ, "src"))
     from rag.embeddings import _MotorLigero
@@ -97,5 +126,6 @@ def instalar() -> None:
 if __name__ == "__main__":
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("accion", choices=["empaquetar", "instalar"])
-    {"empaquetar": empaquetar, "instalar": instalar}[ap.parse_args().accion]()
+    ap.add_argument("accion", choices=["empaquetar", "instalar", "descomprimir"])
+    {"empaquetar": empaquetar, "instalar": instalar,
+     "descomprimir": lambda: descomprimir(sobrescribir=False)}[ap.parse_args().accion]()

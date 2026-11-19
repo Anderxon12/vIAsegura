@@ -13,3 +13,6 @@ __pycache__/
 out/rag/
 # modelos de embeddings descargados por fastembed
 out/modelos_embeddings/
+# modelo de vIAsegura_ML copiado para el servidor (viaja dentro de despliegue/datos_app.zip)
+modelos_ml/
+data/ml/
