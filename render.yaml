@@ -17,6 +17,8 @@ services:
         value: "1"
       - key: ANTHROPIC_API_KEY
         sync: false                     # se escribe en el panel de Render, no en el repositorio
+      - key: DATABASE_URL
+        sync: false                     # Supabase → Connect → Transaction pooler (puerto 6543)
       - key: ANTHROPIC_MODELO
         value: claude-sonnet-5-5
       - key: RAG_MOTOR_EMBEDDINGS

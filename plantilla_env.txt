@@ -34,3 +34,9 @@ RAG_SIMILITUD_MINIMA=0.70
 # ── Chatbot de medidas (opcional, ya existente) ─────────────
 # HF_TOKEN=hf_REEMPLAZAR
 # MODELO_LLM=Qwen/Qwen2.5-7B-Instruct
+
+# ── Supabase (opcional) ─────────────────────────────────────
+# Con esta variable, los tramos de la malla vial y los barrios se leen de Supabase en vez de
+# cargarse en memoria (necesario en el plan gratis de Render). Supabase → Connect →
+# «Transaction pooler» (puerto 6543). Llénela una vez con: python src/subir_a_supabase.py
+# DATABASE_URL=postgresql://postgres.REEMPLAZAR:CONTRASEÑA@aws-0-REGION.pooler.supabase.com:6543/postgres

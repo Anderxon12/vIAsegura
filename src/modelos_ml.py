@@ -114,6 +114,46 @@ def _f(x, nd=4):
     return None if np.isnan(x) else round(x, nd)
 
 
+def _reparar_bsplines(obj) -> int:
+    """Adapta los BSpline guardados con scipy <= 1.16 a scipy 1.17.
+
+    scipy 1.17 guarda los nudos y coeficientes en `_t` / `_c` y lee `t` / `c` por medio de
+    `self._asarray`. Un BSpline viejo sale del .pkl con `t` / `c` en su __dict__ y sin `_asarray`,
+    y SplineTransformer falla con «'BSpline' object has no attribute '_asarray'». Con scipy
+    <= 1.16 esto no cambia nada. Devuelve cuántos objetos reparó.
+    """
+    try:
+        from scipy.interpolate import BSpline
+    except ImportError:
+        return 0
+    if not isinstance(BSpline.__dict__.get("t"), property):          # scipy <= 1.16: nada que hacer
+        return 0
+    vistos, pila, n = set(), [obj], 0
+    while pila:
+        o = pila.pop()
+        if id(o) in vistos or isinstance(o, (str, bytes, int, float, bool, type(None), np.ndarray,
+                                                 pd.DataFrame, pd.Series, pd.Index)):
+            continue
+        vistos.add(id(o))
+        if isinstance(o, BSpline):
+            d = o.__dict__
+            if "_asarray" not in d:
+                if "t" in d:
+                    d["_t"] = np.ascontiguousarray(d.pop("t"), dtype=np.float64)
+                if "c" in d:
+                    d["_c"] = np.asarray(d.pop("c"))
+                d["_asarray"] = np.asarray
+                n += 1
+            continue
+        if isinstance(o, dict):
+            pila.extend(o.values())
+        elif isinstance(o, (list, tuple, set)):
+            pila.extend(o)
+        elif hasattr(o, "__dict__") and not isinstance(o, type):
+            pila.extend(vars(o).values())
+    return n
+
+
 class ModelosML:
     """Envuelve el paquete del modelo. Se carga en segundo plano para no demorar el arranque de la app."""
 
@@ -135,6 +175,7 @@ class ModelosML:
             with warnings.catch_warnings(record=True) as avisos:
                 warnings.simplefilter("always")
                 p = joblib.load(self.ruta)
+            _reparar_bsplines(p)
             esperadas = p["metadatos"].get("versiones", {})
             distintas = {k: version(k) for k in ("scikit-learn", "lightgbm")
                          if esperadas.get(k) and version(k) != esperadas[k]}
@@ -435,6 +476,53 @@ class ModelosML:
             self._puntos = z["puntos"].astype(float)                # (n, 11, 2) lon/lat
             self._malla = t
 
+    def _malla_cerca(self, lineas: list, margen: float) -> tuple[pd.DataFrame, np.ndarray]:
+        """Tramos que pueden quedar cerca de la línea: de Supabase (solo los de la zona) o de data/ml/."""
+        import bd
+        if bd.activa():
+            try:
+                return self._malla_supabase(lineas, margen)
+            except Exception as e:
+                print(f"  ⚠ tramos desde Supabase: {type(e).__name__}: {e}")
+                if not os.path.exists(os.path.join(RAIZ, "data", "ml", "tramos_2026.parquet")):
+                    raise ValueError(f"No pude leer los tramos de Supabase ({type(e).__name__}). "
+                                     "¿Ya corrió python src/subir_a_supabase.py?") from e
+        self._cargar_malla()
+        return self._malla, self._puntos
+
+    def _malla_supabase(self, lineas: list, margen: float) -> tuple[pd.DataFrame, np.ndarray]:
+        """Pide a Supabase solo los tramos cuyas cajas tocan la línea, en trozos de ~300 m (índice GiST),
+        y predice 2026 solo para ellos: no se carga la malla entera en memoria."""
+        import bd
+        ML, MA, PASO = 107_000.0, 110_600.0, 300.0
+        cajas = []
+        for l in lineas:
+            l = np.asarray(l, float)
+            pts = [l[0]]
+            for a, b in zip(l[:-1], l[1:]):                          # ningún segmento de más de 300 m
+                n = max(1, int(np.ceil(np.hypot((b[0] - a[0]) * ML, (b[1] - a[1]) * MA) / PASO)))
+                pts.extend(a + (b - a) * k / n for k in range(1, n + 1))
+            pts = np.array(pts)
+            largo = np.concatenate([[0], np.cumsum(np.hypot(np.diff(pts[:, 0]) * ML, np.diff(pts[:, 1]) * MA))])
+            trozo = np.floor(largo / PASO).astype(int)
+            for k in np.unique(trozo):
+                idx = np.flatnonzero(trozo == k)
+                q = pts[max(idx[0] - 1, 0): idx[-1] + 1]           # incluye el punto anterior: sin huecos
+                cajas.append(f"(({q[:, 0].min() - margen},{q[:, 1].min() - margen}),"
+                             f"({q[:, 0].max() + margen},{q[:, 1].max() + margen}))")
+        filas = bd.consultar(
+            f"select distinct on (t.civ) t.* from unnest(%s::text[]) as c(caja) "
+            f"join {bd.ESQUEMA}.tramos t on t.caja && c.caja::box order by t.civ", (cajas,))
+        if not filas:
+            cols = ["civ", "nombre_via", "localidad", "tipo_via", "geom", "pred_2026", "largo_m", "vel_limite",
+                    "camara", "resalto", "semaforo", "y_lag1", "y_lag2", "y_lag3"]
+            cols += [c for c in self.T["variables"] if c not in cols]
+            return pd.DataFrame(columns=cols, dtype=float), np.zeros((0, 11, 2))
+        P = np.array([f.pop("puntos") for f in filas], float).reshape(len(filas), -1, 2)
+        t = pd.DataFrame(filas).drop(columns=["caja"], errors="ignore")
+        t["pred_2026"] = self.T["modelo"].predict(t[self.T["variables"]].astype(float))
+        return t, P
+
     @staticmethod
     def _distancia(px: np.ndarray, py: np.ndarray, lineas: list, hasta: float) -> np.ndarray:
         """Distancia (m) de cada punto a la línea más cercana; inf si pasa de `hasta`."""
@@ -477,14 +565,13 @@ class ModelosML:
                         minimo: float = 0.6, maximo: int = 600) -> dict:
         """Tramos (CIV) que recorre la línea: al menos `minimo` de su largo a menos de `ancho_m` metros.
         Predicción 2026 de cada uno y, si hay `cambios`, la misma predicción con esa infraestructura."""
-        self._cargar_malla()
-        t, P = self._malla, self._puntos
         lineas = [l for l in lineas if len(l) >= 2]
         if not lineas:
             raise ValueError("Dibuje una línea con al menos dos puntos.")
         ancho = float(min(max(ancho_m or 20, 5), 100))
         todos = np.vstack([np.asarray(l, float) for l in lineas])
         margen = (ancho + 50) / 100_000
+        t, P = self._malla_cerca(lineas, margen)
         cand = np.flatnonzero((P[:, :, 0].max(1) >= todos[:, 0].min() - margen) & (P[:, :, 0].min(1) <= todos[:, 0].max() + margen) &
                               (P[:, :, 1].max(1) >= todos[:, 1].min() - margen) & (P[:, :, 1].min(1) <= todos[:, 1].max() + margen))
         if len(cand):

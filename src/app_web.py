@@ -223,6 +223,23 @@ class _CapaPerezosa(dict):
         return arcgis_a_geojson(json.loads(dict.__getitem__(self, nombre)))
 
 
+class _BarriosSupabase(dict):
+    """Nombres de barrios en memoria; la geometría se pide a Supabase (viasegura.barrios) al usarla."""
+
+    def __init__(self):
+        import bd
+        self._bd = bd
+        super().__init__({f["nombre"]: None for f in bd.consultar(f"select nombre from {bd.ESQUEMA}.barrios")})
+
+    def __getitem__(self, nombre):
+        if not dict.__contains__(self, nombre):
+            raise KeyError(nombre)
+        f = self._bd.consultar(f"select geometria_json from {self._bd.ESQUEMA}.barrios where nombre = %s", (nombre,))
+        if not f:
+            raise KeyError(nombre)
+        return arcgis_a_geojson(json.loads(f[0]["geometria_json"]))
+
+
 class Datos:
     def __init__(self):
         print("Cargando datos…")
@@ -232,10 +249,24 @@ class Datos:
         self.siniestros, self.fin_datos = self._siniestros()
         self.corredores = self._corredores()
         self.localidades = self._capa("Localidad", es_localidad=True)
-        self.barrios = self._capa("Sector_catastral")
+        self.barrios = self._barrios()
         self.coropletico = self._coropletico()
         print(f"  panel: {self.panel['celda'].nunique()} celdas · siniestros recientes: {len(self.siniestros):,} · "
               f"corredores: {len(self.corredores)} · localidades: {len(self.localidades)} · barrios: {len(self.barrios)}")
+
+    def _barrios(self) -> dict:
+        """Barrios desde Supabase si hay DATABASE_URL (no se leen ~17 MB de polígonos al arrancar)."""
+        import bd
+        if bd.activa():
+            try:
+                b = _BarriosSupabase()
+                if b:
+                    print(f"  barrios: {len(b)} desde Supabase")
+                    return b
+                print("  ⚠ Supabase no tiene barrios (python src/subir_a_supabase.py): se usan los archivos locales")
+            except Exception as e:
+                print(f"  ⚠ no pude leer barrios de Supabase ({type(e).__name__}: {e}): se usan los archivos locales")
+        return self._capa("Sector_catastral")
 
     def _siniestros(self):
         if not os.path.exists(SINIESTROS):
