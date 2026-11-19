@@ -1,0 +1,36 @@
+# ════════════════════════════════════════════════════════════
+#  VíaSegura IA — configuración PROVISIONAL (no subir a GitHub)
+# ════════════════════════════════════════════════════════════
+
+# ── LLM: Claude (API de Anthropic) ──────────────────────────
+# Cree la clave en https://console.anthropic.com/ → API Keys y péguela aquí.
+# Mientras diga REEMPLAZAR, el RAG funciona en modo extractivo (sin LLM).
+ANTHROPIC_API_KEY=sk-ant-REEMPLAZAR-CON-SU-CLAVE
+ANTHROPIC_MODELO=claude-sonnet-5-5
+ANTHROPIC_MAX_TOKENS=1024
+ANTHROPIC_TEMPERATURA=0.2
+
+# ── Embeddings ──────────────────────────────────────────────
+# Motor: auto | sentence-transformers | fastembed
+#   sentence-transformers usa PyTorch (necesita ~2 GB de memoria libre).
+#   fastembed usa ONNX, sin PyTorch: modelo cuantizado de ~220 MB para equipos con poca memoria
+#   (sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2).
+#   auto intenta sentence-transformers y, si no hay memoria, pasa a fastembed.
+RAG_MOTOR_EMBEDDINGS=auto
+# Modelo multilingüe (entiende español). Si lo cambia, use «Reindexar todo desde cero».
+RAG_MODELO_EMBEDDINGS=intfloat/multilingual-e5-small
+
+# ── Documentos e índice vectorial (FAISS) ───────────────────
+RAG_CARPETA_DOCUMENTOS=data/resoluciones
+RAG_CARPETA_INDICE=out/rag
+RAG_TAM_FRAGMENTO=1200
+RAG_SOLAPE=200
+
+# ── Recuperación ────────────────────────────────────────────
+RAG_TOP_K=5
+# Pensado para e5; con el modelo ligero de fastembed se usa 0,35 automáticamente.
+RAG_SIMILITUD_MINIMA=0.70
+
+# ── Chatbot de medidas (opcional, ya existente) ─────────────
+# HF_TOKEN=hf_REEMPLAZAR
+# MODELO_LLM=Qwen/Qwen2.5-7B-Instruct

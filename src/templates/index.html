@@ -1,0 +1,921 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VíaSegura IA</title>
+<link rel="stylesheet" href="/static/vendor/leaflet/leaflet.css">
+<link rel="stylesheet" href="/static/vendor/leaflet-draw/leaflet.draw.css">
+<style>
+  :root {
+    --bg: #f6f7f9; --panel: #ffffff; --ink: #1c2330; --muted: #5f6b7a; --line: #dde2e8;
+    --accent: #1f5fbf; --accent-soft: #e8f0fb;
+    --pos: #1f7a4d; --pos-soft: #e5f4ec; --neg: #b3261e; --neg-soft: #fbe9e7; --neu: #8a6100; --neu-soft: #fdf3dc;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+               color: var(--ink); background: var(--bg); font-size: 14px; }
+  .app { display: grid; grid-template-columns: 420px 1fr; height: 100vh; }
+  aside { background: var(--panel); border-right: 1px solid var(--line); display: flex; flex-direction: column; min-height: 0; }
+  header { padding: 14px 18px 10px; border-bottom: 1px solid var(--line); }
+  header h1 { margin: 0; font-size: 18px; letter-spacing: .2px; }
+  header p { margin: 4px 0 0; color: var(--muted); font-size: 12.5px; }
+  .tabs { display: flex; gap: 4px; padding: 8px 12px 0; border-bottom: 1px solid var(--line); }
+  .tab { border: 0; background: none; padding: 8px 14px; font: inherit; color: var(--muted); cursor: pointer;
+         border-bottom: 2px solid transparent; }
+  .tab.activa { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+  .contenido { overflow-y: auto; flex: 1; min-height: 0; }
+  .vista { display: none; } .vista.activa { display: block; }
+  section.paso { padding: 14px 18px; border-bottom: 1px solid var(--line); }
+  .paso h2 { margin: 0 0 10px; font-size: 13px; text-transform: uppercase; letter-spacing: .6px; color: var(--muted); }
+  .paso h2 b { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 50%;
+               background: var(--accent); color: #fff; font-size: 11px; margin-right: 6px; }
+  .grid-btn { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
+  button, select, input, textarea { font: inherit; }
+  .btn { border: 1px solid var(--line); background: #fff; padding: 7px 10px; border-radius: 6px; cursor: pointer;
+         color: var(--ink); text-align: left; }
+  .btn:hover { border-color: var(--accent); background: var(--accent-soft); }
+  .btn.dibujando { border-color: var(--accent); background: var(--accent-soft); font-weight: 600; }
+  .btn-principal { width: 100%; border: 0; background: var(--accent); color: #fff; padding: 10px; border-radius: 6px;
+                   font-weight: 600; cursor: pointer; text-align: center; }
+  .btn-principal:disabled { opacity: .55; cursor: wait; }
+  label { display: block; font-size: 12.5px; color: var(--muted); margin: 10px 0 4px; }
+  select, input[type=text], input[type=number], textarea { width: 100%; border: 1px solid var(--line); border-radius: 6px;
+    padding: 7px 9px; background: #fff; color: var(--ink); }
+  textarea { resize: vertical; min-height: 64px; }
+  .fila { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .chk { display: flex; gap: 14px; margin-top: 6px; } .chk label { display: flex; gap: 6px; align-items: center; margin: 0; color: var(--ink); }
+  .lista-zonas { list-style: none; margin: 10px 0 0; padding: 0; }
+  .lista-zonas li { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 6px 8px;
+                    border: 1px solid var(--line); border-radius: 6px; margin-bottom: 5px; font-size: 13px; }
+  .lista-zonas li span.t { color: var(--muted); font-size: 11.5px; margin-right: 6px; text-transform: uppercase; }
+  .lista-zonas button { border: 0; background: none; color: var(--muted); cursor: pointer; font-size: 16px; line-height: 1; }
+  .vacio { color: var(--muted); font-size: 12.5px; margin: 8px 0 0; }
+  .sugerencias { border: 1px solid var(--line); border-radius: 6px; margin-top: 4px; max-height: 160px; overflow-y: auto; display: none; }
+  .sugerencias div { padding: 6px 9px; cursor: pointer; } .sugerencias div:hover { background: var(--accent-soft); }
+  .nota { font-size: 12px; color: var(--muted); margin: 6px 0 0; }
+  .aviso { margin: 10px 0 0; padding: 8px 10px; border-radius: 6px; background: var(--neg-soft); color: var(--neg); font-size: 13px; display: none; }
+  .ok { background: var(--accent-soft); color: var(--accent); }
+  #resultado { padding: 0 18px 18px; }
+  .veredicto { margin: 14px 0 6px; padding: 10px 14px; border-radius: 8px; font-size: 15px; font-weight: 600; }
+  .veredicto small { display: block; font-weight: 400; font-size: 12.5px; opacity: .9; margin-top: 2px; }
+  .veredicto.Positiva { background: var(--pos-soft); color: var(--pos); }
+  .veredicto.Negativa { background: var(--neg-soft); color: var(--neg); }
+  .veredicto.Neutra, .veredicto.sin { background: var(--neu-soft); color: var(--neu); }
+  .md { line-height: 1.5; } .md p { margin: 8px 0; } .md ul { margin: 4px 0 8px; padding-left: 18px; } .md li { margin: 3px 0; }
+  .md table { border-collapse: collapse; width: 100%; font-size: 13px; margin: 6px 0; }
+  .md th, .md td { border: 1px solid var(--line); padding: 4px 6px; text-align: right; } .md th:first-child, .md td:first-child { text-align: left; }
+  .md td:not(:first-child) { white-space: nowrap; }
+  /* chat */
+  #vista-chat { display: none; height: 100%; } #vista-chat.activa { display: flex; flex-direction: column; }
+  #mensajes { flex: 1; overflow-y: auto; padding: 14px 16px; }
+  .msg { margin: 0 0 10px; padding: 9px 12px; border-radius: 10px; max-width: 92%; line-height: 1.45; }
+  .msg.usuario { background: var(--accent); color: #fff; margin-left: auto; white-space: pre-wrap; }
+  .msg.bot { background: #f0f2f5; }
+  .msg > :first-child { margin-top: 0; } .msg > :last-child { margin-bottom: 0; }
+  .entrada-chat { display: flex; gap: 6px; padding: 10px 12px; border-top: 1px solid var(--line); }
+  .entrada-chat textarea { min-height: 42px; height: 42px; }
+  .entrada-chat button { border: 0; background: var(--accent); color: #fff; border-radius: 6px; padding: 0 14px; cursor: pointer; }
+  .md a { color: var(--accent); }
+  .md details.det { margin: 10px 0 0; border: 1px solid var(--line); border-radius: 6px; padding: 0 10px; background: #fafbfc; }
+  .md details.det summary { cursor: pointer; padding: 7px 0; color: var(--accent); font-weight: 600; font-size: 13px; }
+  .md details.det[open] { padding-bottom: 6px; } .md details.det p { margin: 6px 0 2px; }
+  .acciones { display: flex; gap: 6px; flex-wrap: wrap; margin: 10px 0 0; }
+  .acciones button, .btn-mapa { border: 1px solid var(--accent); background: #fff; color: var(--accent); border-radius: 16px;
+    padding: 5px 12px; cursor: pointer; font-size: 13px; }
+  .acciones button:hover, .btn-mapa:hover { background: var(--accent-soft); }
+  .btn-mapa { margin-top: 8px; }
+  .chips { display: flex; gap: 5px; flex-wrap: wrap; padding: 8px 12px 0; }
+  .chips button { border: 1px solid var(--line); background: #fff; border-radius: 14px; padding: 4px 10px; font-size: 12.5px;
+    cursor: pointer; color: var(--ink); }
+  .chips button:hover { border-color: var(--accent); color: var(--accent); }
+  .ctx { display: none; align-items: center; gap: 8px; margin: 8px 12px 0; padding: 6px 10px; border-radius: 6px;
+    background: var(--accent-soft); color: var(--accent); font-size: 12.5px; }
+  .ctx.visible { display: flex; } .ctx span { flex: 1; } .ctx button { border: 0; background: none; color: inherit; cursor: pointer; font-size: 16px; }
+  details.guia { padding: 10px 18px; border-bottom: 1px solid var(--line); background: #fbfcfd; }
+  details.guia summary { cursor: pointer; font-weight: 600; color: var(--accent); }
+  details.guia ol { margin: 8px 0 4px; padding-left: 18px; line-height: 1.5; } details.guia p { margin: 6px 0; color: var(--muted); font-size: 12.5px; }
+  .resumen-res { font-size: 12.5px; color: var(--muted); margin: 0 0 4px; }
+  /* normas */
+  .soltar { display: block; border: 2px dashed var(--line); border-radius: 8px; padding: 18px 12px; text-align: center;
+    color: var(--muted); cursor: pointer; margin: 4px 0 0; font-size: 13px; background: #fbfcfd; }
+  .soltar:hover, .soltar.encima { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
+  .soltar b { display: block; color: var(--ink); font-size: 14px; margin-bottom: 2px; }
+  .trabajo { margin: 10px 0 0; padding: 8px 10px; border-radius: 6px; font-size: 13px; display: none; }
+  .trabajo.activo { display: block; background: var(--accent-soft); color: var(--accent); }
+  .trabajo.ok { display: block; background: var(--pos-soft); color: var(--pos); }
+  .trabajo.error { display: block; background: var(--neg-soft); color: var(--neg); }
+  .barra { height: 4px; border-radius: 2px; background: rgba(31,95,191,.2); overflow: hidden; margin-top: 6px; }
+  .barra i { display: block; height: 100%; width: 35%; background: var(--accent); animation: barrido 1.2s infinite ease-in-out; }
+  @keyframes barrido { 0% { margin-left: -35%; } 100% { margin-left: 100%; } }
+  .lista-docs { list-style: none; margin: 12px 0 0; padding: 0; }
+  .lista-docs li { border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; margin-bottom: 6px; }
+  .lista-docs .tit { font-weight: 600; font-size: 13px; overflow-wrap: anywhere; }
+  .lista-docs .arch { color: var(--muted); font-size: 11.5px; overflow-wrap: anywhere; }
+  .lista-docs .pie { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
+  .chip { font-size: 11.5px; padding: 2px 8px; border-radius: 10px; font-weight: 600; }
+  .chip.indexado { background: var(--pos-soft); color: var(--pos); }
+  .chip.pendiente { background: var(--neu-soft); color: var(--neu); }
+  .chip.sin_texto { background: #eef0f3; color: var(--muted); }
+  .lista-docs .pie .esp { flex: 1; }
+  .mini { border: 1px solid var(--line); background: #fff; border-radius: 5px; padding: 3px 9px; font-size: 12px; cursor: pointer; }
+  .mini:hover { border-color: var(--accent); color: var(--accent); }
+  .mini.peligro { color: var(--neg); } .mini.peligro:hover { border-color: var(--neg); }
+  .mini:disabled { opacity: .5; cursor: default; }
+  .motivo { font-size: 11.5px; color: var(--muted); margin-top: 3px; }
+  .grupo-docs { font-size: 12px; color: var(--muted); margin: 14px 0 4px; text-transform: uppercase; letter-spacing: .5px; }
+  #mapa { height: 100vh; }
+  .leyenda { background: #fff; padding: 8px 10px; border-radius: 6px; box-shadow: 0 1px 4px rgba(0,0,0,.25); font-size: 12px; line-height: 1.6; }
+  .leyenda i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+  .leyenda .cel { border-radius: 2px; background: rgba(230,126,34,.25); border: 1px solid #e67e22; }
+  .leyenda .esc { display: flex; margin: 3px 0 1px; } .leyenda .esc span { width: 26px; height: 10px; }
+  .leyenda .esc-txt { display: flex; justify-content: space-between; color: #5f6b7a; font-size: 11px; }
+  .leyenda label { display: flex; gap: 5px; align-items: center; margin: 4px 0 0; color: inherit; font-size: 12px; cursor: pointer; }
+  .leyenda hr { border: 0; border-top: 1px solid #e3e6ea; margin: 6px 0; }
+  .btn.activo { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+  .fila-ciudad { display: grid; grid-template-columns: auto 1fr; gap: 8px; align-items: center; margin-top: 8px; }
+  .cargando { position: absolute; z-index: 1000; top: 12px; left: 50%; transform: translateX(-50%); background: #fff;
+              padding: 8px 14px; border-radius: 20px; box-shadow: 0 1px 6px rgba(0,0,0,.25); display: none; }
+  @media (max-width: 900px) { .app { grid-template-columns: 1fr; grid-template-rows: 55vh 45vh; } #mapa { height: 45vh; } aside { order: 1; } }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside>
+    <header>
+      <h1>VíaSegura IA</h1>
+      <p>¿Una resolución vial reduciría o aumentaría los siniestros en Bogotá? <span id="fin-datos"></span></p>
+    </header>
+    <nav class="tabs">
+      <button class="tab activa" data-vista="mapa">Mapa</button>
+      <button class="tab" data-vista="chat">Chat</button>
+      <button class="tab" data-vista="normas">Normas</button>
+    </nav>
+    <div class="contenido">
+      <div id="vista-mapa" class="vista activa">
+        <details class="guia" id="guia">
+          <summary>¿Cómo se usa?</summary>
+          <ol>
+            <li><b>Marque la zona:</b> dibuje la vía, el área o el punto, o elija un corredor, una localidad o un barrio.</li>
+            <li><b>Defina la resolución:</b> escríbala y pulse <i>Interpretar</i>, o elija la medida y sus valores.</li>
+            <li><b>Evalúe:</b> verá el veredicto, cuánto cambiarían los siniestros y por qué.</li>
+            <li><b>Pregunte:</b> con <i>Conversar sobre esta propuesta</i> puede pedir «¿por qué confianza baja?», «¿y a 40 km/h?» o «¿y con cámaras?».</li>
+          </ol>
+          <p><b>Positiva</b> = reduce claramente siniestros o muertes · <b>Negativa</b> = los aumenta · <b>Neutra</b> = sin cambio claro.
+             La <b>confianza</b> depende de cuántos casos se han medido en Bogotá y de qué tan amplio es el rango.</p>
+        </details>
+        <section class="paso">
+          <h2><b>1</b>Marque la zona</h2>
+          <div class="grid-btn">
+            <button class="btn" data-dibujo="via">✏️ Vía o calle (línea)</button>
+            <button class="btn" data-dibujo="area">⬠ Área (polígono)</button>
+            <button class="btn" data-dibujo="rect">▭ Área (rectángulo)</button>
+            <button class="btn" data-dibujo="punto">◉ Punto con radio</button>
+          </div>
+          <p class="nota" id="ayuda-dibujo">Clic en el mapa para agregar puntos; doble clic (o clic en el último punto) para terminar.</p>
+          <div class="fila-ciudad">
+            <button class="btn" id="btn-ciudad">🏙️ Toda Bogotá</button>
+            <p class="nota" style="margin:0" id="nota-coro">Localidades: haga clic sobre ellas en el mapa para elegir una o varias (otro clic la quita).</p>
+          </div>
+          <div class="fila">
+            <div><label for="ancho">Ancho de la vía (m a cada lado)</label><input id="ancho" type="number" min="10" max="200" value="30"></div>
+            <div><label for="sel-corredor">Corredor principal</label><select id="sel-corredor"><option value="">— elegir —</option></select></div>
+          </div>
+          <div class="fila">
+            <div><label for="sel-localidad">Localidad</label><select id="sel-localidad"><option value="">— elegir —</option></select></div>
+            <div><label for="buscar-barrio">Barrio</label><input id="buscar-barrio" type="text" placeholder="Escriba el nombre…" autocomplete="off">
+              <div class="sugerencias" id="sug-barrio"></div></div>
+          </div>
+          <p class="nota" id="nota-limites"></p>
+          <ul class="lista-zonas" id="lista-zonas"></ul>
+          <p class="vacio" id="sin-zonas">Todavía no ha marcado ninguna zona.</p>
+        </section>
+
+        <section class="paso">
+          <h2><b>2</b>Defina la resolución</h2>
+          <label for="texto-res">Escríbala como en el texto de la resolución (opcional)</label>
+          <textarea id="texto-res" placeholder="Ej.: Reducir el límite de velocidad a 30 km/h en el entorno de los colegios, con cámaras de fotodetección."></textarea>
+          <button class="btn" id="btn-interpretar" style="margin-top:6px">Interpretar texto ↓</button>
+          <label for="tipo">Tipo de medida</label>
+          <select id="tipo"></select>
+          <div id="campos-velocidad">
+            <div class="fila">
+              <div><label for="v-actual">Límite actual (km/h)</label><input id="v-actual" type="number" min="10" max="120" placeholder="50"></div>
+              <div><label for="v-nuevo">Nuevo límite (km/h)</label><input id="v-nuevo" type="number" min="10" max="120" placeholder="30"></div>
+            </div>
+          </div>
+          <div id="campo-direccion">
+            <label for="direccion">Acción</label>
+            <select id="direccion">
+              <option value="implementar">Implementar / instalar</option>
+              <option value="restringir">Restringir / prohibir</option>
+              <option value="retirar">Retirar</option>
+            </select>
+          </div>
+          <label>Acompañada de</label>
+          <div class="chk">
+            <label><input type="checkbox" id="acomp-camaras"> Cámaras de fotodetección</label>
+            <label><input type="checkbox" id="acomp-policia"> Control policial</label>
+          </div>
+          <div class="aviso" id="aviso"></div>
+          <button class="btn-principal" id="btn-evaluar" style="margin-top:14px">Evaluar resolución</button>
+        </section>
+        <div id="resultado"></div>
+      </div>
+
+      <div id="vista-normas" class="vista">
+        <section class="paso">
+          <h2>Normas del asistente</h2>
+          <p class="nota" style="margin-top:0">Suba resoluciones o decretos en PDF. Al indexarlos, el texto se parte por artículos,
+            se convierte en <b>embeddings</b> y se guarda en el índice <b>FAISS</b>; desde ese momento el chat puede responder con ellos.</p>
+          <label class="soltar" id="soltar">
+            <input type="file" id="archivo-norma" accept=".pdf,.docx,.txt" multiple hidden>
+            <b>📄 Arrastre aquí los PDF</b>o haga clic para elegirlos (también Word .docx o .txt)
+          </label>
+          <div class="trabajo" id="trabajo"></div>
+          <button class="btn-principal" id="btn-indexar-pend" style="margin-top:12px" disabled>Indexar pendientes</button>
+          <p class="nota" id="normas-info"></p>
+          <div id="lista-docs"></div>
+          <button class="mini" id="btn-reindexar-todo" style="margin-top:10px">Reindexar todo desde cero</button>
+        </section>
+      </div>
+
+      <div id="vista-chat" class="vista">
+        <div class="ctx" id="ctx"><span>Hablando de: <b id="ctx-titulo"></b></span>
+          <button id="ctx-mapa" title="Ver en el mapa">🗺️</button><button id="ctx-quitar" title="Dejar de hablar de esta propuesta">×</button></div>
+        <div id="mensajes">
+          <div class="msg bot">Hola. Dime una medida vial y dónde se aplicaría en Bogotá (por ejemplo, «poner resaltos en la Calle 80»), pregúntame cifras de siniestralidad o qué dicen las normas de tránsito y seguridad vial. Si no sabes por dónde empezar, toca <b>¿Qué puedo preguntarte?</b></div>
+        </div>
+        <div class="chips" id="chips"></div>
+        <div class="entrada-chat">
+          <textarea id="entrada" placeholder="Ej.: ¿Sirve poner resaltos en la Av. Boyacá?"></textarea>
+          <button id="enviar">Enviar</button>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <main style="position:relative">
+    <div id="mapa"></div>
+    <div class="cargando" id="cargando">Calculando…</div>
+  </main>
+</div>
+
+<script src="/static/vendor/leaflet/leaflet.js"></script>
+<script src="/static/vendor/leaflet-draw/leaflet.draw.js"></script>
+<script>
+"use strict";
+// ───────────── mapa ─────────────
+const mapa = L.map("mapa", { zoomControl: true }).setView([4.65, -74.10], 12);
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  maxZoom: 19, attribution: "&copy; OpenStreetMap"
+}).addTo(mapa);
+const capaZonas = L.featureGroup().addTo(mapa);
+const capaCeldas = L.featureGroup().addTo(mapa);
+const capaSiniestros = L.featureGroup().addTo(mapa);
+const estilo = {
+  via: { color: "#1f5fbf", weight: 6, opacity: .85 },
+  corredor: { color: "#1f5fbf", weight: 6, opacity: .7 },
+  area: { color: "#1f5fbf", weight: 2, fillOpacity: .12 },
+  localidad: { color: "#6d3fc0", weight: 2, fillOpacity: .06, dashArray: "6 4" },
+  barrio: { color: "#0f8a7a", weight: 2, fillOpacity: .12 },
+};
+L.Control.Draw && mapa.addControl(new L.Control.Draw({ draw: false, edit: { featureGroup: capaZonas, remove: false } }));
+
+const leyenda = L.control({ position: "bottomright" });
+leyenda.onAdd = () => {
+  const d = L.DomUtil.create("div", "leyenda");
+  d.innerHTML = '<div id="ley-coro"></div>' +
+    '<b>Siniestros con víctimas</b> (últimos 24 meses)<br>' +
+    '<i style="background:#b3261e"></i>con muertos &nbsp; <i style="background:#e67e22"></i>con heridos' +
+    '<label><input type="checkbox" id="ver-celdas"> <i class="cel"></i>ver zonas de análisis (500 m)</label>' +
+    '<div id="info-celdas" class="esc-txt" style="display:none"></div>' +
+    '<label id="fila-ver-coro" style="display:none"><input type="checkbox" id="ver-coro" checked> ver colores por localidad</label>';
+  L.DomEvent.disableClickPropagation(d);
+  return d;
+};
+leyenda.addTo(mapa);
+mapa.removeLayer(capaCeldas);                 // los cuadros de 500 m solo se ven si se piden
+document.getElementById("ver-celdas").onchange = (e) => {
+  if (e.target.checked) { capaCeldas.addTo(mapa); actualizarCeldas(); }
+  else { mapa.removeLayer(capaCeldas); document.getElementById("info-celdas").style.display = "none"; }
+};
+// Cuadros de 500 m de la zona marcada (o de toda la ciudad): se piden al servidor cuando la casilla está activa
+let pedidoCeldas = 0, esperaCeldas = null;
+function actualizarCeldas() {
+  const casilla = document.getElementById("ver-celdas");
+  if (!casilla || !casilla.checked) return;
+  clearTimeout(esperaCeldas);
+  esperaCeldas = setTimeout(async () => {
+    const n = ++pedidoCeldas;
+    const info = document.getElementById("info-celdas");
+    info.style.display = "block"; info.textContent = "Calculando cuadros…";
+    try {
+      const d = await (await fetch("/api/celdas", post({ zona: zonaGeoJSON() }))).json();
+      if (n !== pedidoCeldas) return;                // llegó una respuesta vieja
+      capaCeldas.clearLayers();
+      L.geoJSON(d.celdas, { style: { color: "#e67e22", weight: 1, fillOpacity: .07, dashArray: "3 3" }, interactive: false }).addTo(capaCeldas);
+      info.textContent = d.n ? `${d.n.toLocaleString("es-CO")} cuadros ${d.toda_la_ciudad ? "en toda la ciudad (no hay zona marcada)" : "en la zona marcada"}`
+                             : "La zona marcada no toca ningún cuadro con datos.";
+      if (capaZonas.getLayers().length) capaZonas.bringToFront();
+    } catch (e) { info.textContent = "No se pudieron cargar los cuadros."; }
+  }, 250);
+}
+
+// ───────────── coroplético de localidades ─────────────
+const RAMPA = ["#f2f0f7", "#cbc9e2", "#9e9ac8", "#756bb1", "#54278f"];
+let coro = null, cortes = [], coroDatos = {};
+function colorCoro(v) { let i = 0; while (i < cortes.length && v > cortes[i]) i++; return RAMPA[i]; }
+function elegida(nombre) { return zonas.some((z) => z.tipo === "localidad" && z.nombre === nombre); }
+function estiloCoro(f) {
+  const sel = elegida(f.properties.nombre);
+  return { color: sel ? "#1f5fbf" : "#6b6f80", weight: sel ? 3 : 1, fillColor: colorCoro(f.properties.victimas_anual),
+           fillOpacity: sel ? .6 : .38 };
+}
+function repintarCoro() { if (coro) coro.setStyle(estiloCoro); }
+async function cargarCoropletico() {
+  const fc = await (await fetch("/api/localidades")).json();
+  if (!fc.features || !fc.features.length) {
+    $("nota-coro").textContent = "Elija localidades en la lista de abajo (puede agregar varias).";
+    return;
+  }
+  const vals = fc.features.map((f) => f.properties.victimas_anual).sort((a, b) => a - b);
+  cortes = [.2, .4, .6, .8].map((q) => vals[Math.floor(q * (vals.length - 1))]);
+  fc.features.forEach((f) => { coroDatos[f.properties.nombre] = f; });
+  coro = L.geoJSON(fc, {
+    style: estiloCoro,
+    onEachFeature: (f, capa) => {
+      const p = f.properties;
+      capa.bindTooltip(`<b>${escapar(p.nombre)}</b><br>${p.victimas_anual.toLocaleString("es-CO")} siniestros con víctimas al año` +
+        `<br>${String(p.muertos_anual).replace(".", ",")} muertes al año<br><i>clic para ${"elegir o quitar"}</i>`, { sticky: true });
+      capa.on("click", () => alternarLocalidad(p.nombre));
+    },
+  }).addTo(mapa);
+  coro.bringToBack();
+  let oculto = false;
+  try { oculto = localStorage.getItem("ocultar-coro") === "1"; } catch (e) {}
+  $("fila-ver-coro").style.display = "flex";
+  $("ver-coro").checked = !oculto;
+  $("ver-coro").onchange = (e) => verCoropletico(e.target.checked);
+  if (oculto) verCoropletico(false);
+  const fmt = (x) => Math.round(x).toLocaleString("es-CO");
+  $("ley-coro").innerHTML = "<b>Localidades</b>: siniestros con víctimas al año" +
+    '<div class="esc">' + RAMPA.map((c) => `<span style="background:${c}"></span>`).join("") + "</div>" +
+    `<div class="esc-txt"><span>${fmt(vals[0])}</span><span>${fmt(vals[vals.length - 1])}</span></div><hr>`;
+}
+function verCoropletico(ver) {
+  if (!coro) return;
+  $("ver-coro").checked = ver;
+  if (ver) { coro.addTo(mapa); coro.bringToBack(); } else mapa.removeLayer(coro);
+  $("ley-coro").style.opacity = ver ? 1 : .45;
+  $("nota-coro").textContent = ver
+    ? "Localidades: haga clic sobre ellas en el mapa para elegir una o varias (otro clic la quita)."
+    : "Los colores por localidad están ocultos (actívelos en la leyenda del mapa para elegir localidades con clic).";
+  try { localStorage.setItem("ocultar-coro", ver ? "0" : "1"); } catch (e) {}
+}
+function agregarLocalidad(nombre) {
+  if (elegida(nombre)) return;
+  const f = coroDatos[nombre];
+  const capa = L.geoJSON(f, { style: { color: "#1f5fbf", weight: 3, fill: false }, interactive: false });
+  agregarZona("localidad", nombre, capa, { type: "Feature", geometry: null, properties: { tipo: "localidad", nombre } });
+  repintarCoro();
+}
+function alternarLocalidad(nombre) {
+  const z = zonas.find((x) => x.tipo === "localidad" && x.nombre === nombre);
+  if (z) quitarZona(z.id); else agregarLocalidad(nombre);
+}
+function agregarCiudad() {
+  if (zonas.some((z) => z.tipo === "ciudad")) return;
+  const capa = coro ? L.geoJSON(coro.toGeoJSON(), { style: { color: "#1f5fbf", weight: 2, fill: false, dashArray: "6 4" }, interactive: false })
+                    : L.rectangle([[4.47, -74.22], [4.84, -74.0]], { color: "#1f5fbf", weight: 2, fill: false, interactive: false });
+  agregarZona("ciudad", "toda Bogotá", capa, { type: "Feature", geometry: null, properties: { tipo: "ciudad", nombre: "toda Bogotá" } });
+  verCoropletico(true);                                // con toda Bogotá se ven los colores por localidad
+}
+document.getElementById("btn-ciudad").onclick = () => {
+  const z = zonas.find((x) => x.tipo === "ciudad");
+  if (z) { quitarZona(z.id); return; }                 // segundo clic: quita «toda Bogotá»
+  agregarCiudad();
+  const b = capaZonas.getBounds(); if (b.isValid()) mapa.fitBounds(b, { padding: [20, 20] });
+};
+
+// ───────────── estado ─────────────
+let zonas = [];         // {id, nombre, tipo, capa, feature (para zonas elegidas) }
+let siguiente = 1;
+let dibujoActivo = null;
+const $ = (id) => document.getElementById(id);
+
+function nombreTipo(t) {
+  return { via: "vía", area: "área", punto: "punto", corredor: "corredor", localidad: "localidad", barrio: "barrio", ciudad: "ciudad" }[t] || t;
+}
+
+function agregarZona(tipo, nombre, capa, feature) {
+  const z = { id: siguiente++, tipo, nombre, capa, feature };
+  capa.zonaId = z.id;
+  capaZonas.addLayer(capa);
+  zonas.push(z);
+  pintarLista();
+  return z;
+}
+
+function quitarZona(id) {
+  const z = zonas.find((x) => x.id === id);
+  if (z) capaZonas.removeLayer(z.capa);
+  if (z && z.tipo === "ciudad" && typeof verCoropletico === "function") verCoropletico(false);   // al quitarla se ocultan
+  zonas = zonas.filter((x) => x.id !== id);
+  pintarLista();
+  if (typeof repintarCoro === "function") repintarCoro();
+}
+
+function pintarLista() {
+  const ul = $("lista-zonas");
+  ul.innerHTML = "";
+  zonas.forEach((z) => {
+    const li = document.createElement("li");
+    li.innerHTML = `<div><span class="t">${nombreTipo(z.tipo)}</span>${escapar(z.nombre)}</div>`;
+    const b = document.createElement("button");
+    b.title = "Quitar"; b.textContent = "×"; b.onclick = () => quitarZona(z.id);
+    li.appendChild(b);
+    ul.appendChild(li);
+  });
+  $("sin-zonas").style.display = zonas.length ? "none" : "block";
+  const ciudad = zonas.some((z) => z.tipo === "ciudad");
+  if (typeof actualizarCeldas === "function") actualizarCeldas();   // si se están viendo los cuadros, siguen a la zona
+  $("btn-ciudad").classList.toggle("activo", ciudad);
+  $("btn-ciudad").textContent = ciudad ? "✕ Quitar toda Bogotá" : "🏙️ Toda Bogotá";
+}
+
+// ───────────── dibujo ─────────────
+const herramientas = {
+  via: () => new L.Draw.Polyline(mapa, { shapeOptions: estilo.via }),
+  area: () => new L.Draw.Polygon(mapa, { shapeOptions: estilo.area, allowIntersection: false }),
+  rect: () => new L.Draw.Rectangle(mapa, { shapeOptions: estilo.area }),
+  punto: () => new L.Draw.Circle(mapa, { shapeOptions: estilo.area }),
+};
+document.querySelectorAll("[data-dibujo]").forEach((b) => {
+  b.onclick = () => {
+    if (dibujoActivo) dibujoActivo.disable();
+    document.querySelectorAll("[data-dibujo]").forEach((x) => x.classList.remove("dibujando"));
+    dibujoActivo = herramientas[b.dataset.dibujo]();
+    dibujoActivo.enable();
+    b.classList.add("dibujando");
+    $("ayuda-dibujo").textContent = {
+      via: "Clic para cada punto de la vía; clic en el último punto para terminar.",
+      area: "Clic para cada vértice; clic en el primer punto para cerrar el área.",
+      rect: "Clic y arrastre para dibujar el rectángulo.",
+      punto: "Clic en el centro y arrastre para definir el radio.",
+    }[b.dataset.dibujo];
+  };
+});
+mapa.on(L.Draw.Event.CREATED, (e) => {
+  const t = e.layerType;
+  const tipo = t === "polyline" ? "via" : t === "circle" ? "punto" : "area";
+  let nombre;
+  if (tipo === "via") {
+    const ll = e.layer.getLatLngs();
+    let m = 0; for (let i = 1; i < ll.length; i++) m += ll[i - 1].distanceTo(ll[i]);
+    nombre = `vía dibujada (${(m / 1000).toFixed(2)} km)`;
+  } else if (tipo === "punto") {
+    nombre = `punto con radio de ${Math.round(e.layer.getRadius())} m`;
+  } else {
+    nombre = t === "rectangle" ? "rectángulo dibujado" : "área dibujada";
+  }
+  agregarZona(tipo, nombre, e.layer, null);
+});
+mapa.on(L.Draw.Event.DRAWSTOP, () => {
+  document.querySelectorAll("[data-dibujo]").forEach((x) => x.classList.remove("dibujando"));
+  dibujoActivo = null;
+});
+
+// ───────────── zonas por nombre ─────────────
+async function traerZona(tipo, nombre) {
+  if (tipo === "localidad" && coroDatos[nombre]) {
+    agregarLocalidad(nombre);
+    mapa.fitBounds(L.geoJSON(coroDatos[nombre]).getBounds(), { padding: [30, 30] });
+    return;
+  }
+  const r = await fetch(`/api/zona?tipo=${tipo}&nombre=${encodeURIComponent(nombre)}`);
+  if (!r.ok) { mostrarAviso("No encontré esa zona."); return; }
+  const f = await r.json();
+  let capa;
+  if (f.geometry) {
+    capa = L.geoJSON(f, { style: estilo[tipo] });
+  } else {          // localidad sin capa de límites: se muestran sus celdas
+    capa = L.geoJSON(f.properties.celdas, { style: estilo.localidad });
+    f.geometry = null;
+    delete f.properties.celdas;
+  }
+  agregarZona(tipo, nombre, capa, f);
+  mapa.fitBounds(capa.getBounds(), { padding: [30, 30] });
+}
+$("sel-corredor").onchange = (e) => { if (e.target.value) traerZona("corredor", e.target.value); e.target.value = ""; };
+$("sel-localidad").onchange = (e) => { if (e.target.value) traerZona("localidad", e.target.value); e.target.value = ""; };
+
+let temporizador;
+$("buscar-barrio").oninput = (e) => {
+  clearTimeout(temporizador);
+  const q = e.target.value.trim();
+  const caja = $("sug-barrio");
+  if (q.length < 2) { caja.style.display = "none"; return; }
+  temporizador = setTimeout(async () => {
+    const lista = await (await fetch(`/api/barrios?q=${encodeURIComponent(q)}`)).json();
+    caja.innerHTML = "";
+    lista.forEach((n) => {
+      const d = document.createElement("div");
+      d.textContent = n;
+      d.onclick = () => { traerZona("barrio", n); caja.style.display = "none"; $("buscar-barrio").value = ""; };
+      caja.appendChild(d);
+    });
+    if (!lista.length) caja.innerHTML = '<div style="color:var(--muted)">Sin resultados</div>';
+    caja.style.display = "block";
+  }, 250);
+};
+
+// ───────────── resolución ─────────────
+function actualizarCampos() {
+  const t = $("tipo").value;
+  $("campos-velocidad").style.display = (t === "limite_velocidad" || t === "zona_escolar") ? "block" : "none";
+  $("campo-direccion").style.display = (t === "limite_velocidad") ? "none" : "block";
+}
+$("tipo").onchange = actualizarCampos;
+
+$("btn-interpretar").onclick = async () => {
+  const texto = $("texto-res").value.trim();
+  if (!texto) { mostrarAviso("Escriba primero el texto de la resolución."); return; }
+  const r = await (await fetch("/api/interpretar", post({ texto }))).json();
+  if (r.error) { mostrarAviso(r.error); return; }
+  let tipo = r.tipo_medida;
+  if (tipo === "zona_escolar" && r.valor_propuesto && r.valor_propuesto > 30) tipo = "limite_velocidad";
+  if (tipo) $("tipo").value = tipo;
+  $("v-actual").value = r.valor_actual || "";
+  $("v-nuevo").value = r.valor_propuesto || "";
+  if (r.direccion && ["implementar", "restringir", "retirar"].includes(r.direccion)) $("direccion").value = r.direccion;
+  $("acomp-camaras").checked = (r.acompanamiento || []).includes("fotodeteccion");
+  $("acomp-policia").checked = (r.acompanamiento || []).includes("control_policial");
+  actualizarCampos();
+  const extra = [];
+  if (r.corredor && !zonas.some((z) => z.nombre === r.corredor)) { await traerZona("corredor", r.corredor); extra.push(`agregué el corredor ${r.corredor}`); }
+  else if (r.localidad && !zonas.some((z) => z.nombre === r.localidad)) { await traerZona("localidad", r.localidad); extra.push(`agregué la localidad ${r.localidad}`); }
+  mostrarAviso("Listo: revise los campos" + (extra.length ? " (" + extra.join(", ") + ")" : "") + ".", true);
+};
+
+function zonaGeoJSON() {
+  const ancho = Number($("ancho").value) || 30;
+  return {
+    type: "FeatureCollection",
+    features: zonas.map((z) => {
+      if (z.feature) {
+        const f = JSON.parse(JSON.stringify(z.feature));
+        if (z.tipo === "corredor") f.properties.ancho_m = Math.max(ancho, 40);
+        return f;
+      }
+      const g = z.capa.toGeoJSON();
+      g.properties = { tipo: z.tipo, nombre: z.nombre };
+      if (z.tipo === "via") g.properties.ancho_m = ancho;
+      if (z.tipo === "punto") g.properties.radio_m = Math.round(z.capa.getRadius());
+      return g;
+    }),
+  };
+}
+
+$("btn-evaluar").onclick = () => evaluarAhora();
+async function evaluarAhora() {
+  ocultarAviso();
+  const t = $("tipo").value;
+  const acomp = [];
+  if ($("acomp-camaras").checked) acomp.push("fotodeteccion");
+  if ($("acomp-policia").checked) acomp.push("control_policial");
+  const resolucion = { tipo_medida: t, direccion: $("direccion").value, valor_actual: $("v-actual").value,
+                       valor_propuesto: $("v-nuevo").value, acompanamiento: acomp };
+  if (t === "zona_escolar") resolucion.entorno_escolar = true;   // el servidor la evalúa como límite de 30 km/h
+  const btn = $("btn-evaluar");
+  btn.disabled = true; $("cargando").style.display = "block";
+  try {
+    const r = await fetch("/api/evaluar", post({ zona: zonaGeoJSON(), resolucion }));
+    const d = await r.json();
+    if (!r.ok || d.error) { mostrarAviso(d.error || "No se pudo evaluar."); return; }
+    pintarResultado(d, { zona: zonaGeoJSON(), resolucion });
+  } catch (err) {
+    mostrarAviso("Error de conexión con el servidor.");
+  } finally {
+    btn.disabled = false; $("cargando").style.display = "none";
+  }
+}
+
+let ultimaPropuesta = null;
+function pintarResultado(d, propuesta) {
+  capaCeldas.clearLayers(); capaSiniestros.clearLayers();
+  L.geoJSON(d.celdas, { style: { color: "#e67e22", weight: 1, fillOpacity: .07, dashArray: "3 3" }, interactive: false }).addTo(capaCeldas);
+  d.siniestros.forEach(([lat, lon, fatal]) => {
+    L.circleMarker([lat, lon], { radius: fatal ? 5 : 3, weight: 0, fillOpacity: fatal ? .9 : .55, interactive: false,
+                                 fillColor: fatal ? "#b3261e" : "#e67e22" }).addTo(capaSiniestros);
+  });
+  capaZonas.bringToFront();
+  if (coro) coro.bringToBack();
+  ultimaPropuesta = Object.assign({}, propuesta, { titulo: d.titulo });
+  const clase = d.veredicto && ["Positiva", "Negativa", "Neutra"].includes(d.veredicto) ? d.veredicto : "sin";
+  const icono = { Positiva: "🟢", Negativa: "🔴", Neutra: "🟡" }[clase] || "⚪";
+  const titulo = clase === "sin" ? `${icono} Sin evidencia suficiente para un veredicto` :
+    `${icono} ${d.veredicto} · confianza ${d.confianza}`;
+  const md = d.markdown.split("\n\n").slice(1).join("\n\n");   // la primera línea va en la franja de color
+  $("resultado").innerHTML = `<div class="veredicto ${clase}">${titulo}<small>${escapar(d.titulo || "")}</small></div>` +
+    `<p class="resumen-res">${d.n_siniestros_zona.toLocaleString("es-CO")} siniestros en la zona en los últimos 24 meses; ` +
+    `en el mapa, los que tuvieron víctimas.</p><div class="md">${markdown(md)}</div>` +
+    `<div class="acciones"><button id="btn-conversar">💬 Conversar sobre esta propuesta</button></div>`;
+  $("btn-conversar").onclick = () => conversarSobre(ultimaPropuesta);
+  $("resultado").scrollIntoView({ behavior: "smooth", block: "start" });
+  const b = capaZonas.getBounds();
+  if (b.isValid()) mapa.fitBounds(b, { padding: [30, 30] });
+}
+
+// ───────────── propuesta: del chat al mapa y del mapa al chat ─────────────
+function capaDeFeature(f) {
+  const p = f.properties || {};
+  if (!f.geometry && p.celdas) return L.geoJSON(p.celdas, { style: estilo.localidad });
+  if (f.geometry && f.geometry.type === "Point") {
+    const [lon, lat] = f.geometry.coordinates;
+    return L.circle([lat, lon], Object.assign({ radius: p.radio_m || 150 }, estilo.area));
+  }
+  return L.geoJSON(f, { style: estilo[p.tipo] || estilo.area });
+}
+
+async function cargarPropuesta(p) {
+  zonas.slice().forEach((z) => quitarZona(z.id));
+  p.zona.features.forEach((f) => {
+    const t = f.properties && f.properties.tipo;
+    if (t === "ciudad") { agregarCiudad(); return; }
+    if (t === "localidad" && coroDatos[f.properties.nombre]) { agregarLocalidad(f.properties.nombre); return; }
+    const copia = JSON.parse(JSON.stringify(f));
+    const capa = capaDeFeature(copia);
+    if (copia.properties) delete copia.properties.celdas;
+    const tipo = (copia.properties && copia.properties.tipo) || "area";
+    agregarZona(tipo, (copia.properties && copia.properties.nombre) || "zona", capa, copia);
+  });
+  const r = p.resolucion || {};
+  if ([...$("tipo").options].some((o) => o.value === r.tipo_medida)) $("tipo").value = r.tipo_medida;
+  $("v-actual").value = r.valor_actual || "";
+  $("v-nuevo").value = r.valor_propuesto || "";
+  if (["implementar", "restringir", "retirar"].includes(r.direccion)) $("direccion").value = r.direccion;
+  $("acomp-camaras").checked = (r.acompanamiento || []).includes("fotodeteccion");
+  $("acomp-policia").checked = (r.acompanamiento || []).includes("control_policial");
+  actualizarCampos();
+  irA("mapa");
+  const b = capaZonas.getBounds();
+  if (b.isValid()) mapa.fitBounds(b, { padding: [30, 30] });
+  await evaluarAhora();
+}
+
+function conversarSobre(p) {
+  if (!p) return;
+  fijarContexto(p);
+  irA("chat");
+  agregarMsg("bot", markdown(`Hablemos de **${p.titulo}**. Puedes preguntarme por qué salió ese veredicto o esa ` +
+    "confianza, pedirme las cifras de la zona o cambiar la medida (por ejemplo, otro límite, o con cámaras). " +
+    "Toca una sugerencia o escribe tu pregunta."));
+}
+
+// ───────────── chat ─────────────
+let historial = [];
+let contexto = null;         // propuesta de la que se está hablando
+const SUG_GENERAL = ["¿Qué puedo preguntarte?", "¿Sirve poner resaltos en la Calle 80?",
+  "Bajar la velocidad a 40 km/h en la Av. Boyacá", "¿Qué programas tiene el Plan Distrital de Seguridad Vial?",
+  "¿Qué deben incluir los planes de gestión de la velocidad?", "¿Cuántos muertos hubo en Bogotá en 2025?"];
+function sugerencias() {
+  let lista = SUG_GENERAL;
+  if (contexto) {
+    const r = contexto.resolucion || {};
+    lista = ["¿Por qué ese veredicto?", "¿Por qué esa confianza?"];
+    if (["limite_velocidad", "zona_escolar"].includes(r.tipo_medida)) lista.push(Number(r.valor_propuesto) === 30 ? "¿Y a 40 km/h?" : "¿Y a 30 km/h?");
+    lista.push((r.acompanamiento || []).includes("fotodeteccion") ? "¿Y sin cámaras?" : "¿Y con cámaras?");
+    lista.push("¿En qué te basas?", "¿Cuántos siniestros hay en la zona?", "¿Qué recomiendas?");
+  }
+  const caja = $("chips");
+  caja.innerHTML = "";
+  lista.forEach((t) => {
+    const b = document.createElement("button");
+    b.textContent = t; b.onclick = () => enviar(t);
+    caja.appendChild(b);
+  });
+}
+function fijarContexto(p) {
+  contexto = p;
+  $("ctx").classList.toggle("visible", !!p);
+  if (p) $("ctx-titulo").textContent = p.titulo || "propuesta";
+  sugerencias();
+}
+$("ctx-quitar").onclick = () => fijarContexto(null);
+$("ctx-mapa").onclick = () => contexto && cargarPropuesta(contexto);
+
+async function enviar(texto) {
+  const txt = (typeof texto === "string" ? texto : $("entrada").value).trim();
+  if (!txt) return;
+  $("entrada").value = "";
+  agregarMsg("usuario", escapar(txt));
+  const espera = agregarMsg("bot", "…");
+  try {
+    const d = await (await fetch("/api/chat", post({ mensaje: txt, historial, contexto }))).json();
+    espera.innerHTML = markdown(d.respuesta);
+    if (d.propuesta) {
+      const b = document.createElement("button");
+      b.className = "btn-mapa"; b.textContent = "🗺️ Ver en el mapa";
+      const p = d.propuesta;
+      b.onclick = () => cargarPropuesta(p);
+      espera.appendChild(b);
+    }
+    if (d.contexto) fijarContexto(d.contexto);
+    historial.push({ role: "user", content: txt }, { role: "assistant", content: d.respuesta });
+    $("mensajes").scrollTop = 1e9;
+  } catch (e) {
+    espera.textContent = "Error de conexión con el servidor.";
+  }
+}
+function agregarMsg(quien, html) {
+  const d = document.createElement("div");
+  d.className = `msg ${quien}` + (quien === "bot" ? " md" : ""); d.innerHTML = html;
+  $("mensajes").appendChild(d); $("mensajes").scrollTop = 1e9;
+  return d;
+}
+$("enviar").onclick = () => enviar();
+$("entrada").onkeydown = (e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); enviar(); } };
+
+// ───────────── pestañas ─────────────
+function irA(vista) {
+  document.querySelectorAll(".tab").forEach((x) => x.classList.toggle("activa", x.dataset.vista === vista));
+  ["mapa", "chat", "normas"].forEach((v) => $("vista-" + v).classList.toggle("activa", v === vista));
+  if (vista === "normas") cargarNormas();
+}
+document.querySelectorAll(".tab").forEach((t) => { t.onclick = () => irA(t.dataset.vista); });
+
+// ───────────── normas (RAG) ─────────────
+let sondeo = null;
+const ETIQUETA = { indexado: "Indexado", pendiente: "Pendiente", sin_texto: "Sin texto" };
+async function cargarNormas() {
+  let d;
+  try { d = await (await fetch("/api/normas")).json(); } catch (e) { return; }
+  const info = [];
+  if (d.cargando) info.push("Cargando el modelo de embeddings…");
+  if (d.error) info.push("⚠️ " + d.error);
+  if (d.modelo_embeddings) info.push(`${d.n_fragmentos.toLocaleString("es-CO")} fragmentos en el índice · embeddings: ${d.modelo_embeddings} · ` +
+    (d.llm ? `LLM: ${d.llm}` : "LLM: sin clave de Claude (modo extractivo)"));
+  if (d.aviso_embeddings) info.push("ℹ️ " + d.aviso_embeddings);
+  $("normas-info").textContent = info.join(" · ");
+  pintarDocs(d.documentos || [], d.trabajo.activo);
+  pintarTrabajo(d.trabajo);
+  if (d.trabajo.activo && !sondeo) sondeo = setInterval(cargarNormas, 1200);
+  if (!d.trabajo.activo && sondeo) { clearInterval(sondeo); sondeo = null; }
+  if (d.cargando && !d.trabajo.activo) setTimeout(cargarNormas, 2500);
+}
+function pintarTrabajo(t) {
+  const caja = $("trabajo");
+  if (t.activo) {
+    caja.className = "trabajo activo";
+    caja.innerHTML = escapar(t.mensaje) + (t.total > 1 ? ` (${t.hechos + 1} de ${t.total})` : "") + '<div class="barra"><i></i></div>';
+  } else if (t.error) {
+    caja.className = "trabajo error"; caja.textContent = t.mensaje + " " + t.error;
+  } else if (t.mensaje) {
+    const fallidos = (t.resultados || []).filter((r) => !r.ok);
+    caja.className = "trabajo ok";
+    caja.innerHTML = escapar(t.mensaje) + fallidos.slice(0, 3).map((r) => `<br>⚠️ ${escapar(r.archivo.split("/").pop())}: ${escapar(r.motivo.split(" — ")[0])}`).join("") +
+      (fallidos.length > 3 ? `<br>…y ${fallidos.length - 3} más sin texto (ver la lista de abajo).` : "");
+  } else caja.className = "trabajo";
+}
+function pintarDocs(docs, ocupado) {
+  const pend = docs.filter((x) => x.estado === "pendiente");
+  const b = $("btn-indexar-pend");
+  b.disabled = ocupado || !pend.length;
+  b.textContent = pend.length ? `Indexar pendientes (${pend.length})` : "No hay documentos pendientes";
+  b.onclick = () => indexar(pend.map((x) => x.archivo));
+  const grupos = [["pendiente", "Pendientes de indexar"], ["indexado", "Indexados"], ["sin_texto", "Sin texto (no se pueden indexar)"]];
+  const cont = $("lista-docs");
+  cont.innerHTML = "";
+  if (!docs.length) { cont.innerHTML = '<p class="vacio">Todavía no hay documentos. Suba el primero arriba.</p>'; return; }
+  grupos.forEach(([estado, titulo]) => {
+    const lista = docs.filter((x) => x.estado === estado);
+    if (!lista.length) return;
+    const h = document.createElement("div"); h.className = "grupo-docs"; h.textContent = `${titulo} · ${lista.length}`;
+    const ul = document.createElement("ul"); ul.className = "lista-docs";
+    lista.forEach((x) => {
+      const li = document.createElement("li");
+      const nombre = x.archivo.split("/").pop();
+      li.innerHTML = `<div class="tit">${escapar(x.titulo || nombre)}</div><div class="arch">${escapar(x.archivo)} · ${x.tamano_kb.toLocaleString("es-CO")} KB</div>` +
+        (x.motivo && x.estado !== "indexado" ? `<div class="motivo">${escapar(x.motivo)}</div>` : "");
+      const pie = document.createElement("div"); pie.className = "pie";
+      pie.innerHTML = `<span class="chip ${x.estado}">${ETIQUETA[x.estado]}${x.estado === "indexado" ? ` · ${x.fragmentos} fragmentos` : ""}</span><span class="esp"></span>`;
+      if (x.estado !== "sin_texto") {
+        const bi = document.createElement("button"); bi.className = "mini"; bi.disabled = ocupado;
+        bi.textContent = x.estado === "indexado" ? "Reindexar" : "Indexar";
+        bi.onclick = () => indexar([x.archivo]);
+        pie.appendChild(bi);
+      }
+      const bq = document.createElement("button"); bq.className = "mini peligro"; bq.disabled = ocupado; bq.textContent = "Quitar";
+      bq.onclick = async () => {
+        if (bq.dataset.seguro !== "1") { bq.dataset.seguro = "1"; bq.textContent = "¿Borrar el archivo?"; return; }
+        const r = await fetch("/api/normas/quitar", post({ archivo: x.archivo }));
+        if (!r.ok) avisoNormas((await r.json()).error, true);
+        cargarNormas();
+      };
+      pie.appendChild(bq);
+      li.appendChild(pie); ul.appendChild(li);
+    });
+    cont.appendChild(h); cont.appendChild(ul);
+  });
+}
+function avisoNormas(texto, error) {
+  const caja = $("trabajo"); caja.className = "trabajo " + (error ? "error" : "ok"); caja.textContent = texto;
+}
+async function indexar(archivos, todos) {
+  const r = await fetch("/api/normas/indexar", post(todos ? { todos: true } : { archivos }));
+  if (!r.ok) { avisoNormas((await r.json()).error || "No se pudo indexar.", true); return; }
+  cargarNormas();
+}
+async function subirNormas(lista) {
+  const fd = new FormData();
+  [...lista].forEach((f) => fd.append("archivos", f));
+  if (![...fd.keys()].length) return;
+  avisoNormas(`Subiendo ${lista.length} archivo(s)…`);
+  try {
+    const d = await (await fetch("/api/normas/subir", { method: "POST", body: fd })).json();
+    const partes = [];
+    if (d.guardados.length) partes.push(`${d.guardados.length} archivo(s) subidos. Pulse «Indexar» para calcular sus embeddings.`);
+    d.rechazados.forEach((x) => partes.push("⚠️ " + x));
+    avisoNormas(partes.join(" "), !d.guardados.length);
+  } catch (e) {
+    avisoNormas("No se pudo subir (¿archivo de más de 60 MB?).", true);
+  }
+  await cargarNormas();
+  if (!sondeo) { /* conserva el mensaje de la subida */ }
+}
+$("archivo-norma").onchange = (e) => { subirNormas(e.target.files); e.target.value = ""; };
+const zona = $("soltar");
+["dragenter", "dragover"].forEach((ev) => zona.addEventListener(ev, (e) => { e.preventDefault(); zona.classList.add("encima"); }));
+["dragleave", "drop"].forEach((ev) => zona.addEventListener(ev, (e) => { e.preventDefault(); zona.classList.remove("encima"); }));
+zona.addEventListener("drop", (e) => subirNormas(e.dataTransfer.files));
+$("btn-reindexar-todo").onclick = () => {
+  const b = $("btn-reindexar-todo");
+  if (b.dataset.seguro !== "1") { b.dataset.seguro = "1"; b.textContent = "¿Seguro? Recalcula todos los embeddings"; return; }
+  b.dataset.seguro = ""; b.textContent = "Reindexar todo desde cero";
+  indexar(null, true);
+};
+
+// ───────────── utilidades ─────────────
+function post(obj) { return { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(obj) }; }
+function escapar(s) { return String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
+function mostrarAviso(t, ok) { const a = $("aviso"); a.textContent = t; a.className = "aviso" + (ok ? " ok" : ""); a.style.display = "block"; }
+function ocultarAviso() { $("aviso").style.display = "none"; }
+
+function enLinea(s) {
+  return escapar(s)
+    .replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
+    .replace(/\*\*(.+?)\*\*/g, "<b>$1</b>").replace(/(^|[^*])\*([^*]+)\*/g, "$1<i>$2</i>");
+}
+function markdown(md) {           // lo justo para las respuestas del motor: párrafos, listas, tablas, negrita
+  const out = []; let lista = false, tabla = null;
+  const cerrar = () => {
+    if (lista) { out.push("</ul>"); lista = false; }
+    if (tabla) { out.push("<table>" + tabla.join("") + "</table>"); tabla = null; }
+  };
+  for (const linea of md.split("\n")) {
+    const l = linea.trim();
+    if (l === "[[detalles]]") { cerrar(); out.push('<details class="det"><summary>Detalles: en qué me baso, supuestos y fuentes</summary>'); continue; }
+    if (l === "[[/detalles]]") { cerrar(); out.push("</details>"); continue; }
+    if (/^\|.*\|$/.test(l)) {
+      if (/^\|[\s|:-]+\|$/.test(l)) continue;
+      const celdas = l.slice(1, -1).split("|").map((c) => enLinea(c.trim()));
+      if (!tabla) { cerrar(); tabla = ["<tr>" + celdas.map((c) => `<th>${c}</th>`).join("") + "</tr>"]; }
+      else tabla.push("<tr>" + celdas.map((c) => `<td>${c}</td>`).join("") + "</tr>");
+    } else if (/^- /.test(l)) {
+      if (tabla) cerrar();
+      if (!lista) { out.push("<ul>"); lista = true; }
+      out.push(`<li>${enLinea(l.slice(2))}</li>`);
+    } else if (l === "") {
+      cerrar();
+    } else {
+      cerrar();
+      out.push(`<p>${enLinea(l)}</p>`);
+    }
+  }
+  cerrar();
+  return out.join("");
+}
+
+// ───────────── inicio ─────────────
+(async () => {
+  const c = await (await fetch("/api/capas")).json();
+  c.corredores.forEach((n) => $("sel-corredor").add(new Option(n, n)));
+  c.localidades.forEach((n) => $("sel-localidad").add(new Option(n, n)));
+  c.tipos.forEach((t) => $("tipo").add(new Option(t.nombre, t.id)));
+  $("tipo").value = "limite_velocidad";
+  actualizarCampos();
+  if (c.fin_datos) $("fin-datos").textContent = `Datos de la Secretaría de Movilidad hasta ${c.fin_datos}.`;
+  if (!c.hay_barrios) {
+    $("buscar-barrio").disabled = true;
+    $("buscar-barrio").placeholder = "Falta la capa de barrios";
+  }
+  if (!c.hay_limites || !c.hay_barrios) {
+    $("nota-limites").textContent = "Para ver el contorno exacto de localidades y buscar barrios, ejecute: python src\\ingesta_sdm.py --solo limites";
+  }
+  pintarLista();
+  sugerencias();
+  await cargarCoropletico();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+# datos crudos descargados (varios GB): se regeneran con src/ingesta_sdm.py
+data/raw/
+# salidas grandes: se regeneran con src/panel_sdm.py y src/modelo_conteo.py
+out/panel/*.csv
+out/panel/*.geojson
+out/modelo_conteo/predicciones_prueba.csv
+out/log_ejecucion.txt
+__pycache__/
+*.pyc
+# claves y configuración local
+.env
+# índice del RAG (se regenera con: python src/rag/cli.py indexar)
+out/rag/
+# modelos de embeddings descargados por fastembed
+out/modelos_embeddings/

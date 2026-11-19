@@ -1,0 +1,2 @@
+{"tipo_medida": "limite_velocidad", "direccion": "reducir", "valor_actual": 50, "valor_propuesto": 40,
+ "ubicacion": {"nivel": "corredor", "nombre": "Avenida Boyacá"}, "acompanamiento": [], "velocidad_media_actual": null}

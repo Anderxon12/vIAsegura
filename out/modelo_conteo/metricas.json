@@ -1,0 +1,108 @@
+{
+ "ingenuo_promedio_12m": {
+  "validacion_2023": {
+   "MAE_celda_mes": 0.5473,
+   "RMSE_celda_mes": 0.834,
+   "devianza_poisson": 1.1634,
+   "calibracion_pred_sobre_obs": 1.0,
+   "MAPE_ciudad_mes_pct": 4.13,
+   "MAPE_localidad_mes_pct": 16.21,
+   "pct_siniestros_en_top10pct_celdas": 33.4
+  },
+  "prueba_2024_2026": {
+   "MAE_celda_mes": 0.5256,
+   "RMSE_celda_mes": 0.8013,
+   "devianza_poisson": 1.1419,
+   "calibracion_pred_sobre_obs": 1.043,
+   "MAPE_ciudad_mes_pct": 9.02,
+   "MAPE_localidad_mes_pct": 19.43,
+   "pct_siniestros_en_top10pct_celdas": 33.1
+  }
+ },
+ "estacional_mismo_mes": {
+  "validacion_2023": {
+   "MAE_celda_mes": 0.6535,
+   "RMSE_celda_mes": 1.1293,
+   "devianza_poisson": 9.6722,
+   "calibracion_pred_sobre_obs": 0.992,
+   "MAPE_ciudad_mes_pct": 4.11,
+   "MAPE_localidad_mes_pct": 21.48,
+   "pct_siniestros_en_top10pct_celdas": 31.2
+  },
+  "prueba_2024_2026": {
+   "MAE_celda_mes": 0.6357,
+   "RMSE_celda_mes": 1.104,
+   "devianza_poisson": 9.1476,
+   "calibracion_pred_sobre_obs": 1.07,
+   "MAPE_ciudad_mes_pct": 10.72,
+   "MAPE_localidad_mes_pct": 25.54,
+   "pct_siniestros_en_top10pct_celdas": 32.7
+  }
+ },
+ "glm_poisson": {
+  "validacion_2023": {
+   "MAE_celda_mes": 0.5514,
+   "RMSE_celda_mes": 0.8181,
+   "devianza_poisson": 0.8489,
+   "calibracion_pred_sobre_obs": 1.032,
+   "MAPE_ciudad_mes_pct": 5.34,
+   "MAPE_localidad_mes_pct": 16.62,
+   "pct_siniestros_en_top10pct_celdas": 33.1
+  },
+  "prueba_2024_2026": {
+   "MAE_celda_mes": 0.5557,
+   "RMSE_celda_mes": 0.8088,
+   "devianza_poisson": 0.8643,
+   "calibracion_pred_sobre_obs": 1.2,
+   "MAPE_ciudad_mes_pct": 22.71,
+   "MAPE_localidad_mes_pct": 30.0,
+   "pct_siniestros_en_top10pct_celdas": 32.2
+  }
+ },
+ "lightgbm_poisson": {
+  "validacion_2023": {
+   "MAE_celda_mes": 0.5459,
+   "RMSE_celda_mes": 0.8188,
+   "devianza_poisson": 0.8493,
+   "calibracion_pred_sobre_obs": 0.968,
+   "MAPE_ciudad_mes_pct": 8.05,
+   "MAPE_localidad_mes_pct": 17.81,
+   "pct_siniestros_en_top10pct_celdas": 33.6
+  },
+  "prueba_2024_2026": {
+   "MAE_celda_mes": 0.5346,
+   "RMSE_celda_mes": 0.7871,
+   "devianza_poisson": 0.8395,
+   "calibracion_pred_sobre_obs": 1.093,
+   "MAPE_ciudad_mes_pct": 12.01,
+   "MAPE_localidad_mes_pct": 21.69,
+   "pct_siniestros_en_top10pct_celdas": 32.5
+  }
+ },
+ "glm_coeficientes": {
+  "const": -0.3562,
+  "log_ma12": 0.2251,
+  "log_hist": 0.8414,
+  "log_ma3": 0.0208,
+  "log_lag12": -0.036,
+  "log_ciudad12": -0.0726,
+  "covid_fuerte": -0.5586,
+  "covid_parcial": -0.1076,
+  "tendencia": 0.0239
+ },
+ "glm_razon_dispersion": 0.971,
+ "lgbm_importancia_pct": {
+  "hist_media": 78.5,
+  "ma24": 12.0,
+  "ma12": 3.8,
+  "localidad": 1.1,
+  "covid_fuerte": 0.9,
+  "ciudad_lag1": 0.8,
+  "tendencia": 0.6,
+  "pct12_ciclista": 0.4,
+  "ma3": 0.3,
+  "mes_num": 0.3,
+  "ciudad_lag12": 0.3,
+  "lat": 0.2
+ }
+}

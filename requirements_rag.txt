@@ -1,0 +1,11 @@
+# RAG de normas viales (src/rag)
+sentence-transformers>=3.0     # embeddings (PyTorch)
+fastembed>=0.5                 # embeddings ligeros (ONNX, sin PyTorch) para equipos con poca memoria
+faiss-cpu>=1.8                 # índice vectorial
+anthropic>=0.50                # LLM (Claude)
+pydantic>=2.12                 # la 2.12 es la primera compatible con Python 3.14
+httpx>=0.28
+python-dotenv>=1.0             # lee .env
+pypdf>=4.0                     # documentos PDF
+python-docx>=1.1               # documentos Word (opcional)
+numpy
