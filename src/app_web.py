@@ -436,8 +436,21 @@ def celdas_geojson(celdas: list[str]) -> dict:
 # ════════════════════════════════════════════════════════════
 #  RUTAS
 # ════════════════════════════════════════════════════════════
+DIR_PRESENTACION = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static", "presentacion")
+
+
 @app.get("/")
 def inicio():
+    """Portada: la presentación del Grupo 3; el botón de arriba a la izquierda abre la app (/app)."""
+    n = len(glob.glob(os.path.join(DIR_PRESENTACION, "[0-9][0-9].webp")))
+    if not n:                                          # sin diapositivas: directo a la app
+        return render_template("index.html")
+    return render_template("presentacion.html", n_diapositivas=n)
+
+
+@app.get("/app")
+def app_mapa():
+    """La app de siempre (mapa, chat, normas y modelos ML)."""
     return render_template("index.html")
 
 
