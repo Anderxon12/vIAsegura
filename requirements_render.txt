@@ -1,0 +1,23 @@
+# VíaSegura IA en Render: solo lo que usa la app web (src/app_web.py).
+# Sin PyTorch ni fastembed: el RAG usa el motor ligero (onnxruntime + sentencepiece)
+# para caber en los 512 MB del plan gratis. Las librerías del pipeline de datos
+# (lightgbm, statsmodels, pdfplumber...) están en requirements_app.txt y no hacen falta aquí.
+flask>=3.0
+gunicorn>=23.0
+pandas>=2.2
+numpy>=2.0
+scipy>=1.13
+requests>=2.32
+beautifulsoup4>=4.12
+huggingface_hub>=0.30
+# RAG de normas
+faiss-cpu>=1.9
+onnxruntime>=1.20
+onnx>=1.17                     # solo en el build: separa los pesos del modelo para mapearlos en memoria
+sentencepiece>=0.2
+anthropic>=0.50
+pydantic>=2.12
+httpx>=0.28
+python-dotenv>=1.0
+pypdf>=4.0
+python-docx>=1.1

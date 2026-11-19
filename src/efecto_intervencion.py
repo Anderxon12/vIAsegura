@@ -71,7 +71,9 @@ def objetivo(columna: str):
 
 
 def cargar_panel(ruta: str = PANEL) -> pd.DataFrame:
-    return pd.read_csv(ruta, parse_dates=["mes"])
+    p = pd.read_csv(ruta, parse_dates=["mes"])
+    enteros = p.select_dtypes("int64").columns          # conteos, año y mes: caben en int32 (la mitad de memoria)
+    return p.astype({c: "int32" for c in enteros})
 
 
 PANEL_VIAS = os.path.join(RAIZ, "out", "panel", "panel_vias.csv")

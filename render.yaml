@@ -1,0 +1,25 @@
+# Blueprint de Render para VíaSegura IA (mapa + chat).
+# En Render: New → Blueprint → elija este repositorio. Le pedirá ANTHROPIC_API_KEY.
+services:
+  - type: web
+    name: viasegura-ia
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements_render.txt && python src/preparar_render.py instalar
+    # Un solo proceso (el estado del RAG vive en memoria) con varios hilos.
+    # timeout alto: cargar datos al arrancar y algunas evaluaciones tardan.
+    startCommand: gunicorn --chdir src wsgi:app --workers 1 --threads 4 --timeout 180 --bind 0.0.0.0:$PORT
+    healthCheckPath: /api/capas
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.8
+      - key: PYTHONUTF8
+        value: "1"
+      - key: ANTHROPIC_API_KEY
+        sync: false                     # se escribe en el panel de Render, no en el repositorio
+      - key: ANTHROPIC_MODELO
+        value: claude-sonnet-5-5
+      - key: RAG_MOTOR_EMBEDDINGS
+        value: fastembed                # motor ligero (sin PyTorch)
+      - key: HF_HUB_DISABLE_TELEMETRY
+        value: "1"

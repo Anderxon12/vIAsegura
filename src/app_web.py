@@ -209,6 +209,13 @@ def arcgis_a_geojson(g: dict) -> dict | None:
 # ════════════════════════════════════════════════════════════
 #  DATOS (se cargan una vez al iniciar)
 # ════════════════════════════════════════════════════════════
+class _CapaPerezosa(dict):
+    """{nombre: geometría ArcGIS en texto JSON}; la convierte a GeoJSON solo al pedirla."""
+
+    def __getitem__(self, nombre):
+        return arcgis_a_geojson(json.loads(dict.__getitem__(self, nombre)))
+
+
 class Datos:
     def __init__(self):
         print("Cargando datos…")
@@ -226,7 +233,10 @@ class Datos:
     def _siniestros(self):
         if not os.path.exists(SINIESTROS):
             return pd.DataFrame(columns=["lon", "lat", "victimas", "fatal", "n_heridos", "n_muertos"]), None
-        s = pd.read_csv(SINIESTROS, low_memory=False)
+        usadas = {"fecha", "GRAVEDAD", "lat", "lon", "Latitud", "Longitud", "n_heridos", "n_muertos", "via",
+                  "con_victimas", "fatal"}
+        s = pd.read_csv(SINIESTROS, low_memory=False, usecols=lambda c: c.lstrip("﻿") in usadas)
+        s.columns = [c.lstrip("﻿") for c in s.columns]
         if "lat" not in s:                                  # versión vieja (panel_espacial.py)
             s = s.rename(columns={"Latitud": "lat", "Longitud": "lon"})
         s["fecha"] = pd.to_datetime(s["fecha"], errors="coerce")
@@ -277,7 +287,7 @@ class Datos:
             col = max(candidatos, key=lambda c: d[c].nunique(), default=None)
         if col is None or "geometria_json" not in d:
             return {}
-        capa = {}
+        capa = {} if es_localidad else _CapaPerezosa()
         for _, f in d.iterrows():
             try:
                 geom = arcgis_a_geojson(json.loads(f["geometria_json"]))
@@ -290,7 +300,9 @@ class Datos:
                 nombre = next((l for l in LOCALIDADES if plano(l) == plano(nombre) or plano(nombre).endswith(" " + plano(l))), nombre)
             if nombre in capa:                                  # barrios con el mismo nombre en dos localidades
                 nombre = f"{nombre} ({len([k for k in capa if k.startswith(nombre)]) + 1})"
-            capa[nombre] = geom
+            # Los ~1 200 barrios se guardan como texto y se convierten al pedirlos: como listas de
+            # Python ocupan ~75 MB, demasiado para un servidor de 512 MB.
+            capa[nombre] = geom if es_localidad else f["geometria_json"]
         return capa
 
 
@@ -1041,6 +1053,18 @@ def _num(v):
         return None
 
 
+def iniciar() -> Flask:
+    """Carga datos y normas una vez. La usan app_web.py (local) y wsgi.py (servidor, p. ej. Render)."""
+    global D, NORMAS
+    if D is None:
+        from entorno import resumen_claves
+        for linea in resumen_claves():
+            print("  " + linea)
+        D = Datos()
+        NORMAS = AsistenteNormas()
+    return app
+
+
 if __name__ == "__main__":
     import socket
 
@@ -1061,11 +1085,7 @@ if __name__ == "__main__":
         print(f"   Mientras tanto, esta copia se abre en el puerto {libre}.\n")
         puerto = libre
 
-    from entorno import resumen_claves
-    for linea in resumen_claves():
-        print("  " + linea)
-    D = Datos()
-    NORMAS = AsistenteNormas()
+    iniciar()
     if "--sin-navegador" not in sys.argv:
         threading.Timer(1.5, lambda: webbrowser.open(f"http://127.0.0.1:{puerto}")).start()
     print(f"\nVíaSegura IA en http://127.0.0.1:{puerto}  (Ctrl+C para cerrar)")
