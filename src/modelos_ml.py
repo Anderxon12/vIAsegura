@@ -154,7 +154,12 @@ class ModelosML:
             self.error = (f"falta la librería {e.name} para los modelos de ML. "
                           "Instale: pip install -r requirements_app.txt")
         except Exception as e:
+            import traceback
+            traceback.print_exc()                     # queda completo en el log (p. ej. en Render)
             self.error = f"{type(e).__name__}: {e}"
+            if "unpack" in str(e) or "setstate" in traceback.format_exc():
+                self.error += (" (versión de librería incompatible con el .pkl: instale requirements_app.txt; "
+                               "scipy debe ser < 1.18)")
         finally:
             if self.error:
                 print(f"  modelos ML: no disponibles — {self.error}")

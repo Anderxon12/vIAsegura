@@ -2,7 +2,7 @@
 flask>=3.0
 pandas>=2.2
 numpy>=2.0
-scipy>=1.13
+scipy>=1.13,<1.18             # 1.18 cambió el formato de BSpline: no lee el modelo de gravedad (.pkl)
 statsmodels>=0.14
 requests>=2.32
 beautifulsoup4>=4.12
