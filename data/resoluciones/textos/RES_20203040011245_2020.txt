@@ -1,0 +1,1327 @@
+FUENTE: https://www.alcaldiabogota.gov.co/sisjur/normas/Norma1.jsp?i=96272
+Resolución 20203040011245 de 2020 — Criterios técnicos de seguridad vial para instalar y operar cámaras salvavidas (SAST)
+Resolución  20203040011245 de 2020 Ministerio de Transporte
+
+RÉGIMEN LEGAL DE BOGOTÁ D.C.
+
+© Propiedad de la Secretaría Jurídica Distrital de la Alcaldía Mayor de Bogotá D.C.
+
+						Secretaría 
+ Jurídica Distrital
+
+Cargando el Contenido del Documento
+
+Por favor espere...
+
+Resolución  20203040011245 de 2020 Ministerio de Transporte
+
+					Fecha de Expedición: 
+
+
+					20/08/2020
+
+
+					Fecha de Entrada en Vigencia:
+
+
+					20/08/2020
+
+
+					Medio de Publicación:  
+
+
+					Diario Oficial No. 51412 del 20 de agosto de 2020.
+
+
+					Temas
+
+
+					Anexos
+
+
+		La Secretaría Jurídica Distrital aclara que la información aquí contenida tiene exclusivamente carácter informativo, 
+
+		su vigencia está sujeta al análisis y competencias que determine la Ley o los reglamentos. Los contenidos están en
+
+		 permanente actualización.
+
+
+RESOLUCIÓN 20203040011245 DE 2020
+
+(Agosto 20)
+
+Por la cual se establecen los criterios técnicos de seguridad
+
+vial para la instalación y operación de los sistemas automáticos,
+
+semiautomáticos y otros medios tecnológicos para la detección de presuntas
+
+infracciones al tránsito y se dictan otras disposiciones
+
+LA
+
+MINISTRA DE TRANSPORTE Y EL DIRECTOR DE LA AGENCIA NACIONAL DE SEGURIDAD VIAL
+, 
+en ejercicio de sus facultades legales, en especial
+
+las conferidas por el artículo 2° de la Ley 1843 de 2017, modificado por el
+
+Decreto-ley 2106 de 2019 y numerales 6.2 y 6.3 del artículo 6
+°
+ del
+
+Decreto 087 de 2011, numeral 4.8 del artículo 9
+°
+ de la
+
+Ley 1702 de 2013, y
+
+CONSIDERANDO:
+
+Que el
+
+artículo 
+24
+ de la Constitución Política de Colombia, establece que “
+todo
+
+colombiano, con las limitaciones que establezca la ley, tiene derecho a
+
+circular libremente por el territorio nacional, a entrar y salir de él, y a
+
+permanecer y residenciarse en Colombia
+”.
+
+Que
+
+las principales limitaciones al derecho a la circulación se encuentran
+
+consagradas en la Ley 
+769
+ de 2002, Código Nacional de Tránsito Terrestre, norma
+
+que establece “
+la circulación de los peatones, usuarios, pasajeros,
+
+conductores, motociclistas, ciclistas, agentes de tránsito, y vehículos por las
+
+vías públicas o privadas que están abiertas al público, o en las vías privadas,
+
+que internamente circulen vehículos; así como la actuación y procedimientos de
+
+las autoridades de tránsito
+”.
+
+Que el
+
+parágrafo 
+2
+°
+ del artículo 129 de la Ley 769 de 2002, establece que las
+
+ayudas tecnológicas serán válidas como prueba de ocurrencia de una infracción
+
+de tránsito.
+
+Que
+
+los sistemas automáticos, semiautomáticos y otros medios tecnológicos para la
+
+detección de presuntas infracciones al tránsito son considerados como “
+cámaras
+
+salvavidas
+” en tanto, además de ser un instrumento de control del cumplimiento
+
+de las normas al tránsito, son sistemas que han tenido un impacto positivo a
+
+nivel mundial en el comportamiento de los actores en las vías, cuando la
+
+ciudadanía interioriza las razones que justifican la ley y las consecuencias de
+
+no acatarla (Global Status Report On Road Safety, 2015).
+
+Que
+
+con anterioridad a la vigencia del Decreto-ley 
+2106
+ de 2019, el artículo 
+2°
+ de la
+
+Ley 1843 de 2017, ordenó al Ministerio de Transporte y a la Agencia Nacional de
+
+Seguridad Vial, definir los criterios técnicos para la instalación y puesta en
+
+operación de los medios técnicos o tecnológicos que se utilicen para la
+
+detección de presuntas infracciones al tránsito.
+
+Que,
+
+en virtud de dicho mandato, el Ministerio de Transporte, en conjunto con la Agencia
+
+Nacional de Seguridad Vial, expidieron la Resolución número 
+718
+ de 2018, con el
+
+objeto de establecer la reglamentación de los criterios técnicos para la
+
+instalación y/u operación de los medios técnicos y/o tecnológicos para la
+
+detección de presuntas infracciones al tránsito.
+
+Que el
+
+citado artículo 
+2°
+ de la Ley 1843 de 2017 fue modificado por el artículo 
+109
+ del
+
+Decreto-ley 2106 de 2019, “
+por medio del cual se dictan normas para
+
+simplificar, suprimir y reformar trámites, procesos y procedimientos
+
+innecesarios existentes en la administración pública
+”, así:
+
+“Artículo
+
+2°. Criterios para la instalación y puesta en operación. Todo sistema
+
+automático, semiautomático y otros medios tecnológicos para la detección de
+
+presuntas infracciones al tránsito que se pretenda instalar, deberá cumplir con
+
+los criterios técnicos de seguridad vial que para su instalación y operación
+
+establezca el Ministerio de Transporte en conjunto con la Agencia Nacional de
+
+Seguridad Vial.
+
+Los
+
+sistemas automáticos, semiautomáticos y otros medios tecnológicos que se
+
+pretendan instalar, deberán contar con autorización de la Agencia Nacional de
+
+Seguridad Vial, la cual se otorgará de acuerdo con la reglamentación expedida
+
+por el Ministerio de Transporte y la Agencia Nacional de Seguridad Vial.
+
+Parágrafo.
+
+Toda autorización otorgada en Colombia para la instalación de sistemas
+
+automáticos, semiautomáticos y otros medios tecnológicos para la detección de
+
+presuntas infracciones al tránsito, tendrá una duración de cinco (5) años,
+
+contados a partir de la fecha de su otorgamiento. (…)”.
+
+Que,
+
+en el trámite adelantado para la instalación y operación de los sistemas
+
+automáticos, semiautomáticos y otros medios tecnológicos, intervienen varias
+
+entidades, por lo cual es necesario establecer actuaciones coordinadas y, en lo
+
+posible, disponer de herramientas interoperables que puedan ser utilizadas por
+
+todos los interesados.
+
+Que se
+
+deben facilitar canales de comunicación y de consulta pública para los ciudadanos,
+
+que permitan conocer el momento en que las autoridades de tránsito inician la
+
+operación de este tipo de sistemas y ayudas tecnológicas en su respectiva
+
+jurisdicción.
+
+Que en
+
+ese sentido, el Ministerio de Transporte y la Agencia Nacional de Seguridad
+
+Vial buscan que las autoridades de tránsito, como la ciudadanía en general,
+
+comprendan que el objetivo primordial de los sistemas automáticos,
+
+semiautomáticos y otros medios tecnológicos para la detección de presuntas
+
+infracciones al tránsito es reducir las víctimas fatales y no fatales de
+
+siniestros viales en Colombia, cumpliendo con el fin primordial de la Ley 
+1843
+
+del 2017 y de la política nacional de seguridad vial, definida en el Plan
+
+Nacional de Seguridad Vial 2011-2021.
+
+Quede
+
+acuerdo con el Informe Técnico presentado por la Agencia Nacional de Seguridad Vial
+
+(ANSV) con radicando número 2020303030199612 de 2020, se identificaron aspectos
+
+a fortalecer frente a las disposiciones de la Resolución número 
+718
+ de 2018,
+
+entre las cuales se encuentran las siguientes: “
+establecer lineamientos
+
+generales en materia de señalización, aclarar y fortalecer aspectos asociados
+
+al seguimiento y control, maximizar uso del sistema de información y establecer
+
+límites a los tiempos de respuesta
+”.
+
+Que
+
+por lo anterior, se requiere (i) orientar los criterios técnicos para la
+
+autorización de instalación y operación de los sistemas automáticos,
+
+semiautomáticos y otros medios tecnológicos para la detección de presuntas infracciones
+
+al tránsito (SAST), con fin de garantizar mejores estándares de seguridad vial
+
+en el territorio colombiano, y (ii) actualizar la competencia en cabeza de la
+
+Agencia Nacional de Seguridad Vial, como entidad responsable de efectuar la
+
+autorización de los mencionados sistemas en el país, de conformidad con lo
+
+establecido en artículo 
+109
+ del Decreto-ley 2106 de 2019.
+
+Que,
+
+por lo anterior, la Viceministra de Transporte solicitó la expedición del
+
+respectivo acto administrativo mediante memorando número 20201010035513 de
+
+2020.
+
+Que el
+
+contenido de la presente resolución fue publicado en la página web del
+
+Ministerio de Transporte, del 1° al 15 de julio de 2020, en cumplimiento a lo
+
+determinado en el numeral 
+8
+ del artículo 8° de la Ley 1437 de 2011, el artículo
+
+
+2.1.2.1.14
+ del Decreto número 1081 de 2015, modificado y adicionado por el
+
+Decreto número 
+270
+ de 2017 y la Resolución número 994 de 2017 del Ministerio de
+
+Transporte, con el objeto de recibir opiniones, comentarios y propuestas
+
+alternativas.
+
+Que en
+
+virtud de lo señalado en el artículo 
+3°
+ del Decreto-ley 2106 de 2019, se
+
+sometió a consideración del Departamento Administrativo de la Función Pública,
+
+el presente acto administrativo adjuntando la manifestación de impacto
+
+regulatorio, quien mediante oficio 20205010407421 del 19 de agosto de 2020
+
+rindió concepto favorable en los siguientes términos:
+
+“Teniendo
+
+en cuenta que el artículo 109 del Decreto número 2106 de 2019 traslada la
+
+competencia de expedir la “Autorización para la instalación de sistemas automáticos,
+
+semiautomáticos y otros medios tecnológicos que se utilicen para la detección
+
+de presuntas infracciones de tránsito “SAST”, del Ministerio de Trasporte a la
+
+Agencia Nacional de Seguridad Vial, se cumple con el soporte jurídico y técnico
+
+para aprobar la modificación estructural del trámite.
+
+De
+
+suerte que, la Agencia Nacional de Seguridad Vial deberá registrar la
+
+información del trámite en el Sistema Único de Información de Trámites (SUIT),
+
+con el fin de dar cumplimiento al numeral 3º del artículo 1º de la Ley 962 de
+
+2005, el cual señala que “todo requisito, para que sea exigible al
+
+administrado, deberá encontrarse inscrito en el Sistema Único de Información de
+
+Trámites (SUIT)””.
+
+Que
+
+mediante memorando 20201010055813 del 19 de agosto de 2020 el Viceministerio de
+
+Transporte certificó que fueron atendidos en su totalidad las observaciones y comentarios
+
+presentados por los ciudadanos durante el termino de publicación del presente
+
+acto administrativo.
+
+Que la
+
+Oficina Asesora de Jurídica conservará los documentos asociados a la publicación
+
+del presente acto administrativo. Todo ello en concordancia con las políticas de
+
+gestión documental y de archivo de la entidad. 
+
+En
+
+mérito de lo expuesto,
+
+RESUELVE:
+
+CAPÍTULO I
+
+Disposiciones Generales
+
+Artículo
+
+1°. 
+Objeto
+. La presente resolución tiene por objeto reglamentar los
+
+criterios técnicos en seguridad vial para la instalación y operación de los
+
+sistemas automáticos, semiautomáticos y otros medios tecnológicos para la
+
+detección de presuntas infracciones al tránsito.
+
+Artículo
+
+2
+°
+.
+ Ámbito de aplicación
+. La
+
+presente resolución es aplicable a todas las autoridades de tránsito en el
+
+país, que directamente, o a través de terceros, pretendan instalar y operar en
+
+su jurisdicción sistemas automáticos, semiautomáticos y otros medios
+
+tecnológicos para la detección de presuntas infracciones al tránsito.
+
+Artículo
+
+3°. 
+Definiciones
+. Para la aplicación de la presente
+
+resolución se tendrán en cuenta las siguientes definiciones:
+
+a) 
+Agente
+
+de tránsito:
+ Aquel empleado público investido de autoridad para regular
+
+la circulación vehicular y peatonal, vigilar, controlar e intervenir en el
+
+cumplimiento de las normas de tránsito y transporte en la respectiva
+
+jurisdicción.
+
+b) 
+Calibración:
+
+Operación que bajo condiciones específicas establece, en una primera etapa, una
+
+relación entre los valores y sus incertidumbres de medida asociadas obtenidas a
+
+partir de los patrones de medida y las correspondientes indicaciones con sus
+
+incertidumbres asociadas y, en una segunda etapa, utiliza esta información para
+
+establecer una relación que permita obtener un resultado de medida a partir de
+
+una indicación.
+
+c) 
+Control
+
+aéreo:
+ Procedimiento de registro de presuntas evidencias sobre
+
+infracciones al tránsito a partir de controles en vía realizados de manera
+
+directa por la Dirección de Tránsito y Transporte de la Policía Nacional, desde
+
+un dispositivo electrónico instalado en helicóptero o vehículo de transporte
+
+aéreo.
+
+d)
+
+Control
+
+en vía apoyado en dispositivo electrónico:
+ Procedimiento
+
+realizado de manera directa por un agente de tránsito presente y visible en el
+
+sitio del evento, apoyado por dispositivo (s) electrónico (s) que opera
+
+manualmente para registrar la evidencia de la presunta infracción al tránsito y
+
+para la elaboración en el sitio, de la orden de comparendo, de conformidad con
+
+lo dispuesto en el primer 
+inciso
+ del artículo 135 de la Ley 769 de 2002, modificado
+
+por el artículo 
+22
+ de la Ley 1383 de 2010.
+
+e) 
+Detección
+
+electrónica:
+ Actividad relacionada con el registro de evidencia de la
+
+presunta infracción al tránsito a través de dispositivos electrónicos, en la
+
+cual no se entrega la orden de comparendo al presunto infractor en el lugar de
+
+los hechos y de forma inmediata.
+
+f) 
+Dispositivo
+
+automático:
+ Dispositivo que, una vez instalado y ajustado, no necesita
+
+la intervención del operador en ninguna de las fases de funcionamiento para la
+
+detección de la presunta infracción.
+
+g) 
+Dispositivo
+
+de instalación fija: 
+Dispositivo instalado en una infraestructura fija de una vía,
+
+tales como señales de tránsito, postes y demás elementos de la vía.
+
+h) 
+Dispositivo
+
+de instalación móvil:
+ Dispositivo que puede trasladarse de un lugar a otro, de
+
+manera constante, sin requerir soportes fijos y permanentes en la vía.
+
+i) 
+Dispositivo
+
+semiautomático:
+ Dispositivo que, una vez instalado y ajustado, necesita la
+
+intervención del operador en alguna de las fases de funcionamiento para la
+
+detección de la presunta infracción.
+
+j) 
+Entidad
+
+administradora de la infraestructura vial:
+ Entidad estatal que
+
+tiene a su cargo la administración, planeación, coordinación, construcción,
+
+conservación y mantenimiento de la infraestructura vial.
+
+k) 
+Evidencia
+
+de cierre:
+ Documento expedido por la entidad administradora de la
+
+infraestructura vial, de acuerdo con sus procedimientos internos, por el cual
+
+se determina el cumplimiento de los requisitos relacionados con la autorización
+
+del uso, ocupación o intervención temporal para la instalación del sistema de
+
+soporte en los dispositivos de instalación fija, así como de la señalización
+
+asociada al SAST.
+
+l) 
+Señal
+
+de Mensaje Variable (SMV): 
+Dispositivo capaz de desplegar alternada o
+
+intermitentemente señales de tránsito y/o mensajes mediante leyendas y/o
+
+símbolos dirigidos a los conductores de vehículos u otros usuarios de las vías
+
+de acuerdo con los requerimientos existentes en la vía o en sus inmediaciones.
+
+Estas señales podrán ser permanentes (fijas) o portátiles (móviles).
+
+m) 
+Sistemas
+
+automáticos, semiautomáticos y otros medios tecnológicos para la detección de
+
+presuntas infracciones al tránsito (en adelante SAST):
+
+Dispositivos electrónicos, los cuales podrán ser utilizados como prueba de ocurrencia
+
+de una presunta infracción de tránsito dentro de un proceso contravencional.
+
+Los SAST pueden ser dispositivos de instalación fija, móvil, automáticos o
+
+semiautomáticos.
+
+n) 
+Sistema
+
+de Información:
+ Medio electrónico para el registro, consulta y autorización
+
+de los SAST.
+
+o) 
+Ubicación
+
+Geográfica:
+ Coordenadas de un punto determinado para asignar una posición
+
+geoespacial.
+
+p) 
+Validación
+
+del comparendo:
+ Procedimiento de verificación que realiza el agente de
+
+tránsito, de la información registrada mediante los SAST, para el
+
+establecimiento de la presunta infracción y expedición de la orden de
+
+comparendo.
+
+Artículo
+
+4°. 
+Requisitos
+. Para poder operar SAST en una determinada jurisdicción, se
+
+deberá cumplir con los criterios que para la instalación y operación se
+
+encuentran establecidos en los Capítulos II y III de la presente resolución.
+
+CAPITULO II
+
+Criterios para la instalación
+
+Artículo
+
+5°.
+
+Criterios técnicos para la instalación de los SAST
+. Para
+
+solicitar la autorización de instalación de los SAST, la autoridad de tránsito
+
+competente del lugar donde se pretendan instalar deberá acreditar ante la
+
+Dirección de Infraestructura y Vehículos de la Agencia Nacional de Seguridad
+
+Vial, el cumplimiento de al menos uno de los siguientes criterios técnicos de
+
+seguridad vial:
+
+a) 
+Siniestralidad:
+
+
+Criterio relacionado con los sucesos que producen un daño
+
+material o humano, estando involucrado un vehículo en una vía pública y/o
+
+privada abiertas al público.
+
+b) 
+Prevención:
+
+Criterio que evidencie los hallazgos y la evaluación del riesgo en la zona de
+
+influencia del SAST en materia de siniestralidad vial.
+
+c) 
+Infracciones:
+
+Estadísticas de infracciones detectadas por la Autoridad de Tránsito en la zona
+
+de influencia del SAST.
+
+Parágrafo
+
+1°.
+ La metodología para sustentar y evaluar los criterios
+
+anteriormente referidos se deberá adoptar y publicar por la Agencia Nacional de
+
+Seguridad Vial, dentro de los 30 días siguientes a la expedición de la presente
+
+resolución.
+
+Parágrafo
+
+2°.
+ El uso de equipos para las labores de control en vía apoyado
+
+en dispositivo electrónico o para fines exclusivamente disuasivos, pedagógicos
+
+y de análisis de tráfico, no requerirá autorización de la Agencia Nacional de
+
+Seguridad Vial.
+
+Artículo
+
+6
+°
+. 
+Ubicación de los dispositivos
+. Los
+
+SAST solo podrán ubicarse en sitios que hagan parte de la infraestructura vial,
+
+de modo que no procederá su instalación en colinas, viviendas u otros
+
+equipamientos aledaños, ni podrán operarse en vehículos en movimiento durante
+
+la detección de la presunta infracción, con excepción de la detección aérea.
+
+Artículo
+
+7
+°
+. 
+Procedimiento para la autorización de
+
+instalación de los SAST
+. Para obtener la autorización de
+
+instalación de los SAST, la autoridad de tránsito competente del lugar donde se
+
+pretendan instalar deberá seguir el siguiente procedimiento.
+
+a) 
+Solicitud
+
+de autorización:
+ La autoridad de tránsito competente donde se pretenda
+
+instalar los SAST deberá radicar la solicitud de autorización en el sistema de información
+
+al cual se accederá a través de la página web de la Agencia Nacional de Seguridad
+
+Vial, cargando la información contenida en el anexo número 1 “
+Información de
+
+la solicitud
+” de la presente resolución, el cual hace parte integral de
+
+esta.
+
+b) 
+Plazo
+
+para la autorización: 
+La Agencia Nacional de Seguridad Vial
+
+tendrá un plazo de 45 días hábiles, contados a partir del día siguiente a la
+
+fecha de radicado arrojada por el sistema de información, para la autorización
+
+o rechazo de la solicitud.
+
+c) 
+Requerimientos:
+
+Cuando se constate que la solicitud está incompleta la Agencia Nacional de
+
+Seguridad Vial requerirá al peticionario dentro de los veinte (20) días hábiles
+
+siguientes a la fecha de radicación, para que la complete en el término máximo
+
+de un (1) mes. Durante este periodo se suspenderá el plazo referido en el
+
+literal b) del presente artículo, y se reiniciará a partir del día hábil
+
+siguiente al que la autoridad de tránsito aporte los documentos o información
+
+requerida por la Agencia Nacional de Seguridad Vial.
+
+En
+
+caso de no aportar la información en los términos solicitados, la Agencia
+
+Nacional de Seguridad Vial lo requerirá por segunda y última vez, para que
+
+subsane lo correspondiente dentro de los diez (10) días hábiles siguientes al
+
+requerimiento. En este caso, también se suspenderá el plazo referido en el
+
+literal b) y se reiniciará a partir del día hábil siguiente al que la autoridad
+
+de tránsito aporte los documentos o información requerida.
+
+d) 
+Desistimiento
+
+tácito:
+ En aquellos casos en que la autoridad de tránsito no subsane
+
+los requerimientos efectuados por la Agencia en las dos (2) oportunidades
+
+referidas y en los plazos señalados en el literal anterior, se configura el
+
+desistimiento tácito y se aplicara el procedimiento establecido en el artículo
+
+
+17
+ de la Ley 1437 de 2011, modificado por el artículo 
+1°
+ de la Ley 1755 de 2015.
+
+e) 
+Comunicación:
+
+
+La autorización o rechazo de la instalación de los SAST será
+
+comunicada a la autoridad de tránsito solicitante, a través del correo
+
+electrónico suministrado en el momento de efectuar la solicitud.
+
+f) 
+Información
+
+al público:
+ Las autorizaciones concedidas, estarán disponibles en el
+
+sistema de información de la Agencia Nacional de Seguridad Vial, con el objeto
+
+de facilitar su consulta en línea por todos los interesados.
+
+Parágrafo
+.
+
+Tanto el documento de autorización o rechazo de la instalación del SAST, como
+
+toda la documentación aportada, reposará en el Sistema de Información dispuesto
+
+para tal fin por la Agencia Nacional de Seguridad Vial (ANSV), para facilitar
+
+su consulta por parte de la respectiva Autoridad de Tránsito y de las
+
+autoridades competentes.
+
+CAPITULO III
+
+Criterios para la operación
+
+Artículo
+
+8
+°
+. 
+Criterios técnicos para la operación
+
+de los SAST
+. Además de contar con la autorización de instalación por
+
+parte de la Agencia Nacional de Seguridad Vial, para iniciar la operación de
+
+los SAST, la autoridad de tránsito deberá cumplir con los siguientes criterios
+
+técnicos para la operación, lo cual se acreditarán de conformidad con lo
+
+dispuesto en los artículos subsiguientes:
+
+a) 
+Viabilidad
+
+en el uso de la infraestructura vial
+
+b) 
+Calibración
+
+c) 
+Evidencia
+
+de la señalización instalada
+
+Parágrafo
+. Una
+
+vez la autoridad de tránsito cumpla con los anteriores criterios, deberá indicar
+
+en el sistema de información de la Agencia Nacional de Seguridad Vial, la fecha
+
+en que inicie la operación efectiva de los SAST. En caso de no indicarse dicha
+
+fecha, el respectivo SAST no podrá iniciar su operación.
+
+Artículo
+
+9
+°
+. 
+Viabilidad en el uso de
+
+infraestructura vial
+.
+ La autoridad de tránsito deberá contar
+
+con la evidencia de cierre para el uso, ocupación temporal o intervención de la
+
+vía en la cual operarán los SAST, emitido por la entidad administradora de la
+
+respectiva infraestructura vial, de acuerdo con el procedimiento que adopte
+
+previamente dicha entidad para tal efecto. 
+
+El
+
+procedimiento asociado a este trámite no podrá versar sobre los criterios
+
+técnicos establecidos en el artículo 5° de la presente resolución por ser
+
+objeto de estudio por parte de la Agencia Nacional de Seguridad Vial, de
+
+conformidad con la facultad otorgada en el artículo 
+2°
+ de la Ley 1843 de 2017
+
+modificado por el artículo 
+109
+ del Decreto-ley 2106 de 2019.
+
+Parágrafo
+
+1°.
+ El documento que acredite la evidencia de cierre debe
+
+cargarse por parte de la entidad que administra la infraestructura vial
+
+respectiva, en el sistema de información establecido por la Agencia Nacional de
+
+Seguridad Vial, dentro de los diez (10) días hábiles siguientes a la expedición
+
+del referido documento.
+
+Parágrafo
+
+2°.
+ Para el caso de las vías nacionales no concesionadas, el
+
+documento antes referido será cargado por la autoridad de tránsito solicitante
+
+y será validado por el Instituto Nacional de Vías en el sistema de información
+
+establecido por la Agencia Nacional de Seguridad Vial, dentro de los diez (10)
+
+días hábiles siguientes al cargue del documento por parte de la autoridad de
+
+tránsito.
+
+Artículo
+
+10.
+ Calibración
+. Se requiere que los SAST vinculados a
+
+medición de velocidad estén calibrados. Para acreditar dicha calibración, la
+
+autoridad de tránsito deberá cargar en el sistema de información de la Agencia
+
+Nacional de Seguridad Vial, el certificado de calibración de los equipos, de
+
+acuerdo con lo previsto en el artículo 
+14
+ de la Ley 1843 de 2017 y en el
+
+Decreto número 
+1074
+ de 2015 o la norma que lo sustituya, adicione o modifique.
+
+Parágrafo
+
+1°.
+ La información contenida en el presente artículo deberá
+
+mantenerse actualizada y vigente.
+
+Parágrafo
+
+2°.
+ Hasta tanto se expida el reglamento técnico respectivo, las
+
+directrices relacionadas al control metrológico de las ayudas tecnológicas para
+
+la detección de presuntas infracciones de tránsito, serán las consagradas en el
+
+artículo 
+2.2.1.7.14.2
+. del Decreto número 1074 de 2015, Único Reglamentario del
+
+Sector Comercio, Industria y Turismo o la norma que lo modifique, adicione o
+
+sustituya.
+
+Artículo
+
+11. 
+Evidencia de la señalización instalada
+. Los
+
+soportes o evidencias, tales como fotos o videos, en los que conste la
+
+señalización efectivamente instalada, de acuerdo con el diseño presentado para
+
+la autorización de instalación deberán cargarse al sistema de información de la
+
+Agencia Nacional de Seguridad Vial y deberá tener en cuenta para su
+
+presentación, los parámetros contenidos en el anexo número 2 “
+Señalización
+
+requerida para la instalación de SAST
+” de la presente resolución, el cual
+
+hace parte integral de esta, y se enmarca en lo dispuesto en el Manual de
+
+Señalización Vial adoptado mediante la Resolución número 
+1885
+ de 2015 del
+
+Ministerio de Transporte.
+
+Artículo
+
+12. 
+Señalización
+. Los SAST deberán contener para el
+
+diseño, instalación y operación, la señalización de acuerdo con lo previsto en
+
+la Resolución número 
+1885
+ del 17 de junio de 2015, 
+por la cual se adopta el
+
+Manual de Señalización Vial – Dispositivos para la Regulación del Tránsito en
+
+Calles, Carreteras y Ciclorrutas de Colombia
+, o la norma que la adicione,
+
+modifique o sustituya y teniendo en cuenta los requerimientos mínimos establecidos
+
+en el Anexo 2 “
+Señalización requerida para la instalación de SAST
+”, que
+
+hace parte integral de la presente resolución.
+
+Parágrafo
+
+1°.
+ Las entidades administradoras de la infraestructura vial
+
+respectiva deberán adelantar de forma oportuna las gestiones necesarias para
+
+que la autoridad de tránsito pueda cumplir con los criterios de operación
+
+establecidos en la presente resolución, con el fin de promover la seguridad
+
+vial en el corredor.
+
+Parágrafo
+
+2°.
+ Respecto a la señalización que advierta sobre la existencia
+
+de controles en vía apoyado en dispositivos electrónicos, se deberán instalar
+
+en la vía señales fijas o móviles visibles SI-27 que informen que es una zona
+
+vigilada por SAST, localizadas al inicio de estas zonas.
+
+Parágrafo
+
+3°.
+ Tratándose del control aéreo se deberá dar aviso mediante
+
+señales fijas o móviles visibles SI-27 en la vía que informen que es una zona
+
+vigilada por SAST.
+
+CAPÍTULO IV
+
+Seguimiento
+
+Artículo
+
+13. 
+Control a las autoridades de tránsito
+. La
+
+Superintendencia de Transporte, en ejercicio de sus competencias, verificará
+
+periódicamente el cumplimiento de los criterios técnicos definidos en la
+
+presente resolución por parte de los organismos de tránsito, tanto para la
+
+instalación como para la operación de SAST. En el evento de encontrar presuntos
+
+incumplimientos, podrá iniciar las investigaciones correspondientes, de
+
+conformidad con lo previsto en el artículo 
+3°
+ de la Ley 1843 de 2017.
+
+Parágrafo
+. La
+
+Superintendencia de Transporte reportará en el sistema de información de la
+
+Agencia Nacional de Seguridad Vial, la fecha de inicio y finalización de las
+
+sanciones que se hayan impuesto a las autoridades de tránsito, en materia de
+
+suspensión de la operación de los SAST.
+
+Artículo
+
+14. 
+Documentación disponible
+. La Superintendencia de
+
+Transporte en el ejercicio de sus competencias, podrá requerir en cualquier
+
+momento a la autoridad de tránsito respectiva, la documentación que acredite el
+
+cumplimiento de los criterios para la instalación y la operación de SAST.
+
+Artículo
+
+15. 
+Indicadores de Seguridad Vial
+. La Agencia Nacional de
+
+Seguridad Vial publicará los indicadores anuales de seguridad vial que deberán
+
+reportar las autoridades de tránsito para el seguimiento al comportamiento de
+
+los usuarios viales y las condiciones de seguridad vial en los puntos
+
+autorizados para la instalación de SAST.
+
+Parágrafo
+. Las
+
+autoridades de tránsito deberán reportar en el sistema de información de la
+
+Agencia Nacional de Seguridad Vial, los datos requeridos para efectos de
+
+realizar el análisis de indicadores anuales de seguridad vial, que permitan
+
+establecer la efectividad de las medidas tomadas en cada punto autorizado.
+
+CAPÍTULO V
+
+Disposiciones transitorias y finales
+
+Artículo
+
+16. 
+Vigencia de la autorización
+. Toda autorización otorgada
+
+en Colombia para la instalación de sistemas automáticos, semiautomáticos y
+
+otros medios tecnológicos para la detección de presuntas infracciones al
+
+tránsito, tendrá una duración cinco (5) años, contados a partir de la fecha
+
+reportada en el sistema de información como fecha de inicio de operación,
+
+previo cumplimiento de los criterios para la instalación y la operación.
+
+Artículo
+
+17. 
+Modificaciones
+. Cualquier necesidad de ajuste al alcance
+
+de la autorización de instalación de los SAST otorgada, deberá ser solicitado a
+
+la Agencia Nacional de Seguridad Vial a través del sistema de información, para
+
+ello se deberá habilitar el aplicativo usado para la solicitud inicial. En este
+
+caso, el trámite a seguir se realizará en los términos establecidos en el
+
+artículo 7° de la presente resolución.
+
+Parágrafo
+. En
+
+todo caso, los ajustes aquí referidos no modificarán el plazo previsto para la
+
+vigencia de la autorización inicial.
+
+Artículo
+
+18. 
+Validación del comparendo
+. La validación del
+
+comparendo, a la que hace referencia el artículo 
+8°
+ de la Ley 1843 de 2017,
+
+deberá realizarse, a más tardar, dentro de los diez (10) días hábiles
+
+siguientes a la ocurrencia de la presunta infracción.
+
+Artículo
+
+19. 
+Metodología para la evaluación de las solicitudes
+.
+
+Hasta tanto se adopte la metodología referida en el parágrafo 1 del artículo 5°
+
+de la presente resolución, la evaluación de los criterios de instalación se
+
+hará de conformidad con lo dispuesto en la Resolución 426 de 2018 adoptada por
+
+la Agencia Nacional de Seguridad Vial, en aquello que le sea aplicable.
+
+Artículo
+
+20. 
+Autorizaciones otorgadas por el Ministerio de Transporte
+.
+ Las autorizaciones
+
+otorgadas por el Ministerio de Transporte con anterioridad a la expedición del
+
+Decreto-ley 
+2106
+ de 2019, no requerirán de una refrendación ante la Agencia
+
+Nacional de Seguridad Vial, por tratarse de situaciones consolidadas bajo la
+
+normatividad vigente con anterioridad al Decreto-ley 
+2106
+ de 2019.
+
+En
+
+todo caso, la vigencia de las autorizaciones antes mencionadas será de cinco
+
+(5) años, contados a partir de la entrada en vigencia del Decreto-ley 
+2106
+ de
+
+2019. Para los demás casos, se entenderá que la vigencia de los cinco (5) años
+
+se contará a partir de la fecha de su autorización.
+
+Artículo
+
+21. 
+Sistema de Información de la ANSV
+. Hasta tanto el
+
+sistema de información permita la recepción de la documentación referida en los
+
+Capítulos III y IV de la presente resolución, la Agencia Nacional de Seguridad
+
+Vial deberá disponer de un mecanismo virtual para su recepción y consulta.
+
+Artículo
+
+22. 
+Régimen de Transición
+. De conformidad con lo
+
+previsto en el parágrafo 
+transitorio
+ del artículo 109 del Decreto-ley 2106 de
+
+2019, las solicitudes de autorización en curso que se presenten con
+
+anterioridad a la entrada en vigencia de la presente resolución serán
+
+tramitadas por el Ministerio de Transporte, hasta su culminación, bajo la
+
+normativa vigente al momento de su radicación.
+
+Artículo
+
+23. 
+Vigencia
+. La presente resolución rige a partir de su publicación en
+
+el 
+Diario Oficial
+ y deroga la Resolución número 
+718
+ de 2018 del
+
+Ministerio de Transporte y la Agencia Nacional de Seguridad Vial.
+
+PUBLÍQUESE Y CÚMPLASE.
+
+Dada en Bogotá, D.C., a los 20 días del mes de agosto del año
+
+2020.
+
+La Ministra de Transporte,
+
+Ángela María Orozco Gómez.
+
+El Director de la Agencia Nacional de Seguridad Vial,
+
+Luis Felipe Lota
+NOTA
+: Ver Anexo.

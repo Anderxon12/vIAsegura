@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>VíaSegura IA · Grupo 3 · Siniestralidad vial en Bogotá</title>
 <link rel="icon" href="data:,">
-<link rel="preload" as="image" href="/static/presentacion/01.webp">
+<link rel="preload" as="image" href="/static/{{ carpeta }}/01.webp">
 <style>
   :root {
     --morado: #4a1560; --morado-osc: #2a0b38; --magenta: #d4136f; --fondo: #1c0826;
@@ -91,7 +91,7 @@
   <div class="escenario">
     <div class="marco" id="marco">
       {% for i in range(1, n_diapositivas + 1) %}
-      <img class="diapo" data-src="/static/presentacion/{{ '%02d' % i }}.webp"
+      <img class="diapo" data-src="/static/{{ carpeta }}/{{ '%02d' % i }}.webp"
            alt="Diapositiva {{ i }} de {{ n_diapositivas }}" draggable="false">
       {% endfor %}
       <div class="progreso"><i id="barra"></i></div>

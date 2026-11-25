@@ -4,17 +4,33 @@ Lee las normas de la carpeta de documentos (.txt, .md, .pdf, .docx), quita el
 encabezado que agrega el portal SISJUR y extrae metadatos (título, fechas,
 si está derogada). Los archivos que SISJUR descargó vacíos («Cargando el
 Contenido del Documento…») se omiten y se reportan.
+
+Los PDF escaneados (fotos de páginas, sin texto seleccionable) se leen con Claude: se le envían
+las páginas por lotes y transcribe el texto. La transcripción se guarda junto al PDF
+(«archivo.pdf.ocr») para no volver a pagarla al reindexar. Necesita ANTHROPIC_API_KEY.
 """
 
 from __future__ import annotations
 
+import base64
 import csv
+import io
 import os
 import re
 from dataclasses import dataclass, field
 
 EXTENSIONES = (".txt", ".md", ".pdf", ".docx")
 MINIMO_CARACTERES = 400        # menos que esto, después de limpiar, se considera vacío
+MINIMO_POR_PAGINA = 200        # un PDF con menos letras por página que esto se trata como escaneado
+OCR_PAGINAS_POR_LOTE = 8       # páginas que se envían a Claude en cada llamada
+OCR_MAX_BYTES = 24_000_000     # la API acepta hasta 32 MB por solicitud: se deja margen
+OCR_INSTRUCCION = (
+    "Este PDF es un documento escaneado de una norma colombiana (resolución, decreto, ley o similar). "
+    "Transcribe TEXTUALMENTE todo su texto, en el orden en que aparece, sin resumir, corregir ni comentar. "
+    "Conserva los títulos y la numeración (RESOLUCIÓN, CONSIDERANDO, RESUELVE, ARTÍCULO 1°, PARÁGRAFO…), "
+    "y las tablas como líneas de texto. Omite sellos, firmas y marcas ilegibles. "
+    "Responde solo con el texto transcrito."
+)
 
 
 @dataclass
@@ -31,12 +47,68 @@ def _leer_archivo(ruta: str) -> str:
         with open(ruta, encoding="utf-8", errors="replace") as f:
             return f.read()
     if ext == ".pdf":
-        from pypdf import PdfReader
-        return "\n\n".join(p.extract_text() or "" for p in PdfReader(ruta).pages)
+        return _leer_pdf(ruta)
     if ext == ".docx":
         from docx import Document          # pip install python-docx
         return "\n\n".join(p.text for p in Document(ruta).paragraphs)
     return ""
+
+
+def _leer_pdf(ruta: str) -> str:
+    """Texto del PDF; si casi no tiene texto seleccionable (escaneado), lo transcribe Claude."""
+    from pypdf import PdfReader
+    lector = PdfReader(ruta)
+    texto = "\n\n".join(p.extract_text() or "" for p in lector.pages)
+    letras = len(re.sub(r"\s+", "", texto))
+    if letras >= MINIMO_POR_PAGINA * max(len(lector.pages), 1) or letras >= 20_000:
+        return texto
+    return _ocr_con_claude(ruta, lector) or texto
+
+
+def _ocr_con_claude(ruta: str, lector) -> str:
+    cache = ruta + ".ocr"
+    if os.path.exists(cache) and os.path.getmtime(cache) >= os.path.getmtime(ruta):
+        with open(cache, encoding="utf-8") as f:
+            return f.read()
+    from .config import cargar_config
+    c = cargar_config()
+    if not c.hay_llm:
+        raise RuntimeError("el PDF está escaneado (no tiene texto seleccionable) y para leerlo hace falta "
+                           "ANTHROPIC_API_KEY en .env o en Render")
+    import anthropic
+    from pypdf import PdfWriter
+    cliente = anthropic.Anthropic(api_key=c.anthropic_api_key)
+    paginas = list(lector.pages)
+
+    def transcribir(desde: int, hasta: int) -> list[str]:
+        w = PdfWriter()
+        for p in paginas[desde:hasta]:
+            w.add_page(p)
+        buf = io.BytesIO()
+        w.write(buf)
+        if buf.tell() > OCR_MAX_BYTES and hasta - desde > 1:       # lote muy pesado: se parte en dos
+            medio = (desde + hasta) // 2
+            return transcribir(desde, medio) + transcribir(medio, hasta)
+        try:
+            r = cliente.messages.create(
+                model=c.modelo_llm, max_tokens=16_000,
+                messages=[{"role": "user", "content": [
+                    {"type": "document", "source": {"type": "base64", "media_type": "application/pdf",
+                                                    "data": base64.b64encode(buf.getvalue()).decode()}},
+                    {"type": "text", "text": OCR_INSTRUCCION}]}])
+        except Exception as e:
+            from .llm import explicar_error
+            raise RuntimeError(f"no se pudo transcribir el PDF escaneado con Claude: {explicar_error(e)}") from e
+        return ["".join(b.text for b in r.content if getattr(b, "type", "") == "text").strip()]
+
+    partes = []
+    for i in range(0, len(paginas), OCR_PAGINAS_POR_LOTE):
+        partes += transcribir(i, min(i + OCR_PAGINAS_POR_LOTE, len(paginas)))
+    texto = "\n\n".join(x for x in partes if x)
+    if texto:
+        with open(cache, "w", encoding="utf-8") as f:
+            f.write(texto)
+    return texto
 
 
 def _campo(texto: str, etiqueta: str) -> str:
@@ -125,7 +197,7 @@ def cargar_documento(carpeta: str, archivo: str, notas: dict | None = None) -> t
         vacio = "SISJUR no entregó el texto"
     else:
         texto, meta = limpiar_pdf(bruto)
-        vacio = ("el PDF no tiene texto seleccionable (parece escaneado: necesita OCR)"
+        vacio = ("el PDF no tiene texto legible, ni siquiera transcrito por Claude"
                  if nombre.lower().endswith(".pdf") else "el archivo casi no tiene texto")
     if len(texto) < MINIMO_CARACTERES:
         return None, vacio + (f" — {notas[num]}" if num in notas else "")

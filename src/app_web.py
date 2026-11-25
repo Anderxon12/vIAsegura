@@ -436,7 +436,8 @@ def celdas_geojson(celdas: list[str]) -> dict:
 # ════════════════════════════════════════════════════════════
 #  RUTAS
 # ════════════════════════════════════════════════════════════
-DIR_PRESENTACION = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static", "presentacion")
+CARPETA_PRESENTACION = "presentacion_supervisado"      # versión centrada en el modelo supervisado de gravedad
+DIR_PRESENTACION = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static", CARPETA_PRESENTACION)
 
 
 @app.get("/")
@@ -445,7 +446,7 @@ def inicio():
     n = len(glob.glob(os.path.join(DIR_PRESENTACION, "[0-9][0-9].webp")))
     if not n:                                          # sin diapositivas: directo a la app
         return render_template("index.html")
-    return render_template("presentacion.html", n_diapositivas=n)
+    return render_template("presentacion.html", n_diapositivas=n, carpeta=CARPETA_PRESENTACION)
 
 
 @app.get("/app")
